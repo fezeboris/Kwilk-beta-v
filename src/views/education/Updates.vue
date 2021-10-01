@@ -20,7 +20,7 @@
       </select>
       <label>{{ $t('education.updates.lable2') }}</label>
       <input type="text" v-model="title" />
-      <label>{{ $t('education.updates.l4') }}</label>
+      <label>{{ $t('education.updates.la4') }}</label>
       <input type="text" v-model="link" />
 
      
