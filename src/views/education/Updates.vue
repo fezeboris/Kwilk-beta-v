@@ -9,7 +9,9 @@
         class="hr"
         style="border-top: dotted 1px; color: #8ba0ae; width: 100%"
       />
-       <Loader />
+      <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
       <label class="lable">{{ $t('education.updates.lable1') }}</label>
       <select v-model="educTpye" required>
         <option value="text">Text</option>
@@ -18,7 +20,7 @@
       </select>
       <label>{{ $t('education.updates.lable2') }}</label>
       <input type="text" v-model="title" />
-      <label>{{ $t('education.updates.lable3') }}</label>
+      <label>{{ $t('education.updates.l4') }}</label>
       <input type="text" v-model="link" />
 
      
@@ -199,7 +201,7 @@ textarea{
  
 }
 .apply-btn{
-  width: 80px;
+  width: 120px;
   background: lightgreen;
   margin: 10px 0px;
   border-radius: 5px;
