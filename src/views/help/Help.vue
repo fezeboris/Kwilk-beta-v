@@ -2,11 +2,11 @@
   <HelpNav />
 
   <div class="help">
-   
+    
 
     <div class="request-main-contain">
       <!-- <router-link :to="{ name: 'Clinical' }"> -->
-        <div class="loader" >
+       <div class="loader" >
          <Loader/>
        </div>
         <div class="clinical-specialist">
