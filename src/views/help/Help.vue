@@ -80,6 +80,7 @@ export default {
     return {
       showSidebar: false,
       token: "",
+      loading: false,
     };
   },
   methods: {
