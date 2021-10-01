@@ -1,7 +1,7 @@
 <template>
 
   <button onclick="document.getElementById('id01').style.display='block'">
-    delete
+   {{ $t('delete.btn1') }}
   </button>
 
   <div id="id01" class="modal">
@@ -13,7 +13,7 @@
     >
     <form class="modal-content" action="/action_page.php">
       <div class="container">
-        <p>Are you sure you want to delete ?</p>
+        <p> {{ $t('delete.p') }}</p>
 
         <div class="clearfix">
           <button
@@ -21,14 +21,14 @@
             onclick="document.getElementById('id01').style.display='none'"
             class="cancelbtn"
           >
-            Cancel
+            {{ $t('delete.btn2') }}
           </button>
           <button
             type="button"
             onclick="document.getElementById('id01').style.display='none'"
             class="deletebtn"
           >
-            Delete
+            {{ $t('delete.btn3') }}
           </button>
         </div>
       </div>
@@ -164,4 +164,8 @@ hr {
     width: 100%;
   }
 }
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+} 
 </style>

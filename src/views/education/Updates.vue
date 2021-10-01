@@ -1,32 +1,33 @@
 <template>
-  <Navbar />
+  <EducationNav />
 
   <div class="updates">
-    <div class="request-header">
-      <p>Update Educational Content</p>
-      <small>Education will go a long way in preventing GBV</small>
-    </div>
+   
     <hr style="border-top: dotted 1px; color: #8ba0ae; width: 100%" />
     <div class="update-content">
       <hr
         class="hr"
         style="border-top: dotted 1px; color: #8ba0ae; width: 100%"
       />
-      <label class="lable">Type of Education</label>
+       <Loader />
+      <label class="lable">{{ $t('education.updates.lable1') }}</label>
       <select v-model="educTpye" required>
         <option value="text">Text</option>
         <option value="video">Video</option>
         
       </select>
-      <label>Title</label>
+      <label>{{ $t('education.updates.lable2') }}</label>
       <input type="text" v-model="title" />
-      <label>Link</label>
+      <label>{{ $t('education.updates.lable3') }}</label>
       <input type="text" v-model="link" />
 
      
 
       <div class="btn-container">
-        <button class="apply-btn" @click.prevent="updateJob">Update Job</button>
+         <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
+        <button v-else class="apply-btn" @click.prevent="updateEducation">{{ $t('education.updates.btn') }} </button>
       </div>
     </div>
     <Date :Cdate="getDate" :Ctime="getTime" />
@@ -38,14 +39,15 @@
 <script>
 import axios from 'axios'
 import Footer from "@/components/Footer.vue";
-import Navbar from "@/components/Navbar.vue";
+import EducationNav from "../education/EducationNav.vue";
 import Date from "@/components/toolpit/Date.vue";
-
+import Loader from "@/components/toolpit/Loader.vue";
 export default {
   components: {
     Footer,
-    Navbar,
-    Date
+    EducationNav,
+    Date,
+    Loader
   },
   data() {
     return {
@@ -55,6 +57,7 @@ export default {
        link: '',
        title: '',
        currentTime: '',
+        loading: false,
        
 
 
@@ -68,7 +71,8 @@ export default {
       this.currentTime = time
     },
 
-    async updateJob() {
+    async updateEducation() {
+      this.loading = true;
       try {
         let result = await axios.post(
           `https://kwiklik.herokuapp.com/education/create/${this.token}/`,
@@ -81,6 +85,7 @@ export default {
           }
         
         )
+         
         this.educTpye = '',
         this.link=''
         this.title= ''
@@ -89,7 +94,9 @@ export default {
       } catch (e) {
         console.log(e);
       }
+      this.loading = false;
     },
+    
   },
   mounted(){
        this.token = localStorage.getItem("userInfo");
@@ -129,8 +136,8 @@ small {
   line-height: 0.5rem;
 }
 .update-content {
-  margin-top: 70px;
-  margin-bottom: 50px;
+  margin-top: 40px;
+  /* margin-bottom: 50px; */
 }
 .request-content {
   display: grid;
@@ -202,4 +209,8 @@ textarea{
 .apply-btn:hover{
   background: rgb(63, 52, 52);
 }
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+} 
 </style>

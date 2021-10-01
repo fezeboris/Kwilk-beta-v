@@ -3,11 +3,12 @@
         <!-- <hr> -->
         <div class="footer-contain">
             <div class="footer-btn">
-            <router-link to="/report-sheet"><i class="fab fa-telegram-plane"></i></router-link>
-            <router-link to="/notifications"><i class="fas fa-bell"></i></router-link>
-            <router-link to="/map"><i class="fas fa-map-marker-alt"></i></router-link>
-            <router-link to="/profile"><i class="fas fa-star"></i></router-link>
-            <router-link to="/help"><i class="fas fa-heart"></i></router-link>
+            <router-link to="/report-sheet"><i class="fab fa-shopware"></i></router-link>
+            <router-link to="/education"><i class="fas fa-user-graduate"></i></router-link>
+            <router-link to="/home-slider"><i class="fas fa-home"></i></router-link>
+           
+            <router-link to="/help"><i class="fas fa-ambulance"></i></router-link>
+             <router-link to="/map"><i class="fas fa-map-marker-alt"></i></router-link>
             
             
         </div>

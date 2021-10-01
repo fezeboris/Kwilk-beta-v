@@ -1,0 +1,187 @@
+{
+  "welcome": "Bonjour depuis ",
+
+  "Nav": {
+    "gbvcases": "GBV Cases",
+    "ReportAbuse": "Report Abuse",
+    "explore": "Explore"
+  },
+  "popup": {
+    "account": "My Account",
+    "job": "Job Request",
+    "pro": "Professionals",
+    "patient": "Patient Request",
+    "research": "Create Research",
+    "vue": "View Research",
+    "edu": "Education Create",
+    "logout": "Logout"
+  },
+  "header": {
+    "anonymous": "Anonymous",
+    "explore": "Explore",
+    "comment": "comment",
+    "reply": "reply",
+    "cancel": "cancel"
+  },
+  "rating": {
+    "head": "Please Rate this App",
+    "review": "Write a review",
+    "send": "SEND"
+  },
+  "delete": {
+    "btn1": "delete",
+    "p": "Are you sure you want to delete ?",
+    "btn2": "delete",
+    "btn3": "cancel"
+  },
+  "report": {
+    "details": "Details",
+    "recording": "Recording",
+    "image": "Image",
+    "case": "Case Type",
+    "btn1": "delete",
+    "date": "Date of Abuse",
+    "pysical": "physical violence",
+    "options": {
+      "psychological": "psychological violence",
+      "stalking": "stalking",
+      "mariage": "forced marriages",
+      "sexual": "sexual violence",
+      "rape": "rape",
+      "mutilation": "female genital mutilation",
+      "sterilisation": "forced sterilisation",
+      "harassement": "sexual harassement"
+    },
+    "option2": {
+      "Prentive": "Get Prentive Paliatives",
+      "Consultant": "Contact Legal Consultant",
+      "Medical": "Get Medical Doctor",
+      "Psychologist": "Contact Psychologist",
+      "btn": "Submit"
+    }
+  },
+  "jobSeekers": {
+    "label": "Type Job",
+    "label2": "Availability",
+    "label3": "Location",
+    "btn": "Apply",
+
+    "options": {
+      "rider": "Rider",
+      "doctor": "Doctor",
+      "psychologist": "Psychologist",
+      "consultant": "Legal Consultant",
+      "health": "Health Worker"
+    }
+  },
+  "education": {
+    "Nav": {
+      "p": "Educational Content",
+      "s": "Explore",
+      "readM": "Read More"
+    },
+    "updates": {
+      "lable1": "Type of Education",
+      "lable2": "Title",
+      "label3": "Link",
+      "btn": "Update"
+    }
+  },
+  "demandes": {
+    "clinical": "Demande Clinical help",
+    "consultant": "Demand Legal consultant",
+    "bike": "Demand Bike",
+    "Psychological": "Demand a Psychological Health specialist",
+    "cancel": "cancel",
+    "send": "Send"
+  },
+  "myRequest": {
+    "request": "Update My Requests",
+    "update": "update"
+  },
+  "help": {
+    "p1": "Legale Consultant demand",
+    "p2": "Psychological Health Specialist",
+    "p3": "Legal Consultants",
+    "p4": "Bike Riders",
+    "p5": "My Requests"
+  },
+  "professionals": {
+    "p": "Professionals",
+    "small": "Users who can offer service",
+    "p2": "I am:",
+    "h5": "Available on: ",
+    "nav": {
+      "p": "Professionals",
+      "small": "Explore"
+    }
+  },
+  "profile": {
+    "p": "My Profile",
+    "p2": "Edit profile",
+    "p3": "Profile Update",
+    "label1": "Name",
+    "label2": "Email",
+    "label3": "Language",
+    "label4": "Gender",
+    "label5": "Marital Status",
+    "label6": "Phone Number",
+    "label7": "Occupation",
+    "label8": "Region of residence",
+    "label9": "Religion",
+    "label10": "Date of birth",
+    "label11": "Ethnicity",
+    "route1": "Professionals ?",
+    "route2": "Rate this App ?",
+    "b": "Update"
+  },
+  "jobRequest": {
+    "p": "I want to be acknoledged on this plateform as:",
+    "bt1": "Accept",
+    "btn2": "Decline",
+    "btn3": "Accepeted",
+    "btn4": "Declined",
+    "nav": {
+      "p": "Job Request",
+      "small": "Users who can offer service"
+    }
+  },
+  "pRequestN": {
+    "p": "Patient Requests",
+    "small": "Users who linked up with Experts",
+    "h1": "Update My Requests",
+    "span": "update"
+  },
+  "createResearch": {
+    "l1": "Location Description",
+    "h1": " Knowledge and experience on Sexual and Gender Based Violence (SGBV).",
+    "l2": "Do you have anyone in the family or in the community that has experience SGBV in any form (rape, intimate partner violence, sex for marks, revenge porn (posting their naked pics or videos online), early child marriage?",
+    "op1": "Yes",
+    "op2": "NO",
+    "l3": "Can you share a story of anyone you know who had experienced any of the forms of SGBV and how the situation was handled.",
+    "l4":"Do you think providing educative talks through school clubs and community radios programs can reduce the incidence of SGBV cases? Why?",
+    "l5":"if a girl is wearing a more revealing dress where some of her body parts such as breast etc. are exposed and gets harassed or rape, who do you think is to be blamed. Why?",
+    "l6": "If a girl is walks at night and raped or harassed, do you think it’s her fault?",
+    "h2":" Crisis",
+    "l7": "How has the crisis affected the rate of SGBV in the community?",
+    "l8":"Do you have emergency lines or report system that you can rely on?",
+    "l9": "Do you think the pandemic Covid has affected the occurrence rate of SGBV?",
+    "h3": "Culture",
+    "l10": "What myths or superstitious or spiritual beliefs exists around rape or intimate partner violence or homosexuality etc.?",
+    "l11": "Do you think you have rights over your partner, and over your partners body for any reason? Why?",
+    "l12": "If you want sex and your partner is not in the mood, do you have the right to force him/her?",
+    "l13": "Is it right for a one partner to beat up his/her partner?",
+    "l14":"Can you give some of the factors that lead to early child marriage?",
+    "l15": "Do you think it’s ok for a parent to marry off their child without the child’s concern? Why?",
+    "l16": "Have there been any situations where your child or another CWD (child with disability) has been sexually abused or violently attacked? Tell us about it.",
+    "l17": "Tell us how parental education can put an end to SGBV?",
+    "l18": "What do you think are some of the barriers that make victims of SGBV hesitant to speak up?",
+    "l19":"Do you think that there is any justification for any form of SGBV?",
+    "l20": "Can you give recommendations on how we can fight against SGBV in the communities?",
+    "l21":"reponse",
+    "l22": "User",
+    "btn1": "Submit"
+
+
+  }
+}

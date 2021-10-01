@@ -3,7 +3,7 @@
   <Snavbar/>
   <div class="main-contain">
     <div class="header">
-      <h1>Update My Requests</h1>
+      <h1>{{ $t('pRequestN.h1') }}</h1>
     </div>
     <div class="request">
       <div class="request_text">
@@ -15,7 +15,10 @@
         </div>
       </div>
       <div class="update">
-       <span @click.prevent="updateRequest">update</span>
+         <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
+       <span v-else @click.prevent="updateRequest">{{ $t('pRequestN.span') }}</span>
       </div>
     </div>
   </div>
@@ -24,9 +27,12 @@
 <script>
 import axios from "axios";
 import Snavbar from '@/components/Snavbar.vue'
+import Loader from '@/components/toolpit/Loader.vue'
+
 export default {
     components:{
-      Snavbar
+      Snavbar,
+      Loader
     },
   data() {
     return {
@@ -34,6 +40,7 @@ export default {
       requests: [],
       showModal: false,
      status: '',
+      loading: false,
     };
   },
   methods: {
@@ -42,6 +49,7 @@ export default {
       this.$router.go(-1);
     },
     async updateRequest(){
+       this.loading = true;
         let result = await axios.put(
             `https://kwiklik.herokuapp.com/help/update/${this.token}/${this.$route.params.id}/`,{
 
@@ -51,6 +59,7 @@ export default {
         this.status= ''
          this.$router.push({ name: "PatientRequest" });
         // return result
+        this.loading = false;
         console.log(result)
     }
   },
@@ -195,4 +204,8 @@ input:focus {
 h1 {
   font-size: 1rem;
 }
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+}  
 </style>

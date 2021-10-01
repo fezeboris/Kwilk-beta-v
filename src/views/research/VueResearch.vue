@@ -1,118 +1,104 @@
 <template>
   <Snavbar />
   <div class="main-container" >
+
+     <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
      <div class="contain" v-for="list in researchLists" :key="list.id">
      
-     <h2>User: {{list.user}}</h2>
+     <h2>{{ $t('createResearch.l22') }}: {{list.user}}</h2>
      <p>{{list.date_sgbv}}</p>
 
-    <label class="lable">1. Location Description</label>
-      <p><i>response:</i> {{list.location_sgbv}}</p>
+    <label class="lable">1. {{ $t('createResearch.l1') }}</label>
+      <p><i>{{ $t('createResearch.l21') }}:</i> {{list.location_sgbv}}</p>
     <label
-      >2. Do you have anyone in the family or in the community that has
-      experience SGBV in any form (rape, intimate partner violence, sex for
-      marks, revenge porn (posting their naked pics or videos online), early
-      child marriage,
+      >2. {{ $t('createResearch.l2') }}
     </label>
-    <p><i>response:</i> {{list.any_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.any_sgbv}}</p>
 
     <label
-      >3. Can you share a story of anyone you know who had experienced any of
-      the forms of SGBV and how the situation was handled.</label
+      >3. {{ $t('createResearch.l3') }}</label
     >
-    <p><i>response:</i> {{list.story_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.story_sgbv}}</p>
 
     <label
-      >4. Do you think providing educative talks through school clubs and
-      community radios programs can reduce the incidence of SGBV cases?
-      Why?</label
+      >4. {{ $t('createResearch.l4') }}</label
     >
-    <p><i>response:</i> {{list.education_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.education_sgbv}}</p>
 
     <label
-      >5. if a girl is wearing a more revealing dress where some of her body
-      parts such as breast etc. are exposed and gets harassed or rape, who do
-      you think is to be blamed. Why?
+      >5. {{ $t('createResearch.l5') }}
     </label>
-    <p><i>response:</i> {{list.revealing_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.revealing_sgbv}}</p>
 
     <label
-      >6. If a girl is moving at night and raped or harassed, do you think it’s
-      her fault?
+      >6. {{ $t('createResearch.l6') }}
     </label>
-    <p><i>response:</i> {{list.night_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.night_sgbv}}</p>
 
-    <h1 style="font-weight: bold">Crisis</h1>
+    <h1 style="font-weight: bold">{{ $t('createResearch.h2') }}</h1>
     <br />
 
     <label
-      >7. How has the crisis affected the rate of SGBV in the community?</label
+      >7.{{ $t('createResearch.l7') }}</label
     >
-    <p><i>response:</i> {{list.crisis_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.crisis_sgbv}}</p>
 
     <label
-      >8: Do you have emergency lines or report system that you can rely on?
+      >8: {{ $t('createResearch.l8') }}
     </label>
-    <p><i>response:</i> {{list.emergency_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.emergency_sgbv}}</p>
     <label
-      >9. Do you think the pandemic Covid has affected the occurrence rate of
-      SGBV?
+      >9. {{ $t('createResearch.l9') }}
     </label>
-    <p><i>response:</i> {{list.pandemic_sgbv}}</p>
-    <h1 style="font-weight: bold">Culture</h1>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.pandemic_sgbv}}</p>
+    <h1 style="font-weight: bold">{{ $t('createResearch.h3') }}</h1>
     <br />
 
     <label
-      >10. What myths or superstitious or spiritual beliefs exists around rape
-      or intimate partner violence or homosexuality etc.?</label
+      >10. {{ $t('createResearch.l10') }}</label
     >
     <p><i>response:</i> {{list.myth_sgbv}}</p>
     <label
-      >11. Do you think you have rights over your partner, and over your
-      partners body for any reason? Why?
+      >11. {{ $t('createResearch.l11') }}
     </label>
-    <p><i>response:</i> {{list.right_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.right_sgbv}}</p>
     <label
-      >12. If you want sex and your partner is not in the mood, do you have the
-      right to force him/her?
+      >12. {{ $t('createResearch.l12') }}
     </label>
-    <p><i>response:</i> {{list.mood_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.mood_sgbv}}</p>
 
     <label
-      >13. Is it right for a one partner to beat up his/her partner?
+      >13. {{ $t('createResearch.l13') }}
     </label>
-    <p><i>response:</i> {{list.beat_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.beat_sgbv}}</p>
     <label
-      >14. Can you give some of the factors that lead to early child marriage?
+      >14. {{ $t('createResearch.l14') }}
     </label>
-    <p><i>response:</i> {{list.early_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.early_sgbv}}</p>
     <label
-      >15. Do you think it’s ok for a parent to marry off their child without
-      the child’s concern? Why?
+      >15. {{ $t('createResearch.l15') }}
     </label>
-    <p><i>response:</i> {{list.marry_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.marry_sgbv}}</p>
     <label
-      >16. Have there been any situations where your child or another CWD (child
-      with disability) has been sexually abused or violently attacked? Tell us
-      about it.
+      >16. {{ $t('createResearch.l16') }}
     </label>
-    <p>{{}}</p>
-    <label>17. Tell us how parental education can put an end to SGBV?</label>
-    <p><i>response:</i> {{list.parental_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.abused_sgbv}}</p>
+    <label>17. {{ $t('createResearch.l17') }}</label>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.parental_sgbv}}</p>
     <label
-      >18. What do you think are some of the barriers that make victims of SGBV
-      hesitant to speak up?
+      >18. {{ $t('createResearch.l18') }}
     </label>
-    <p><i>response:</i> {{list.barriers_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.barriers_sgbv}}</p>
     <label
-      >19. Do you think that there is any justification for any form of SGBV?
+      >19. {{ $t('createResearch.l19') }}
     </label>
-    <p><i>response:</i> {{list.justification_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.justification_sgbv}}</p>
     <label
-      >20. Can you give recommendations on how we can fight against SGBV in the
-      communities?
+      >20. {{ $t('createResearch.l20') }}
     </label>
-    <p><i>response:</i> {{list.recommendation_sgbv}}</p>
+    <p><i>{{ $t('createResearch.l21') }}:</i> {{list.recommendation_sgbv}}</p>
 
     </div>
   </div>
@@ -121,28 +107,35 @@
 <script>
 import axios from "axios";
 import Snavbar from "@/components/Snavbar";
+import Loader from '@/components/toolpit/Loader.vue'
+
 export default {
   components: {
     Snavbar,
+    Loader
   },
   data() {
     return {
       token: "",
       researchLists: [],
+      loading: false,
     };
   },
   methods: {
     async detResearchList() {
+      this.loading = true;
       try {
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/research/get/${this.token}/`
         );
 
         this.researchLists = result.data.research_list;
-        console.log(result)
+        // console.log(result)
+        
       } catch (e) {
         console.log(e);
       }
+       this.loading = false;
     },
   },
   mounted() {
@@ -181,4 +174,8 @@ label {
 p {
   color: lightblue;
 }
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+}  
 </style>

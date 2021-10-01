@@ -2,28 +2,27 @@
   <div class="background">
     <nav>
       <div class="headers">
-        <div class="login-profil-img" @click="showModal = !showModal">
-          <img :src="image" alt="">
-        </div>
+       <div class="login-profil-img" @click="showModal = !showModal ">
+           <img :src="image" alt="">
+       </div>
         <div class="request-header">
-          <p>{{ $t("Nav.gbvcases") }}</p>
-          <small>{{ $t("Nav.explore") }}</small>
+        <p>Seek for Help</p>
+        <small>Explore</small>
+    </div>
+
         </div>
+       
+      <div class="language">
+        <LangSwitcher />
       </div>
-      <!--        
-      <div class="lang">
-     <select @change="handleChange($event)" v-model="lang">
-            <option value="fr">French</option>
-            <option value="en">English</option>
-            </select>
-      </div> -->
-      <LangSwitcher />
       <!-- <i class="material-icons menu" @click="showSidebar= true">dehaze</i> -->
+     
     </nav>
   </div>
   <br />
   <div class="popup" v-if="showModal" @click="showModal = false">
-    <p>
+
+  <p>
       <router-link to="/profile">{{ $t("popup.account") }}</router-link>
     </p>
     <p>
@@ -62,23 +61,19 @@
 </template>
 
 <script>
-// import MenuBar from "@/components/toolpit/MenuBar.vue";
 import LangSwitcher from "@/components/LangSwitcher";
-import axios from "axios";
+
+import axios from 'axios'
 export default {
   components: {
-    // MenuBar,
-    LangSwitcher,
+    LangSwitcher
   },
   data() {
-    const lang = localStorage.getItem("lang") || "en";
     return {
       showModal: false,
-      token: "",
-      job: "",
-      lang: lang,
+      token: '',
+      job: '',
       image: '',
-      
     };
   },
   methods: {
@@ -86,23 +81,16 @@ export default {
       localStorage.clear();
       this.$router.push({ name: "Login" });
     },
-    async handleGetStatus() {
-      try {
-        let result = await axios.get(
-          `https://kwiklik.herokuapp.com/job/obtain/${this.token}/`
-        );
+    async handleGetStatus(){
+      try{
+      let result = await axios.get( `https://kwiklik.herokuapp.com/job/obtain/${this.token}/`)
 
-        this.job = result.data.job;
-        // console.log(result)
-      } catch (e) {
-        console.log(e);
+      this.job = result.data.job
+      // console.log(result)
+      }catch(e){
+        console.log(e)
       }
     },
-    handleChange(event) {
-      localStorage.setItem("lang", event.target.value);
-      window.location.reload();
-    },
-
     async handleGet() {
       this.loading = true;
       try {
@@ -116,13 +104,16 @@ export default {
         console.log(e);
       }
     },
+   
   },
-  mounted() {
+  mounted(){
     this.token = localStorage.getItem("userInfo");
 
     this.handleGetStatus();
     this.handleGet()
+   
   },
+
 };
 </script>
 
@@ -143,7 +134,7 @@ nav {
   align-items: center;
   justify-items: center;
 }
-.login-profil-img,  .login-profil-img img{
+.login-profil-img,  .login-profil-img img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -176,36 +167,39 @@ button {
 button:hover {
   color: #8ba0ae;
 }
-p {
+p{
   padding: auto 0px;
   margin: 10px 0;
 }
 p a {
   color: lightblue;
 }
-.headers {
+.headers{
   display: flex;
   align-items: center;
   margin: 3px 5px;
 }
-.request-header {
-  margin-bottom: 10px;
+.request-header{
+  margin-bottom :  10px;
   margin-left: 5px;
   text-align: left;
   line-height: 3px;
+  
+
 }
 small {
   color: #8ba0ae;
   font-size: 0.8rem;
-
+ 
   line-height: 0rem;
 }
-.request-header p {
+.request-header p{
   font-weight: bold;
-  margin-bottom: 10px;
+   margin-bottom: 10px;
 }
-.fa-chevron-down {
-  font-size: 0.8rem;
+.fa-chevron-down{
+  
+  font-size: .8rem;
   margin-right: 10px;
 }
 </style>

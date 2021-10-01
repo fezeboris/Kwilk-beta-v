@@ -4,17 +4,19 @@
   </div>
 
   <div class="popup" v-if="showModal">
-    <h1>Demande Clinical help</h1>
+    <h1>{{ $t('demandes.clinical') }}</h1>
     <!-- <label>Name</label> -->
     <textarea
       v-model="demand"
       placeholder="please enter your request"
     ></textarea>
     <!-- <input type="text" v-model="name" /> -->
-
-    <div class="btn-container">
-      <button class="btn-1" @click.prevent="showModal = false">cancel</button>
-      <button class="btn-2" @click.prevent="demandHelp">send</button>
+    <div class="loader" v-if="loading">
+         <Loader/>
+       </div>
+    <div class="btn-container" v-else>
+      <button class="btn-1" @click.prevent="showModal = false">{{ $t('demandes.cancel') }}</button>
+      <button class="btn-2" @click.prevent="demandHelp">{{ $t('demandes.send') }}</button>
     </div>
     <Date :Cdate="getDate" :Ctime="getTime" />
   </div>
@@ -24,9 +26,11 @@
 <script>
 import axios from "axios";
 import Date from "@/components/toolpit/Date.vue";
+import Loader from '@/components/toolpit/Loader.vue'
 export default {
   components: {
     Date,
+    Loader
   },
   data() {
     return {
@@ -35,6 +39,7 @@ export default {
       token: "",
       currentDate: '',
       currentTime: '',
+      loading: false,
     };
   },
   methods: {
@@ -46,6 +51,7 @@ export default {
       this.currentTime = time
     },
     async demandHelp() {
+      this.loading = true;
       try {
         let result = await axios.post(
           `https://kwiklik.herokuapp.com/help/create/${this.token}/`,
@@ -62,6 +68,7 @@ export default {
       } catch (e) {
         console.log(e);
       }
+       this.loading = false;
     },
   },
   mounted() {
@@ -145,4 +152,8 @@ input:focus {
 h1 {
   font-size: 1rem;
 }
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+} 
 </style>

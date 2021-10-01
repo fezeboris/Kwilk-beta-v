@@ -1,0 +1,196 @@
+{
+  "welcome": "Bonjour depuis ",
+  "Nav": {
+    "gbvcases": "Cas de Violence Sexiste",
+    "ReportAbuse": "Signaler un abus",
+    "explore": "Explorer"
+  },
+  "popup":{
+    "account": "Mon compte",
+    "job": "Demande d'emploi",
+    "pro": "Professionnels",
+    "patient":"Demande du patient",
+    "research":"Créer une recherche",
+    "vue": "Voir la recherche",
+    "edu":"Éducation Créer",
+    "logout": "Se déconnecter"
+  },
+  "header": {
+    "anonymous": "Anonyme",
+    "explore": "Explorer",
+    "comment": "commenter",
+    "reply": "répondre",
+    "cancel": "annuler"
+
+  },
+  "rating":{
+    "head": "S'il vous plaît noter cet App",
+    "review": "Donnez votre avis",
+    "send": "ENVOYER"
+
+  },
+  "delete":{
+    "btn1":"supprimer",
+    "p": "Etes-vous sûr que vous voulez supprimer ?",
+    "btn2":"supprimer",
+    "btn3":"annuler"
+  },
+  "report":{
+    "details": "Détails",
+    "recording": "Enregistrement",
+    "image":"Image",
+    "case":"Type de cas",
+    "date": "Date de l'abus",
+    "btn1":"supprimer",
+    "pysical": "violence physique",
+    "options":{
+      "psychological": "violence psychologique",
+      "stalking": "traque",
+      "mariage": "mariages forcés",
+      "sexual": "violence sexuelle",
+      "rape": "viol",
+      "mutilation": "mutilations génitales féminines",
+      "sterilisation": "stérilisation forcée",
+      "harassement": "harcèlement sexuel"
+    },
+    "option2":{
+      "Prentive":" palliatifs préventifs",
+      "Consultant":" conseiller juridique",
+      "Medical": "Obtenez un médecin",
+      "Psychologist": "Contacter le psychologue",
+      "btn": "Soumettre"
+
+    }
+   
+
+  },
+  "jobSeekers":{
+    "label": "Type d'emploi",
+    "label2": "Disponibilité",
+    "label3": "Emplacement",
+    "btn": "Soumettre",
+
+    "options":{
+      "rider": "cycliste",
+      "doctor": "Médecin",
+      "psychologist": "Psychologue",
+      "consultant": "Conseiller juridique",
+      "health": "Agent de santé"
+    }
+  },
+  "education":{
+    "Nav":{
+      "p": "Contenu éducatif",
+      "s": "Explorer",
+      "readM": "Lire la suite"
+    },
+    "updates":{
+      "lable1": "Type d'éducation",
+      "lable2": "Titre",
+      "label3": "Lien",
+      "btn": "Mettre à jour"
+    }
+  },
+  "demandes":{
+    "clinical": "Demander l'aide de la clinique",
+    "consultant": "Consultant juridique à la demande",
+    "bike": "Cycliste à la demande",
+    "Psychological": "Demander un spécialiste de la santé psychologique",
+    "cancel":"Annuler",
+    "send": "Envoyer"
+  },
+    "myRequest":{
+    "request": "Mettre à jour mes demandes",
+    "update": "Mettre à jour"
+  },
+  "help": {
+    "p1": "Demande de consultant juridique",
+    "p2":"Spécialiste en santé psychologique",
+    "p3":"Conseillers juridiques",
+    "p4":"Les cyclistes",
+    "p5": "Mes demandes"
+
+  },
+  "professionals":{
+    "p":"Professionnels",
+    "small":"Utilisateurs pouvant offrir le service",
+    "p2":"Je suis:",
+    "h5":"Disponible le: ",
+    "nav":{
+      "p": "Professionnels",
+      "small": "Explorer"
+    }
+
+  },
+  "profile":{
+    "p":"My Profile",
+    "p2": "Editer le profil",
+    "p3": "Mise à jour du profil",
+    "label1": "Nom",
+    "label2": "E-mail",
+    "label3": "Langue",
+    "label4": "Genre",
+    "label5": "État civil",
+    "label6": "Numéro de téléphone",
+    "label7": "Occupation",
+    "label8": "Région de résidence",
+    "label9": "Religion",
+    "label10": "Date de naissance",
+    "label11": "Ethnicité",
+    "route1": "Professionnels ?",
+    "route2": "Évaluer l'application ?",
+    "b":"Mettre à jour"
+    
+  },
+  "jobRequest":{
+    "p": "Je souhaite travailler sur cette plateforme en tant que :",
+    "bt1":"Accept",
+    "btn2": "Déclin",
+    "btn3": "Accepté",
+    "btn4": "refusé",
+    "nav":{
+      "p": "Demande d'emploi",
+      "small":"Utilisateurs pouvant offrir service"
+    }
+  },
+  "pRequestN":{
+    "p": "Demandes des patients",
+    "small": "Utilisateurs qui se sont connectés avec des experts",
+    "h1":"Mettre mes demandes à jour ",
+    "span":"mettre à jour"
+  },
+  "createResearch": {
+    "l1": "Description de l'emplacement",
+    "h1": " Connaissances et expérience sur la violence sexuelle  basée sur le genre (VSBG).",
+    "l2": "Avez-vous quelqu'un dans la famille ou dans la communauté qui a été victime de violence sexuelle ou sexiste sous quelque forme que ce soit (viol, violence conjugale, sexe pour des marques, vengeance pornographique (publication de ses photos ou vidéos nues en ligne), mariage précoce ?",
+    "op1": "Oui",
+    "op2": "Non",
+    "l3": "Pouvez-vous partager l'histoire de quelqu'un que vous connaissez qui a vécu l'une des formes de violence sexuelle et sexiste et comment la situation a été gérée.",
+    "l4":"Pensez-vous que proposer des causeries éducatives par le biais de clubs scolaires et de programmes de radios communautaires peut réduire l'incidence des cas de violence sexuelle et sexiste ? Pourquoi?",
+    "l5":"si une fille porte une robe plus révélatrice où certaines parties de son corps comme la poitrine, etc. sont exposées et est harcelée ou violée, à qui pensez-vous qu'il faut blâmer? Pourquoi?",
+    "l6": "Si une fille marche la nuit et est violée ou harcelée, pensez-vous que c'est de sa faute ?",
+    "h2":" Crise",
+    "l7": "Comment la crise a-t-elle affecté le taux de violence sexuelle et sexiste dans la communauté ?",
+    "l8":"Avez-vous des lignes d'urgence ou un système de signalement sur lequel vous pouvez compter ?",
+    "l9": "Pensez-vous que la pandémie de Covid a affecté le taux d'occurrence des violences sexuelles et sexistes ?",
+    "h3": "Culture",
+    "l10": "Quels mythes ou croyances superstitieuses ou spirituelles existent autour du viol, de la violence conjugale ou de l'homosexualité, etc. ?",
+    "l11": "Pensez-vous avoir des droits sur votre partenaire et sur le corps de votre partenaire pour une raison quelconque ? Pourquoi?",
+    "l12": "Si vous voulez du sexe et que votre partenaire n'est pas d'humeur, avez-vous le droit de le forcer ?",
+    "l13": "Est-il juste pour un partenaire de battre son partenaire ?",
+    "l14":"Pouvez-vous donner quelques-uns des facteurs qui conduisent au mariage précoce des enfants ?",
+    "l15": "Pensez-vous qu'il est acceptable pour un parent de marier son enfant sans que celui-ci s'en soucie ? Pourquoi?",
+    "l16": "Y a-t-il eu des situations où votre enfant ou un autre  a été abusé sexuellement ou violemment agressé ? Dis nous à propos de cela.",
+    "l17": "Dites-nous comment l'éducation parentale peut mettre fin à la violence sexuelle et sexiste ?",
+    "l18": "Selon vous, quels sont les obstacles qui font que les victimes de violence sexuelle et sexiste hésitent à s'exprimer ?",
+    "l19":"Pensez-vous qu'il existe une justification à une forme quelconque de violence sexuelle et sexiste ?",
+    "l20": "Pouvez-vous donner des recommandations sur la façon dont nous pouvons lutter contre la violence sexuelle et sexiste dans les communautés ?",
+    "l21": "response",
+    "l22": "Utilisateur",
+    "btn1": "Envoyer"
+
+
+  }
+
+
+}

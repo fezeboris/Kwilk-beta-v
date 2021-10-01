@@ -1,6 +1,6 @@
 <template>
      <div class="comment-btn">
-        <button  @click.prevent="showModal = true, getId()">repy</button>
+        <button  @click.prevent="showModal = true, getId()">{{ $t('header.reply') }}</button>
         
       </div >
 
@@ -12,10 +12,14 @@
   <div class="popup" v-if="showModal">
     <!-- <label>Name</label> -->
     <textarea type="text" v-model="comment" />
+     <div  v-if="loading">
+      <Loader />
+    </div>
 
-    <div class="btn-container">
-      <button class="btn-1" @click.prevent="showModal = false">cancel</button>
-      <button class="btn-2" @click.prevent="replyComment">comment</button>
+
+    <div v-else class="btn-container">
+      <button class="btn-1" @click.prevent="showModal = false">{{ $t('header.cancel') }}</button>
+      <button class="btn-2" @click.prevent="replyComment">{{ $t('header.comment') }}</button>
 
     </div>
   </div>
@@ -23,9 +27,10 @@
 
 <script>
 import axios from "axios";
+import Loader from '@/components/toolpit/Loader.vue'
 export default {
-   props:{
-        
+   components:{
+        Loader
        
       },
   data() {
@@ -33,7 +38,8 @@ export default {
       showModal: false,
       comment: "",
       token: "",
-      id: ''
+      id: '',
+      loading: false
       
     };
   },
@@ -44,22 +50,30 @@ export default {
       //  console.log('my', this.id)
     },
     async replyComment() {
+       this.loading = true;
       try {
         let result = await axios.post(
           `https://kwiklik.herokuapp.com/reports/messages/create/${this.token}/${this.id}/`,
           {
             report: this.comment,
+           
           }
           
         );
+       
+         
         this.comment =''
-        console.log(result)
+      
         this.showModal = false;
+        return result;
       } catch (e) {
         console.log(e);
       }
+       this.loading = false;
     },
-     
+    //  replyComment(){
+    //    console.log('yowa', this.comment, this.id)
+    //  }
       
      
   },
@@ -155,4 +169,8 @@ textarea:focus {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   /* color: rgb(112, 112, 15); */
 }
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+} 
 </style>

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../components/Login.vue'
-import Profile from '../components/Profile.vue'
+import Profile from '../views/profile/Profile.vue'
 import Help from '../views/help/Help.vue'
 import Clinical from '../views/help/experts/Clinical.vue'
 import Psychological from '../views/help/experts/Psychological.vue'
@@ -36,8 +36,25 @@ import PatientRequestUpdate from '../views/requests/PatientRequestUpdate.vue'
 import CreateResearch from '../views/research/CreateResearch.vue'
 import VueResearch from '../views/research/VueResearch.vue'
 import Mapss from '../components/toolpit/Mapss.vue'
+import UpdateProfile from '../views/profile/UpdateProfile.vue'
+// import i18n from '../i18n'
+// import { h  } from 'Vue';
 // import MapaPage from '../components/home/MapaPage.vue'
+// import {RouterView} from "vue-router";
+
+
+
 const routes = [
+  // {
+  //   path: '/',
+  //   redirect: `/${i18n.locale}`
+  // },
+ 
+
+  // {
+  //   path: '/:lang',
+  //   component:RouterView,
+  //   children:[
   {
     path: '/',
     name: 'Login',
@@ -59,7 +76,7 @@ const routes = [
     component: HomeSlider
   },
   {
-    path: '/home-slider-comments',
+    path: '/home-slider-comments/:id',
     name: 'HomeSliderComments',
     component: HomeSliderComments
   },
@@ -73,6 +90,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: Profile
+  },
+  {
+    path: '/profile-update',
+    name: 'UpdateProfile',
+    component: UpdateProfile
   },
   {
     path: '/help',
@@ -240,7 +262,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/SignIn.vue')
   }
+//  ]
+// }
 ]
+
+
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),

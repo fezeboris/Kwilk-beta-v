@@ -5,18 +5,48 @@
         <i class="fas fa-arrow-left" @click="back"></i>
       </div>
       <!-- <i class="material-icons menu" @click="showSidebar= true">dehaze</i> -->
-      <div class="login-profil-img" @click="showModal = !showModal"></div>
+      <div class="login-profil-img" @click="showModal = !showModal">
+        <img :src="image" alt="">
+      </div>
     </nav>
   </div>
-  <br /><br /><br />
+  <br />
   <div class="popup" v-if="showModal" @click="showModal = false">
-    <p> <router-link to="/profile">My Account</router-link></p>
-    <p><router-link to="/job-request" v-if="job == 'clerk' ">Job Request</router-link></p>
-    <p><router-link to="/professionals" v-if="job == 'clerk' ">Professionals</router-link></p>
-    <p><router-link to="/patient-request" v-if="job == 'clerk' ">Patient Request</router-link></p>
-    <p><router-link to="/create-research" v-if="job == 'health_worker' ">Create Research</router-link></p>
-   <p> <router-link to="/vue-research" v-if="job == 'health_worker' || 'clerk' ">Vue Research</router-link></p>
-    <button @click="logout">Logout</button>
+    <p>
+      <router-link to="/profile">{{ $t("popup.account") }}</router-link>
+    </p>
+    <p>
+      <router-link to="/job-request">{{ $t("popup.job") }}</router-link>
+    </p>
+    <p>
+      <router-link to="/professionals" v-if="job == 'clerk'">{{
+        $t("popup.pro")
+      }}</router-link>
+    </p>
+    <p>
+      <router-link to="/patient-request" v-if="job == 'clerk'">{{
+        $t("popup.patient")
+      }}</router-link>
+    </p>
+    <p>
+      <router-link to="/create-research" v-if="job == 'health_worker'">{{
+        $t("popup.research")
+      }}</router-link>
+    </p>
+    <p>
+      <router-link
+        to="/vue-research"
+        v-if="job == 'health_worker' || 'clerk'"
+        >{{ $t("popup.vue") }}</router-link
+      >
+    </p>
+    <p>
+      <router-link to="/updates" v-if="job == 'clerk'">{{
+        $t("popup.edu")
+      }}</router-link>
+    </p>
+
+    <button @click="logout">{{ $t("popup.logout") }}</button>
   </div>
 </template>
 
@@ -28,6 +58,7 @@ export default {
       showModal: false,
       job: '',
       token: '',
+       image: '',
     };
   },
   methods: {
@@ -47,11 +78,25 @@ export default {
       }catch(e){
         console.log(e)
       }
-    }
+    },
+    async handleGet() {
+      this.loading = true;
+      try {
+        let result = await axios.get(
+          `https://kwiklik.herokuapp.com/profile/get/${this.token}/`
+        );
+        // console.log(result.data.profile);
+        this.image = result.data.profile.photo;
+       
+      } catch (e) {
+        console.log(e);
+      }
+    },
   },
   mounted(){
      this.token = localStorage.getItem("userInfo");
     this.handleGetStatus();
+    this.handleGet()
   }
 };
 </script>
@@ -64,23 +109,23 @@ export default {
   z-index: 9999;
   padding-top: 7px;
   opacity: 1;
-  padding-bottom: 15px;
+  padding-bottom: 0px;
 }
 nav {
   display: flex;
   justify-content: space-between;
-  margin: 15px 20px;
+  margin: 0px 20px;
   justify-items: center;
 }
-.login-profil-img {
-  width: 50px;
-  height: 50px;
+.login-profil-img,  .login-profil-img img {
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background-color: yellow;
 }
 .popup {
   position: fixed;
-  width: 120px;
+  width: auto;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px rgb(224, 220, 220);
   z-index: 9999;
@@ -100,7 +145,7 @@ a {
   padding: 20px 0;
 }
 .fa-arrow-left {
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin: 10px 0;
 }
 p{

@@ -3,19 +3,22 @@
   <Snavbar/>
   <div class="main-contain">
     <div class="header">
-      <h1>Update My Requests</h1>
+      <h1>{{ $t('myRequest.request') }}</h1>
     </div>
     <div class="request">
       <div class="request_text">
         <div class="header_request"></div>
         <div class="request_contain">
             <keep-alive>
-          <textarea v-model="message" placeholder="Update your request"></textarea>
+          <textarea name="message" v-model="message" placeholder="Update your request"></textarea>
           </keep-alive>
         </div>
       </div>
-      <div class="update">
-       <span @click.prevent="updateRequest">update</span>
+          <div class="loader" v-if="loading">
+         <Loader/>
+       </div>
+      <div class="update" v-else>
+       <span @click.prevent="updateRequest">{{ $t('myRequest.update') }}</span>
       </div>
     </div>
   </div>
@@ -24,16 +27,19 @@
 <script>
 import axios from "axios";
 import Snavbar from '../../../../components/Snavbar.vue'
+import Loader from '@/components/toolpit/Loader.vue'
 export default {
     components:{
-      Snavbar
+      Snavbar,
+      Loader
     },
   data() {
     return {
       token: "",
-      requests: [],
+      requests: '',
       showModal: false,
      message: '',
+    
     };
   },
   methods: {
@@ -42,22 +48,37 @@ export default {
       this.$router.go(-1);
     },
     async updateRequest(){
+       this.loading = true;
         let result = await axios.put(
             `https://kwiklik.herokuapp.com/help/update/${this.token}/${this.$route.params.id}/`,{
 
                  message: this.message
             }  
         )
+         this.loading = false;
         this.message= ''
          this.$router.push({ name: "MyRequest" });
         return result
-    }
+    },
+    // async myRequest() {
+    //    this.loading = true;
+    //   try {
+    //     let result = await axios.get(
+    //       `https://kwiklik.herokuapp.com/help/personal/get/${this.token}/${this.$route.params.id}/`
+    //     );
+    //     // console.log(result.data.education_list);
+    //     console.log(result);
+    //     this.requests = result.data.help_list;
+    //     this.loading = false;
+    //   } catch (e) {
+    //     console.log(e);
+    //   }
+    // },
+
   },
   mounted() {
     this.token = localStorage.getItem("userInfo");
-    //    console.log(this.currentDate)
-    // this.updateEducation();
-    // console.log(this.$route.params.id)
+    // this.myRequest();
   },
 };
 </script>
@@ -193,5 +214,9 @@ input:focus {
 }
 h1 {
   font-size: 1rem;
+}
+.loader{
+    text-align: center;
+    margin: 0px auto;
 }
 </style>

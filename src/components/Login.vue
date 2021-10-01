@@ -21,7 +21,11 @@
         <div v-if="passwordError" class="error">{{passwordError}}</div>
 
     <div class="submit">
-        <button>Login</button>
+        <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
+        <button v-else>Login</button>
+        
         <p>Forgot password ?</p>
     </div>
 
@@ -35,20 +39,25 @@
 import axios from 'axios'
 //import SignIn from '../views/SignIn.vue'
 import setAuthHeader from '../components/utils/setAuthHeader'
+import Loader from '../components/toolpit/Loader.vue'
 export default {
-  
+  components:{
+      Loader
+  },
     data(){
         return {
             email: '',
             password: '',
             passwordError: '',
             token: '',
+            loading: false,
         }
     },
     methods:{
     
         async handleSubmit(){
             // validate passeword
+            this.loading = true;
         try{
         let result = await axios.post(`https://kwiklik.herokuapp.com/login/`,{
         
@@ -60,11 +69,12 @@ export default {
          email: this.email,
          password:this.password,
         })
+       
         
         if( result.data.id !== undefined){
                  localStorage.setItem('userInfo', (result.data.token))
                 setAuthHeader(result.data.token)
-                this.$router.push({name:'Mapss'})
+                this.$router.push({name:'HomeSlider'})
                  this.token = (result.data.token)
                 //  console.log(this.token)
                 
@@ -75,12 +85,13 @@ export default {
         }catch(e){
             this.passwordError = 'A user with this email and password was not found'
         }
+         this.loading = false;
       }
     },
      mounted() {
     let user = localStorage.getItem("userInfo");
     if (user) {
-      this.$router.push({ name: "Mapss" });
+      this.$router.push({ name: "HomeSlider" });
     }
   },
 
@@ -197,5 +208,9 @@ hr{
     margin:10px 0px ;
     text-align: left;
     color: #1CB902;
+}
+.loader{
+    text-align: center;
+    margin: 0px auto;
 }
 </style>

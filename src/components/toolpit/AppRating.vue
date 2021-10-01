@@ -2,7 +2,7 @@
   <form>
     <div  class="main-container">
     <div class="star-rating" >
-      <h1>Please Rate this App</h1>
+      <h1>{{ $t('rating.head') }}</h1>
       <input id="star-5x" type="radio" name="rating" value= '5' v-model="starRating" />
       <label for="star-5x" title="5 stars">
         <i class="fa fa-star"></i>
@@ -29,10 +29,15 @@
       </label>
     </div>
     
-         <p>Write a review</p>
+         <p>{{ $t('rating.review') }}</p>
       <div class="overview">
         <textarea v-model="review"></textarea><br />
-        <button @click.prevent="sendRating" class="send-btn">SEND</button>
+
+         
+          <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
+        <button v-else @click.prevent="sendRating" class="send-btn">{{ $t('rating.send') }}</button>
       </div>
     </div>
     
@@ -41,17 +46,23 @@
 
 <script>
 import axios from 'axios'
+import Loader from '@/components/toolpit/Loader.vue'
+
 export default {
+  components:{
+   Loader
+  },
   data() {
     return {
       starRating: '',
       review: '',
       token: '',
-
+      loading: false,
     };
   },
   methods:{
     async sendRating() {
+       this.loading = true;
       try {
         let result = await axios.post(
           `https://kwiklik.herokuapp.com/ratings/create/${this.token}/`,
@@ -62,6 +73,7 @@ export default {
           }
     
         );
+         
         if(result.data == 201){
           this.$router.push({name:'Profile'})
         } 
@@ -69,6 +81,7 @@ export default {
       } catch (e) {
         console.log(e);
       }
+      this.loading = false;
     },
     
   },
@@ -155,4 +168,9 @@ textarea {
 .star-rating > input[type="radio"]:checked ~ label {
   color: lightgreen;
 }
+
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+}  
 </style>

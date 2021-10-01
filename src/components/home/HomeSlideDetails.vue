@@ -1,12 +1,18 @@
+
 <template>
 <Snavbar/>
   <div class="container">
     <!-- <div class="result-container"> -->
+
+       <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
     <div class="result">
+       
       <div class="result-text">
         <div class="message_header">
-          <div>
-            <h1>Anonymous</h1>
+          <div >
+            <h1>{{ $t('header.anonymous') }}</h1>
             <!-- {{report.id}} -->
             <small>
               <!-- Case of: -->
@@ -22,7 +28,7 @@
               <audio v-if="showAudio" controls="controls" :src="mainReport.recording"></audio>
             </div>
           </div>
-          <div></div>
+         
         </div>
         <div class="report">
           <p>{{ mainReport.report }}</p>
@@ -54,16 +60,19 @@
     <div
       class="parent-comment"
       v-for="subReport in subReports"
-      :key="subReport.key"
-      @click.prevent="getId(subReport.id)"
-      @click="messageDetails"
+      :key="subReport.id"
+      @click.prevent="getId(subReport.id), messageDetails"
+     
     >
+    <router-link :to="`/home-slider-comments/` + subReport.id">
       <p>{{ subReport.reporter }}</p>
       <div>{{ subReport.report }}</div>
       <!-- {{ subReport.id }} -->
-      <div @click.prevent="getId(subReport.id)">
-        <Reply />
+    </router-link>
+      <div @click.prevent="getId(subReport.id)" class="reply">
+       <Reply />
       </div>
+       
     </div>
   </div>
   <div class="sub-comment">
@@ -79,20 +88,22 @@ import Reply from "../home/Reply.vue";
 import Comments from "../home/Comments.vue";
 import axios from "axios";
 import Snavbar from '@/components/Snavbar.vue'
+import Loader from '@/components/toolpit/Loader.vue'
 export default {
   props: ["comment"],
-  components: { Comments, Reply,Snavbar },
+  components: { Comments, Reply,Snavbar,Loader },
   data() {
     return {
       showModal: false,
       token: "",
       mainReport: [],
       subReports: [],
-      reportList: [],
 
       replyComment: "",
       messageDetailsId: "",
       showAudio: false,
+      loading: false,
+      
     };
   },
   methods: {
@@ -104,7 +115,9 @@ export default {
     },
 
     async getMessages() {
+       this.loading = true;
       try {
+
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/reports/messages/get/${this.token}/${this.$route.params.id}`,
           {}
@@ -113,55 +126,27 @@ export default {
         // console.log(result.data);
         (this.mainReport = result.data),
           (this.subReports = result.data.report_list);
-        // console.log(result);
+        // console.log('main re',result);
+        
       } catch (e) {
         console.log(e);
+         
       }
+       this.loading = false;
     },
-    async getReports() {
-      try {
-        let result = await axios.get(
-          `https://kwiklik.herokuapp.com/reports/get/${this.token}/`,
-          {}
-        );
-        this.reportList = result.data.report_list;
-        // console.log(this.reportLists);
-      } catch (e) {
-        console.log(e);
-      }
-    },
+
 
     back() {
       this.$router.go(-1);
     },
 
-    async messageDetails() {
-      try {
-        let result = await axios.get(
-          `https://kwiklik.herokuapp.com/reports/messages/get/${this.token}/${this.messageDetailsId}`,
-          {}
-        );
-        // console.log(result.data),
-          // console.log(this.reportLists);
-          (this.mainReport = result.data),
-          (this.subReports = result.data.report_list);
-      } catch (e) {
-        console.log(e);
-      }
-    },
+   
   },
   async mounted() {
     this.token = localStorage.getItem("userInfo");
 
     this.getMessages();
-    this.getReports();
-
-    // let result = await axios.get(
-    //       `https://kwiklik.herokuapp.com/reports/get/${this.token}/${this.$route.params.id}/`,
-    //       {}
-    //     );
-    //     console.log(result)
-    // return result,
+  
     // console.log(this.$route.params.id)
   },
   // reports comments===============================================
@@ -180,8 +165,9 @@ export default {
 }
 .message_header {
   font-family: "Roboto", sans-serif;
-  color: black;
-  font-weight: 200;
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 40px;
 }
 nav {
   display: flex;
@@ -360,6 +346,9 @@ option {
   align-items: center;
   margin:0 10px;
 }
+.reply{
+  margin-top: 20px;
+}
 .fa-comment {
   margin-left: 30px;
   margin-right: 35px;
@@ -375,6 +364,7 @@ option {
   max-width: 410px;
   background: white;
   padding: 2px;
+
   margin: 10px 0px;
   background: white;
   border-radius: 5px;
@@ -436,7 +426,7 @@ option {
 
 /* new style */
 .message_header {
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   align-items: center;
   margin: 0px 15px;
@@ -489,4 +479,9 @@ i sup{
   font-size: .6rem;
   
 }
+.loader{
+    text-align: center;
+    margin: 0px auto;
+}         
+
 </style>

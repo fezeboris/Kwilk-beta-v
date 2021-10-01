@@ -1,11 +1,10 @@
 <template>
-  <Navbar />
+  <JobReqeustNav />
   <div class="job-request">
-    <div class="request-header">
-      <p>Job Request</p>
-      <small>Users who can offer service</small>
-    </div>
-
+   
+         <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
     <div class="request-main-contain" >
       <div class="request-content" v-for="job in jobRequest" :key="job.id">
         <div class="request-profil"></div>
@@ -13,14 +12,19 @@
           <p style="font-weight: bold">{{job.username}}</p>
           <small>{{job.phone}}</small>
           <br />
-          <p>I want to be acknoledged on this plateform as:</p>
+          <p>{{ $t('jobRequest.p') }}</p>
           <small>{{job.type_job}}</small>
           <div class="btn" v-if="job.status == 'Pending'">
-            <button class="btn1" @click.prevent="jobAccept(job.id)">Accept</button>
-            <button class="btn2"  @click.prevent="jobDecline(job.id)">Decline</button>
+
+         
+
+         
+            <button  class="btn1" @click.prevent="jobAccept(job.id)">{{ $t('jobRequest.btn1') }}</button>
+            <button  class="btn2"  @click.prevent="jobDecline(job.id)">{{ $t('jobRequest.btn2') }}</button>
+            
           </div>
-          <h2 class="confirmed" v-if="job.status == 'Confirmed'">Accepeted</h2>
-          <h2 class="declined" v-if="job.status == 'Declined'">Declined</h2>
+          <h2 class="confirmed" v-if="job.status == 'Confirmed'">{{ $t('jobRequest.btn3') }}</h2>
+          <h2 class="declined" v-if="job.status == 'Declined'">{{ $t('jobRequest.btn4') }}</h2>
         </div>
       </div>
 
@@ -32,23 +36,27 @@
 <script>
 import axios from "axios";
 import Footer from "@/components/Footer.vue";
-import Navbar from "@/components/Navbar.vue";
+import JobReqeustNav from "../requests/JobRequestNav.vue";
+import Loader from '@/components/toolpit/Loader.vue'
 export default {
   components: {
     Footer,
-    Navbar,
+    JobReqeustNav,
+    Loader
   },
   data() {
     return {
         token: '',
         jobRequest: [],
         id: '',
+        loading: false,
 
         
     };
   },
   methods: {
     async handleGetJob() {
+      this.loading = true;
       try {
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/job/get/${this.token}/`
@@ -56,13 +64,16 @@ export default {
 
         this.jobRequest = result.data.job_list;
      
-        console.log( result.data.job_list)
+        // console.log( result.data.job_list)
+       
 
       } catch (e) {
         console.log(e);
       }
+       this.loading = false;
     },
     async jobAccept(id) {
+       this.loading = true;
       try {
         let result = await axios.put(
           `https://kwiklik.herokuapp.com/job/update/${this.token}/${id}/`,{
@@ -70,13 +81,15 @@ export default {
           }
         );
 
-        
+         this.loading = false;
+
        return result
       } catch (e) {
         console.log(e);
       }
     },
     async jobDecline(id) {
+       this.loading = true;
       try {
         let result = await axios.put(
           `https://kwiklik.herokuapp.com/job/update/${this.token}/${id}/`,{
@@ -84,7 +97,7 @@ export default {
           }
         );
 
-        
+        this.loading = false;
         return result
       } catch (e) {
         console.log(e);
@@ -112,7 +125,7 @@ export default {
 }
 
 .request-main-contain {
-  margin-top: 80px;
+  margin-top: 20px;
 }
 .request-header {
   margin-top: 10px;
@@ -205,4 +218,9 @@ small {
     border-radius: 5px;
     float: right;  
 }
+
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+} 
 </style>

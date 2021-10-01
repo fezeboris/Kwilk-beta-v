@@ -1,11 +1,7 @@
 <template>
   <Navbar />
   <div class="home-slider">
-    <div class="request-header">
-      <p>GBV Cases</p>
-      <small>As from Today: 01st of August 2021</small>
-    </div>
-
+   
     <div class="main-container">
       <hr />
       <!-- <div class="case-container"> 
@@ -54,17 +50,22 @@
         </div> 
       </div> -->
 
+       <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
+
       <div
         class="result-container"
         v-for="(report, index) in reportList"
         :key="index"
       >
-        <router-link :to="'/home-slider/detail/' + report.report_id">
+        <router-link :to="`/home-slider/detail/` + report.report_id">
           <div class="result">
             <div class="result-text">
               <div class="message_header">
                 <div>
-                  <h1>Anonymous</h1>
+                   <h1>{{ $t('header.anonymous') }}</h1>
+                  <!-- <h1>Anonymous</h1> -->
                   <!-- {{report.id}} -->
                   <small>
                     <!-- Case of: -->
@@ -76,7 +77,11 @@
                     <small>{{ report.date_abuse }}</small>
                   </div> -->
                 </div>
+               
                 <div class="comment">
+                   <!-- <div v-if="report.recording == null">
+                  <i>No Audio</i>
+                </div> -->
                   <div class="audio">
                     <i class="fas fa-play play" style="color=#1CB902" @click="showAudio = !showAudio"></i>
                     <audio  v-if="showAudio" controls="controls" :src="report.recording"></audio>
@@ -105,9 +110,14 @@
           <div class="report-image" v-if="report.image !== ''">
             <img  :src="report.image" alt="" />
           </div>
+
+          
         </router-link>
+        <hr style="margin-top: 10px;">
       </div>
     </div>
+
+    
     <!-- <svg width="200" height="300" viewBox="-1 0 101 100">
             <path d="M20,0 L80,0 L100,60 L50,100 L0,60z" stroke="#BBCDD8" fill="#BBCDD8" />
             </svg> -->
@@ -119,6 +129,7 @@
 import axios from "axios";
 // import { useRoute } from "vue-router";
 import Navbar from "@/components/Navbar.vue";
+import Loader from '@/components/toolpit/Loader.vue'
 import Footer from "@/components/Footer.vue";
 
 export default {
@@ -126,32 +137,43 @@ export default {
   components: {
     Navbar,
     Footer,
+    Loader
   },
   data() {
     return {
       token: "",
       reportList: [],
       showAudio: false,
+       loading: false,
     };
   },
   methods: {
     async getReports() {
+       this.loading = true;
       try {
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/reports/get/${this.token}/`,
           {}
         );
         this.reportList = result.data.report_list;
+         
         // console.log(result.data.report_list);
       } catch (e) {
         console.log(e);
       }
+      this.loading = false;
     },
   },
   mounted() {
  
       (this.token = localStorage.getItem("userInfo"));
     this.getReports();
+
+    
+    let user = localStorage.getItem("userInfo");
+    if (!user) {
+      this.$router.push({ name: "Login" });
+    }
   },
 };
 </script>
@@ -183,7 +205,7 @@ export default {
   padding-top: 10px;
   background: white;
   opacity: 1;
-  z-index: 9999;
+  /* z-index: 9999; */
 }
 .request-header small {
   padding: 3px 5px;
@@ -202,9 +224,7 @@ small {
   opacity: 0.7;
   padding-bottom: 10px;
 }
-.main-container {
-  margin-top: 60px;
-}
+
 .case {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
@@ -222,8 +242,9 @@ small {
   margin: 20px 0px;
 }
 .message_header {
-  display: flex;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: 2fr 2fr 2fr;
+  grid-gap: 60px;
   align-items: center;
   margin: 0px 10px;
 }
@@ -349,6 +370,9 @@ i sup{
   font-size: .6rem;
   
 }
-          
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+}         
 
 </style>

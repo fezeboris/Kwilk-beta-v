@@ -1,12 +1,7 @@
 <template>
-  <Navbar />
-
-  <div class="education">
-    <div class="education-content">
-      <div class="education-text">
-        <p>Educational Content</p>
-        <small>Together let’s fight Gender Based Violence</small>
-      </div>
+  <EducationNav />
+  <hr style="border-top: dotted 1px; color: #8ba0ae; width: 100%" />
+    <div class="button-switch">
       <div class="education-btn">
         <button
           :class="{ active: showVideos === true }"
@@ -23,7 +18,10 @@
         </button>
       </div>
     </div>
-    <hr style="border-top: dotted 1px; color: #8ba0ae; width: 100%" />
+  <div class="education">
+    <div class="loader" v-if="loading">
+      <Loader />
+    </div>
 
     <div
       class="education-body"
@@ -33,12 +31,12 @@
       <!-- <ConfirmationDeleteVideo/> -->
       <div v-if="showVideos" class="aticle">
         <div v-if="education.type_education == 'text'">
-          <div class="delete"   v-if="job == 'clerk' ">
+          <div class="delete" v-if="job == 'clerk'">
             <button
               class="delete-btn"
               onclick="document.getElementById('id01').style.display='block'"
             >
-              delete
+              {{ $t('delete.btn1') }}
             </button>
 
             <div id="id01" class="modal">
@@ -50,7 +48,7 @@
               >
               <form class="modal-content" action="/action_page.php">
                 <div class="container">
-                  <p>Are you sure you want to delete ?</p>
+                  <p>{{ $t('delete.p') }}</p>
 
                   <div class="clearfix">
                     <button
@@ -58,7 +56,7 @@
                       onclick="document.getElementById('id01').style.display='none'"
                       class="cancelbtn"
                     >
-                      Cancel
+                       {{ $t('delete.btn2') }}
                     </button>
                     <button
                       type="button"
@@ -66,7 +64,7 @@
                       class="deletebtn"
                       @click.prevent="deleteArticle(education.id)"
                     >
-                      Delete
+                     {{ $t('delete.btn3') }}
                     </button>
                   </div>
                 </div>
@@ -77,18 +75,18 @@
           </div>
           <p class="text-title">{{ education.title }}</p>
           <p class="date">Uploaded on: {{ education.uploaded_on }}</p>
-          <a :href="education.link"  target="_blank">Read More</a>
+          <a :href="education.link" target="_blank"> {{ $t('education.Nav.readM') }}</a>
         </div>
       </div>
 
       <div v-else class="education-message">
         <div v-if="education.type_education == 'video'">
-          <div class="delete"  v-if="job == 'clerk' ">
+          <div class="delete" v-if="job == 'clerk'">
             <div class="delete">
               <button
                 onclick="document.getElementById('id01').style.display='block'"
               >
-                delete
+                {{ $t('delete.btn1') }}
               </button>
 
               <div id="id01" class="modal">
@@ -100,7 +98,7 @@
                 >
                 <form class="modal-content" action="/action_page.php">
                   <div class="container">
-                    <p>Are you sure you want to delete ?</p>
+                    <p>{{ $t('delete.p') }}</p>
 
                     <div class="clearfix">
                       <button
@@ -108,7 +106,7 @@
                         onclick="document.getElementById('id01').style.display='none'"
                         class="cancelbtn"
                       >
-                        Cancel
+                        {{ $t('delete.btn2') }}
                       </button>
                       <button
                         type="button"
@@ -116,7 +114,7 @@
                         class="deletebtn"
                         @click.prevent="deleteVideo(education.id)"
                       >
-                        Delete
+                       {{ $t('delete.btn3') }}
                       </button>
                     </div>
                   </div>
@@ -130,7 +128,7 @@
           <p class="title">{{ education.title }}</p>
           <p class="date">Uploaded on: {{ education.uploaded_on }}</p>
           <iframe
-            target='bla'
+            target="bla"
             :src="education.link"
             title="YouTube video player"
             frameborder="0"
@@ -141,6 +139,7 @@
         </div>
       </div>
     </div>
+
     <Footer />
   </div>
 </template>
@@ -148,12 +147,14 @@
 <script>
 import axios from "axios";
 import Footer from "@/components/Footer.vue";
-import Navbar from "@/components/Navbar.vue";
+import EducationNav from "../education/EducationNav.vue";
+import Loader from "@/components/toolpit/Loader.vue";
 // import ConfirmationDeleteVideo from '@/components/toolpit/ConfirmationDeleteVideo.vue'
 export default {
   components: {
     Footer,
-    Navbar,
+    EducationNav,
+    Loader,
     // ConfirmationDeleteVideo
   },
   data() {
@@ -161,7 +162,8 @@ export default {
       showVideos: false,
       token: "",
       educations: "",
-      job: '',
+      job: "",
+      loading: false,
     };
   },
   methods: {
@@ -170,17 +172,22 @@ export default {
     },
 
     async updateEducation() {
+      this.loading = true;
       try {
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/education/get/${this.token}/`
         );
         // console.log(result.data.education_list);
         this.educations = result.data.education_list;
+        
       } catch (e) {
         console.log(e);
       }
+      this.loading = false;
     },
     async deleteArticle(id) {
+      this.loading = true;
+
       try {
         let result = await axios.put(
           `https://kwiklik.herokuapp.com/education/delete/${this.token}/${id}/`,
@@ -188,10 +195,12 @@ export default {
             deleted: "True",
           }
         );
+       
         return result;
       } catch (e) {
         console.log(e);
       }
+       this.loading = false;
     },
     async deleteVideo(id) {
       try {
@@ -207,16 +216,18 @@ export default {
         console.log(e);
       }
     },
-     async handleGetStatus(){
-      try{
-      let result = await axios.get( `https://kwiklik.herokuapp.com/job/obtain/${this.token}/`)
+    async handleGetStatus() {
+      try {
+        let result = await axios.get(
+          `https://kwiklik.herokuapp.com/job/obtain/${this.token}/`
+        );
 
-      this.job = result.data.job
-      // console.log(result)
-      }catch(e){
-        console.log(e)
+        this.job = result.data.job;
+        // console.log(result)
+      } catch (e) {
+        console.log(e);
       }
-    }
+    },
   },
   mounted() {
     this.token = localStorage.getItem("userInfo");
@@ -268,30 +279,39 @@ small {
   align-items: center;
   margin-top: 0px;
 }
+.button-switch{
+ background: white;
+ width: 100%;
+position: fixed;
+}
 .education-btn {
   background: rgba(5, 198, 82, 0.54);
-  padding: 10px 1px;
-  margin: 10px;
+  padding: 5px 5px;
+  margin: 20px 5px;
   border-radius: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 120px;
-  height: 40px;
+  width: 80px;
+  height: 30px;
+  
+  right: 0;
 }
+
 .education-btn button a,
 button {
   text-decoration: none;
   color: black;
+  font-size: 0.8rem;
 }
 
 .active {
   background-color: #ffffff;
   border-radius: 15px;
   color: black;
-  padding: 5px 0px;
-  height: 38px;
-  width: 65px;
+  padding: 5px 5px;
+  height: 28px;
+  width: 50px;
 }
 
 .education-message {
@@ -455,5 +475,10 @@ hr {
   .deletebtn {
     width: 100%;
   }
+}
+
+.loader {
+  text-align: center;
+  margin: 0px auto;
 }
 </style>

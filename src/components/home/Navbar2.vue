@@ -1,38 +1,72 @@
 <template>
   <div class="background">
     <nav>
-      <div>
-        <router-link to="/home-slider"><MenuBar /></router-link>
-      </div>
+
       <!-- <i class="material-icons menu" @click="showSidebar= true">dehaze</i> -->
-      <div class="login-profil-img" @click="showModal = !showModal "></div>
+      <div class="headers">
+      <div class="login-profil-img" @click="showModal = !showModal ">
+        <img :src="image" alt="">
+      </div>
+      </div>
+        <div class="language">
+         <LangSwitcher />
+      </div>
     </nav>
   </div>
   <br /><br /><br />
   <div class="popup" v-if="showModal" @click="showModal = false">
-   <p> <router-link to="/profile">My Account</router-link></p>
-    <p><router-link to="/job-request" v-if="job == 'clerk' ">Job Request</router-link></p>
-    <p><router-link to="/professionals" v-if="job == 'clerk' ">Professionals</router-link></p>
-    <p><router-link to="/patient-request" v-if="job == 'clerk' ">Patient Request</router-link></p>
-    <p><router-link to="/create-research" v-if="job == 'health_worker'  ">Create Research</router-link></p>
-   <p> <router-link to="/vue-research" v-if="job == 'health_worker' || 'clerk' ">Vue Research</router-link></p>
-  
-    <button @click="logout">Logout</button>
+   <p>
+      <router-link to="/profile">{{ $t("popup.account") }}</router-link>
+    </p>
+    <p>
+      <router-link to="/job-request">{{ $t("popup.job") }}</router-link>
+    </p>
+    <p>
+      <router-link to="/professionals" v-if="job == 'clerk'">{{
+        $t("popup.pro")
+      }}</router-link>
+    </p>
+    <p>
+      <router-link to="/patient-request" v-if="job == 'clerk'">{{
+        $t("popup.patient")
+      }}</router-link>
+    </p>
+    <p>
+      <router-link to="/create-research" v-if="job == 'health_worker'">{{
+        $t("popup.research")
+      }}</router-link>
+    </p>
+    <p>
+      <router-link
+        to="/vue-research"
+        v-if="job == 'health_worker' || 'clerk'"
+        >{{ $t("popup.vue") }}</router-link
+      >
+    </p>
+    <p>
+      <router-link to="/updates" v-if="job == 'clerk'">{{
+        $t("popup.edu")
+      }}</router-link>
+    </p>
+
+    <button @click="logout">{{ $t("popup.logout") }}</button>
   </div>
 </template>
 
 <script>
-import MenuBar from "@/components/toolpit/MenuBar.vue";
+// import MenuBar from "@/components/toolpit/MenuBar.vue";
 import axios from 'axios'
+import LangSwitcher from "@/components/LangSwitcher";
 export default {
   components: {
-    MenuBar,
+    LangSwitcher
   },
   data() {
     return {
       showModal: false,
       token: '',
       job: '',
+      image:""
     };
   },
   methods: {
@@ -49,12 +83,26 @@ export default {
       }catch(e){
         console.log(e)
       }
-    }
+    },
+    async handleGet() {
+      
+      try {
+        let result = await axios.get(
+          `https://kwiklik.herokuapp.com/profile/get/${this.token}/`
+        );
+        // console.log(result.data.profile);
+        this.image = result.data.profile.photo;
+       
+      } catch (e) {
+        console.log(e);
+      }
+    },
   },
   mounted(){
     this.token = localStorage.getItem("userInfo");
 
     this.handleGetStatus();
+    this.handleGet()
   }
 };
 </script>
@@ -74,23 +122,24 @@ export default {
 nav {
   display: flex;
   justify-content: space-between;
-  margin: 10px;
+  margin: 0px 5px;
+  align-items: center;
   justify-items: center;
 }
-.login-profil-img {
-  width: 50px;
-  height: 50px;
+.login-profil-img,  .login-profil-img img {
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   background-color: yellow;
 }
 .popup {
   position: fixed;
-  width: 120px;
+  width: auto;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px rgb(224, 220, 220);
   z-index: 9999;
   opacity: 3;
-  right: 0;
+  /* right: 0; */
   margin: 0px 10px;
   transition: ease-in-out 0.9s;
   padding: 10px 10px;
@@ -115,5 +164,15 @@ p{
 }
 p a {
   color: lightblue;
+}
+.headers{
+  display: flex;
+  align-items: center;
+  margin: 0px 5px;
+}
+.fa-chevron-down{
+  
+  font-size: .8rem;
+  margin-right: 10px;
 }
 </style>

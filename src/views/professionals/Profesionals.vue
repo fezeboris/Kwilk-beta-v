@@ -1,10 +1,13 @@
 <template>
-  <Navbar />
+  <ProfessionalNav />
   <div class="job-request">
     <div class="request-header">
-      <p>Professionals</p>
-      <small>Users who can offer service</small>
+      <p>{{ $t('professionals.p') }}</p>
+      <small>{{ $t('professionals.small') }}</small>
     </div>
+     <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
 
     <div class="request-main-contain" >
       <div class="request-content" v-for="job in jobRequest" :key="job.id">
@@ -13,9 +16,9 @@
           <p style="font-weight: bold">{{job.username}}</p>
           <small>{{job.phone}}</small>
           
-          <p>I am:</p>
+          <p>{{ $t('professionals.p2') }}</p>
           <small>{{job.type_job}}</small>
-          <h5>Available on: <span>{{job.availability}}</span></h5>
+          <h5>{{ $t('professionals.h5') }}<span>{{job.availability}}</span></h5>
           <small>{{job.location}}</small>
           <p>{{job.user_mail}}</p>
          
@@ -30,23 +33,29 @@
 <script>
 import axios from "axios";
 import Footer from "@/components/Footer.vue";
-import Navbar from "@/components/Navbar.vue";
+import ProfessionalNav from "../professionals/ProfessionalNav.vue";
+import Loader from '@/components/toolpit/Loader.vue'
+
 export default {
   components: {
     Footer,
-    Navbar,
+    ProfessionalNav,
+    Loader
   },
   data() {
     return {
         token: '',
         jobRequest: [],
         id: '',
+        loading: false,
 
         
     };
   },
   methods: {
     async handleGetJob() {
+         this.loading = true;
+
       try {
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/job/get/owner/${this.token}/`
@@ -59,6 +68,7 @@ export default {
       } catch (e) {
         console.log(e);
       }
+       this.loading = false;
     },
    
 
@@ -82,7 +92,7 @@ export default {
 }
 
 .request-main-contain {
-  margin-top: 80px;
+  margin-top: 20px;
 }
 .request-header {
   margin-top: 10px;
@@ -161,4 +171,9 @@ h5{
     color: lightgreen;
     font-size: .9rem;
 }
+
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+} 
 </style>

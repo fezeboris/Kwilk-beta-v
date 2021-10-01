@@ -1,18 +1,18 @@
 <template>
-  <Navbar />
+  <HelpNav />
 
   <div class="help">
-    <div class="seek-help">
-      <p>Seek for Help</p>
-      <small>Together let’s fight Gender Based Violence</small>
-    </div>
+   
 
     <div class="request-main-contain">
       <!-- <router-link :to="{ name: 'Clinical' }"> -->
+        <div class="loader" >
+         <Loader/>
+       </div>
         <div class="clinical-specialist">
           <div class="clinical-logo"></div>
 
-          <p>Legale Consultant demand</p>
+          <p>{{ $t('help.p1') }}</p>
          <ClinicalDemande/>
         </div>
       <!-- </router-link> -->
@@ -21,7 +21,7 @@
         <div class="clinical-specialist">
           <div class="clinical-logo"></div>
 
-          <p>Psychological Health Specialist</p>
+          <p>{{ $t('help.p2') }}</p>
          <PsychoDemande/>
         </div>
       <!-- </router-link> -->
@@ -30,7 +30,7 @@
         <div class="clinical-specialist">
           <div class="clinical-logo"></div>
 
-          <p>Legal Consultants</p>
+          <p>{{ $t('help.p3') }}</p>
           <DemandConsultant/>
         </div>
       <!-- </router-link> -->
@@ -39,13 +39,15 @@
         <div class="clinical-specialist">
           <div class="clinical-logo"></div>
 
-          <p>Bike Riders</p>
+          <p>{{ $t('help.p4') }}</p>
           <DemandeBike/>
         </div>
       <!-- </router-link> -->
       <div class="myRequest">
-        <router-link :to="{name: 'MyRequest'}">My Request</router-link>
+        <router-link :to="{name: 'MyRequest'}">{{ $t('help.p5') }}</router-link>
       </div>
+
+    
     </div>
     <hr />
     <Footer />
@@ -57,17 +59,21 @@ import ClinicalDemande from '../help/experts/helpDemande/ClinicalDemande.vue'
 import DemandConsultant from '../help/experts/helpDemande/DemandConsultant.vue'
 import PsychoDemande from '../help/experts/helpDemande/PsychoDemande.vue'
 import DemandeBike from '../help/experts/helpDemande/DemandeBike.vue'
+import Loader from '@/components/toolpit/Loader.vue'
+
 import axios from "axios";
 import Footer from "../../components/Footer.vue";
-import Navbar from "../../components/Navbar.vue";
+import HelpNav from "../help/HelpNav.vue";
+// import Loader from '../../components/toolpit/Loader.vue'
 export default {
   components: {
     Footer,
-    Navbar,
+    HelpNav,
     ClinicalDemande,
     DemandConsultant,
     PsychoDemande,
-    DemandeBike
+    DemandeBike,
+    Loader
 
   },
   data() {
@@ -82,6 +88,7 @@ export default {
     },
 
     async updateEducation() {
+      this.loading = true;
       try {
         let result = await axios.post(
           `https://kwiklik.herokuapp.com/help/create/${this.token}/`
@@ -91,6 +98,7 @@ export default {
       } catch (e) {
         console.log(e);
       }
+      this.loading = false;
     },
   },
   mounted() {
@@ -112,7 +120,7 @@ export default {
 }
 
 .request-main-contain {
-  margin-top: 110px;
+  margin-top: 50px;
 }
 .seek-help {
   margin-top: 10px;
@@ -176,6 +184,10 @@ a {
 }
 .myRequest a{
  box-shadow: rgba(2, 236, 253, 0.2) 0px 7px 29px 0px;
+}
+.loader{
+    text-align: center;
+    margin: 0px auto;
 }
 
 </style>

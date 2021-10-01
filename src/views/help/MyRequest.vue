@@ -4,7 +4,9 @@
     <div class="header">
       <h1>My Requests</h1>
     </div>
-  
+         <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
     <div class="request" v-for="request in requests" :key="request.id">
         
       <div class="request_text">
@@ -32,9 +34,11 @@
 <script>
 import axios from "axios";
 import Snavbar from '@/components/Snavbar.vue'
+import Loader from '@/components/toolpit/Loader.vue'
 export default {
     components:{
-        Snavbar
+        Snavbar,
+        Loader
     },
   data() {
     return {
@@ -42,6 +46,7 @@ export default {
       requests: [],
       showModal: false,
       showUpdate: '',
+       loading: false,
     };
   },
   methods: {
@@ -49,6 +54,7 @@ export default {
         console.log('hey id', id)
       },
     async myRequest() {
+       this.loading = true;
       try {
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/help/personal/get/${this.token}/`
@@ -56,9 +62,11 @@ export default {
         // console.log(result.data.education_list);
         // console.log(result.data.help_list);
         this.requests = result.data.help_list;
+       
       } catch (e) {
         console.log(e);
       }
+       this.loading = false;
     },
     back() {
       this.$router.go(-1);
@@ -204,5 +212,10 @@ input:focus {
 }
 h1 {
   font-size: 1rem;
+}
+
+ .loader{
+    text-align: center;
+    margin: 0px auto;
 }
 </style>

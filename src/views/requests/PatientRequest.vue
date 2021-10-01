@@ -1,11 +1,11 @@
 <template>
-  <Navbar />
+  <PatientNav />
   <div class="patient-request">
-    <div class="request-header">
-      <p>Patient Requests</p>
-      <small>Users who liked up with Experts</small>
-    </div>
-
+    
+         
+          <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
     <div class="request-main-content">
       <div class="request" v-for="request in requestLists" :key="request.id">
         <div class="request_text">
@@ -40,23 +40,28 @@
 
 <script>
 import Footer from "@/components/Footer.vue";
-import Navbar from "@/components/Navbar.vue";
+import PatientNav from "../requests/PatientNav.vue";
 import axios from "axios";
+import Loader from '@/components/toolpit/Loader.vue'
+
 
 export default {
   components: {
     Footer,
-    Navbar,
+    PatientNav,
+    Loader
   },
   data() {
     return {
       token: "",
       requestLists: [],
+       loading: false,
     };
   },
 
   methods: {
     async patientRequest() {
+      this.loading = true;
       try {
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/help/get/${this.token}/`
@@ -65,9 +70,11 @@ export default {
         // console.log(result.data.help_list);
         // console.log(result.data.help_list);
         this.requestLists = result.data.help_list;
+         
       } catch (e) {
         console.log(e);
       }
+      this.loading = false;
     },
   },
   mounted() {
@@ -90,7 +97,7 @@ export default {
 }
 
 .request-main-content {
-  margin-top: 80px;
+  margin-top: 20px;
   font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
 }
@@ -156,4 +163,9 @@ small {
   padding: 5px;
   color: lightblue;
 }
+
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+} 
 </style>

@@ -1,12 +1,8 @@
 <template>
-<Navbar/>
+<NotificationNav/>
 
     <div class="notifications">
 
-        <div class="request-header">
-            <p>Notifications</p>
-            <small>Time is up</small>
-        </div>
 
        <div class="notification-main-content">
            <hr style="border-top: dotted 1px; color:#8BA0AE; width:100%;"  />
@@ -34,13 +30,13 @@
 <script>
 import Footer from '@/components/Footer.vue'
 
-import Navbar from '@/components/Navbar.vue'
+import NotificationNav from '../notifications/NotificationNav.vue'
     export default {
          components:{
             Footer,
             // Sidebar,
             // Side,
-            Navbar
+            NotificationNav
         },
         data(){
             return{
@@ -61,9 +57,7 @@ import Navbar from '@/components/Navbar.vue'
     
     }
 
-.notification-main-content{
-    margin-top: 70px;
-}
+
 .request-header{
     position: fixed;
     background: #fff;

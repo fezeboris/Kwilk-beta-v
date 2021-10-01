@@ -11,7 +11,7 @@
           </div>
            
            <div class="login-profil-img" @click="showModal = true"></div> -->
-        <HomeNavbar />
+        <!-- <HomeNavbar /> -->
       </nav>
     </div>
 
@@ -49,7 +49,7 @@ import axios from "axios";
 import { LMap, LTileLayer, LMarker, LIcon } from "@vue-leaflet/vue-leaflet";
 import Footer from "../Footer.vue";
 // import Toolpit from '../toolpit/Toolpit.vue'
-import HomeNavbar from "../home/HomeNavbar.vue";
+// import HomeNavbar from "../home/HomeNavbar.vue";
 export default {
   components: {
     LMap,
@@ -59,7 +59,7 @@ export default {
     MapMarker,
     Footer,
     // Toolpit,
-    HomeNavbar,
+    // HomeNavbar,
   },
   emits: ["openSidebar"],
   data() {

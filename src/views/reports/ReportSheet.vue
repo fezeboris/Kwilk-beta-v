@@ -1,18 +1,13 @@
 /* eslint-disable no-mixed-spaces-and-tabs */
 <template>
-  <Navbar />
+  <ReportNav />
 
   <div class="report">
-    <div class="request-header">
-      <p>Report Abuse</p>
-      <small>Together let's fight Gender Based Violence</small>
-    </div>
-
     <form @submit.prevent="handleSubmit">
       <hr style="border-top: dotted 1px; color: #8ba0ae; width: 100%" />
       <div class="details">
-        <label>Details</label>
-        <textarea required v-model="report"></textarea>
+        <label>{{ $t("report.details") }}</label>
+        <textarea v-model="report" placeholder="optional"></textarea>
       </div>
 
       <!-- <Audio2 :getAudio="getUserAudio"/> -->
@@ -40,10 +35,12 @@
             </div>
             <div>
               <div v-if="audioSource">
-                <h1 class="delete" @click="deleteRecording">Delete</h1>
+                <h1 class="delete" @click="deleteRecording">
+                  {{ $t("report.btn1") }}
+                </h1>
               </div>
               <div v-else>
-                <h1>Recording</h1>
+                <h1>{{ $t("report.recording") }}</h1>
               </div>
             </div>
           </div>
@@ -56,7 +53,7 @@
       <div class="body">
         <div class="image-main-container">
           <div>
-            <h1>Image</h1>
+            <h1>{{ $t("report.image") }}</h1>
           </div>
 
           <figure class="image-container">
@@ -70,7 +67,9 @@
           </div>
 
           <div v-else>
-            <button class="delete-btn" @click="removeImage">Delete</button>
+            <button class="delete-btn" @click="removeImage">
+              {{ $t("report.btn1") }}
+            </button>
           </div>
         </div>
       </div>
@@ -79,27 +78,39 @@
 
       <div class="case">
         <div class="case-type">
-          <label class="lable">Case Type</label>
-          <select v-model="caseType" required>
+          <label class="lable">{{ $t("report.case") }}</label>
+          <input class="input" type="text" list="caseType" v-model="caseType" />
+          <datalist id="caseType">
             <option value="psychological violence">
-              psychological violence
+              {{ $t("report.options.psychological") }}
             </option>
-            <option value="stalking">stalking</option>
-            <option value="physical violence">physical violence</option>
-            <option value="forced marriages">forced marriages</option>
-            <option value="sexual violence">sexual violence</option>
-            <option value="rape">rape</option>
+            <option value="stalking">
+              {{ $t("report.options.stalking") }}
+            </option>
+            <option value="physical violence">
+              {{ $t("report.pysical") }}
+            </option>
+            <option value="forced marriages">
+              {{ $t("report.options.mariage") }}
+            </option>
+            <option value="sexual violence">
+              {{ $t("report.options.sexual") }}
+            </option>
+            <option value="rape">{{ $t("report.options.rape") }}</option>
             <option value="female genital mutilation">
-              female genital mutilation
+              {{ $t("report.options.mutilation") }}
             </option>
-            <option value="forced sterilisation">forced sterilisation</option>
-            <option value="sexual harassement">sexual harassement</option>
-          </select>
+            <option value="forced sterilisation">
+              {{ $t("report.options.sterilisation") }}
+            </option>
+            <option value="sexual harassement">
+              {{ $t("report.options.harassement") }}
+            </option>
+          </datalist>
         </div>
         <div class="case-location">
-          <label class="label">Date of Abuse</label>
+          <label class="label">{{ $t("report.date") }}</label>
           <input
-            required
             class="input"
             type="date"
             placeholder="01-12-2021"
@@ -118,9 +129,9 @@
               name="checkbox-1"
               type="checkbox"
             />
-            <label for="checkbox-1" class="checkbox-custom-label"
-              >Get Prentive Paliatives</label
-            >
+            <label for="checkbox-1" class="checkbox-custom-label">{{
+              $t("report.option2.Prentive")
+            }}</label>
           </div>
           <div>
             <input
@@ -131,9 +142,9 @@
               name="checkbox-2"
               type="checkbox"
             />
-            <label for="checkbox-2" class="checkbox-custom-label"
-              >Contact Legal Consultant</label
-            >
+            <label for="checkbox-2" class="checkbox-custom-label">{{
+              $t("report.option2.Consultant")
+            }}</label>
           </div>
         </div>
         <div>
@@ -146,9 +157,9 @@
               name="checkbox-1"
               type="checkbox"
             />
-            <label for="checkbox-1" class="checkbox-custom-label"
-              >Get Medical Doctor</label
-            >
+            <label for="checkbox-1" class="checkbox-custom-label">{{
+              $t("report.option2.Medical")
+            }}</label>
           </div>
           <div>
             <input
@@ -159,14 +170,17 @@
               name="checkbox-2"
               type="checkbox"
             />
-            <label for="checkbox-2" class="checkbox-custom-label"
-              >Contact Psychologist</label
-            >
+            <label for="checkbox-2" class="checkbox-custom-label">{{
+              $t("report.option2.Psychologist")
+            }}</label>
           </div>
         </div>
       </div>
       <div class="submit">
-        <button class="button">Submit</button>
+        <div class="loader" v-if="loading">
+          <Loader />
+        </div>
+        <button v-else class="button">{{ $t("report.option2.btn") }}</button>
       </div>
 
       <Date :Cdate="getDate" :Ctime="getTime" />
@@ -180,8 +194,9 @@
 
 <script>
 import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import ReportNav from "../reports/ReportNav.vue";
 import axios from "axios";
+import Loader from "@/components/toolpit/Loader.vue";
 // import setAuthHeader from '../../components/utils/setAuthHeader'
 // import Geolocalisation from "@/components/toolpit/Geolocalisation.vue";
 import Date from "@/components/toolpit/Date.vue";
@@ -191,8 +206,9 @@ import Date from "@/components/toolpit/Date.vue";
 export default {
   components: {
     Footer,
-    Navbar,
+    ReportNav,
     Date,
+    Loader,
     // Geolocalisation,
 
     // Audio2,
@@ -218,15 +234,16 @@ export default {
       image: "",
       imageFile: null,
       caseType: "",
-      dateOfAbuse: "",
+      dateOfAbuse: "2022-01-01",
       bikeRequest: false,
       legalConsultant: false,
       medicalDoctor: false,
       psychologist: false,
       currentDate: "",
-      currentTime: '',
-    
+      currentTime: "",
+
       token: "",
+      loading: false,
       // selectedFile: null
     };
   },
@@ -273,35 +290,36 @@ export default {
       return e;
     },
 
-    
     // ===================================
     async handleSubmit() {
       let formData = new FormData();
-      formData.append(
-        "recording",
-        this.audioBlob,
-        this.currentTime + '.wav'
-        
-      );
-      formData.append('reporting', this.report)
-      formData.append('parent_report', '0')
-      formData.append('latitude', this.latitude)
-      formData.append('longitude', this.longitude)
-      formData.append('case_type', this.caseType)
-      formData.append('date_abuse', this.dateOfAbuse)
-      formData.append('current_date', this.currentDate)
-      formData.append('doctor_request', this.medicalDoctor)
-      formData.append('psy_request', this.psychologist)
-      formData.append('legal_request', this.legalConsultant)
-      formData.append('bike_request', this.bikeRequest)
-      formData.append('image', this.imageFile,  this.currentTime + '.jpg')
-      
-      
 
+      if (this.audioBlob != null) {
+        formData.append("recording", this.audioBlob, this.currentTime + ".wav");
+      }
+      if (this.imageFile != null) {
+        formData.append("image", this.imageFile, this.currentTime + ".jpg");
+      }
+
+        formData.append("date_abuse", this.dateOfAbuse);
+      
+      formData.append("reporting", this.report);
+      formData.append("parent_report", "0");
+      formData.append("latitude", this.latitude);
+      formData.append("longitude", this.longitude);
+      formData.append("case_type", this.caseType);
+
+      formData.append("current_date", this.currentDate);
+      formData.append("doctor_request", this.medicalDoctor);
+      formData.append("psy_request", this.psychologist);
+      formData.append("legal_request", this.legalConsultant);
+      formData.append("bike_request", this.bikeRequest);
+
+      this.loading = true;
       try {
         let result = await axios.post(
           `https://kwiklik.herokuapp.com/reports/create/${this.token}/`,
-          formData,
+          formData
 
           // {
           //   onUploadProgress: (progressEvent) => {
@@ -309,6 +327,7 @@ export default {
           //   },
           // }
         );
+        this.$router.push({ name: "HomeSlider" });
 
         (this.report = ""),
           (this.latitude = ""),
@@ -322,10 +341,11 @@ export default {
           (this.bikeRequest = false),
           (this.audioBlob = null),
           (this.image = ""),
-        console.log(result);
+          console.log(result);
       } catch (e) {
         console.log(e.result);
       }
+      this.loading = false;
     },
     // handleSubmit(){
     //   console.log(this.audioSource)
@@ -334,9 +354,9 @@ export default {
     getDate(date) {
       this.currentDate = date;
     },
-    getTime(time){
-      this.currentTime = time
-    }
+    getTime(time) {
+      this.currentTime = time;
+    },
   },
   // Audio directives
   directives: {
@@ -384,8 +404,8 @@ export default {
     this.token = localStorage.getItem("userInfo");
     // console.log('this.token', this.currentTime);
 
-  // var seconds = new Date().getTime()/1000
-  // console.log('sec', seconds)
+    // var seconds = new Date().getTime()/1000
+    // console.log('sec', seconds)
   },
   created() {
     //do we support geolocation
@@ -419,9 +439,8 @@ function initMediaRecorder(stream) {
     var blob = new Blob(chunks, { type: "audio/wav" });
     chunks = [];
     this.audioSource = URL.createObjectURL(blob);
-    this.audioBlob = blob
+    this.audioBlob = blob;
     // console.log(this.audioBlob)
-
   });
 
   recorder.addEventListener("dataavailable", (e) => {
@@ -459,7 +478,7 @@ function initVisualizer(stream) {
   margin: 0px auto;
   background: white;
   text-align: left;
-  padding: 28px 10px;
+  padding: 0px 10px;
   border-radius: 10px;
 }
 
@@ -468,18 +487,12 @@ function initVisualizer(stream) {
   /* position: fixed; */
   width: 100%;
   background: #fff;
-  padding-top: 10px;
+  /* padding-top: 10px; */
 }
-.request-header p {
-  margin: 10px 25px 10px 0px;
-  color: #3f3d3d;
-  font-size: 1.3rem;
-  line-height: 0rem;
-  font-weight: bold;
+
+form {
+  margin-top: 45px;
 }
-/* form{
-    margin-top: 60px;
-} */
 small {
   color: #8ba0ae;
   font-size: 0.8rem;
@@ -488,7 +501,7 @@ small {
 }
 
 .recording {
-  padding: 10px;
+  padding: 0px;
   /* background:lightgreen; */
   border-radius: 50%;
   margin-left: 10px;
@@ -497,7 +510,7 @@ small {
 .record {
   display: flex;
   justify-content: space-between;
-  margin: 20px 10px;
+  margin: 0px 10px;
   background: #f0f0f0;
   border-radius: 50px;
   padding: 0px 10px;
@@ -505,10 +518,10 @@ small {
 }
 
 .case {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  display: flex;
-  justify-content: space-evenly;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  display: grid;
+  grid-template-columns: 3fr 3fr;
   align-items: center;
 }
 
@@ -572,7 +585,7 @@ textarea {
   grid-template-columns: auto auto auto;
   align-items: center;
   justify-content: space-between;
-  margin: 40px 30px;
+  margin: 0px 30px;
   border-radius: 20px;
   max-width: 420px;
   height: 50px;
@@ -587,7 +600,6 @@ h1,
 audio,
 .button1 {
   width: 30%;
-  
 }
 
 audio {
@@ -700,5 +712,9 @@ input[type="checkbox"] {
   color: #87a18d;
   margin-top: 10px;
   /* margin-right: 20px; */
+}
+.loader {
+  text-align: center;
+  margin: 0px auto;
 }
 </style>

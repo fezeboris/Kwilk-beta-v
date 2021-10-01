@@ -75,17 +75,27 @@
     <div v-if="passwordVerificationError" class="error">
       {{ passwordVerificationError }}
     </div>
-
+      <div v-if="errorRes" class="errors">
+        {{errorRes}}
+      </div>
     <div class="submit">
-      <button>Registration</button>
+       <div class="loader" v-if="loading">
+         <Loader/>
+       </div>
+      <button v-else>Registration</button>
+      
     </div>
   </form>
 </template>
 
 <script>
 import axios from "axios";
+import Loader from '@/components/toolpit/Loader.vue'
 export default {
   name: "SignIn",
+  components:{
+      Loader
+  },
   data() {
     return {
       email: "",
@@ -96,20 +106,21 @@ export default {
       passwordError: "",
       passwordVerification: "",
       passwordVerificationError: "",
-
+      errorRes: "",
       // response errors
 
       emailerror: "",
       userNameError: "",
       phoneNumberError: "",
       passwordEr: "",
+      loading: false
     };
   },
   methods: {
     async handleSubmit() {
       // validate passeword
       this.passwordError =
-        this.password.length > 8
+        this.password.length > 7
           ? ""
           : "Password must be at least 8 chars long";
       if (this.password != this.passwordVerification) {
@@ -117,7 +128,11 @@ export default {
           "Password must match with Password verification";
       }
       if (!this.passwordError && !this.passwordVerificationError) {
+
+        this.loading = true;
         try {
+          
+
           let result = await axios.post(
             "https://kwiklik.herokuapp.com/register/",
             {
@@ -128,10 +143,11 @@ export default {
               phone_number: this.phone_number,
             }
           );
+         
           if (result.data == 201) {
             // console.log(result);
             // localStorage.setItem("userInfo", JSON.stringify(result.data));
-            localStorage.setItem('userInfo', (result.data.token))
+            // localStorage.setItem('userInfo', (result.data.token))
             this.$router.push({ name: "Login" });
           } else if (result.data !== 201) {
             this.emailerror = result.data.email;
@@ -142,8 +158,9 @@ export default {
             // phoneNumberError: this.
           }
         } catch (e) {
-          this.errorRes = "invalid email";
+          this.errorRes = "user with these credentials already exist";
         }
+         this.loading = false;
       }
     },
   },
@@ -221,6 +238,16 @@ button {
   border: 1px solid #ffff;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
+.errors{
+  color: #ff0062;
+  margin-top: 10px;
+  font-size: 0.8em;
+  font-weight: bold;
+  width: auto;
+  margin-left: auto;
+  border: 1px solid #ffff;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
 .error-b {
   color: #ff0062;
   margin-top: 10px;
@@ -286,4 +313,53 @@ hr {
 .gender-input input {
   margin-left: 85px;
 }
+.loader{
+    text-align: center;
+    margin: 0px auto;
+}
+
+/* loader style */
+
+/* .loader{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg,transparent,transparent 40%, #e5f403);
+    animation: animate 2s linear infinite;
+}
+@keyframes animate{
+    0%{
+        transform: rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+        filter: hue-rotate(360deg);
+    }
+}
+.loader:before{
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+    background: white;
+    border-radius: 50%;
+    z-index: 1000;
+}
+.loader:after{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: linear-gradient(45deg,transparent,transparent 40%, #e5f403);
+    border-radius: 50%;
+    z-index: 1000;
+    z-index: 1;
+    filter: blur(30px);
+} */
 </style>

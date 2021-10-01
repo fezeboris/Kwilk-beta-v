@@ -1,130 +1,119 @@
 <template>
   <Snavbar />
   <div class="main-container">
-    <label class="lable">Location Description</label>
+    <label class="lable">{{ $t('createResearch.l1') }}</label>
     <textarea type="text" v-model="location_sgbv"></textarea><br />
 
     <h1 style="font-weight: bold">
-      1. Knowledge and experience on Sexual and Gender Based Violence (SGBV).
+      1. {{ $t('createResearch.h1') }}
     </h1>
     <br />
 
     <label
-      >Do you have anyone in the family or in the community that has experience
-      SGBV in any form (rape, intimate partner violence, sex for marks, revenge
-      porn (posting their naked pics or videos online), early child marriage,
+      >{{ $t('createResearch.l2') }}
     </label>
 
     <select v-model="any_sgbv">
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="Yes">{{ $t('createResearch.op1') }}</option>
+      <option value="No">{{ $t('createResearch.op2') }}</option>
     </select>
     <label
-      >Can you share a story of anyone you know who had experienced any of the
-      forms of SGBV and how the situation was handled.</label
+      >{{ $t('createResearch.l3') }}</label
     >
     <textarea v-model="story_sgbv"></textarea>
     <label
-      >Do you think providing educative talks through school clubs and community
-      radios programs can reduce the incidence of SGBV cases? Why?</label
+      >{{ $t('createResearch.l4') }}</label
     >
     <textarea v-model="education_sgbv"></textarea>
 
     <label
-      >if a girl is wearing a more revealing dress where some of her body parts
-      such as breast etc. are exposed and gets harassed or rape, who do you
-      think is to be blamed. Why?
+      >{{ $t('createResearch.l5') }}
     </label>
     <textarea v-model="revealing_sgbv"></textarea>
 
     <label
-      >If a girl is moving at night and raped or harassed, do you think it’s her
-      fault?
+      >{{ $t('createResearch.l6') }}
     </label>
     <textarea v-model="night_sgbv"></textarea><br />
 
-    <h1 style="font-weight: bold">2. Crisis</h1>
+    <h1 style="font-weight: bold">2. {{ $t('createResearch.h2') }}</h1>
     <br />
 
     <label
-      >How has the crisis affected the rate of SGBV in the community?</label
+      >{{ $t('createResearch.l7') }}</label
     >
     <textarea v-model="crisis_sgbv"></textarea>
 
     <label
-      >Do you have emergency lines or report system that you can rely on?
+      >{{ $t('createResearch.l8') }}
     </label>
     <select v-model="emergency_sgbv">
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="Yes">{{ $t('createResearch.op1') }}</option>
+      <option value="No">{{ $t('createResearch.op2') }}</option>
     </select>
     <label
-      >Do you think the pandemic Covid has affected the occurrence rate of SGBV?
+      >{{ $t('createResearch.l9') }}?
     </label>
     <select v-model="pandemic_sgbv">
-      <option value="Yes">Yes</option>
-      <option value="No">No</option></select
+      <option value="Yes">{{ $t('createResearch.op1') }}</option>
+      <option value="No">{{ $t('createResearch.op2') }}</option></select
     ><br />
-    <h1 style="font-weight: bold">3. Culture</h1>
+    <h1 style="font-weight: bold">3. {{ $t('createResearch.h3') }}</h1>
     <br />
 
     <label
-      >What myths or superstitious or spiritual beliefs exists around rape or
-      intimate partner violence or homosexuality etc.?</label
+      >{{ $t('createResearch.l10') }}</label
     >
     <textarea v-model="myth_sgbv"></textarea>
     <label
-      >Do you think you have rights over your partner, and over your partners
-      body for any reason? Why?
+      >{{ $t('createResearch.l11') }}
     </label>
     <textarea v-model="right_sgbv"></textarea>
     <label
-      >If you want sex and your partner is not in the mood, do you have the
-      right to force him/her?
+      >{{ $t('createResearch.l12') }}
     </label>
     <select v-model="mood_sgbv">
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option value="Yes">{{ $t('createResearch.op1') }}</option>
+      <option value="No">{{ $t('createResearch.op2') }}</option>
     </select>
 
-    <label>Is it right for a one partner to beat up his/her partner? </label>
+    <label>{{ $t('createResearch.l13') }} </label>
     <select v-model="beat_sgbv">
       <option value="Yes">Yes</option>
       <option value="No">No</option>
     </select>
     <label
-      >Can you give some of the factors that lead to early child marriage?
+      >{{ $t('createResearch.l14') }}
     </label>
     <textarea v-model="early_sgbv"></textarea>
     <label
-      >Do you think it’s ok for a parent to marry off their child without the
-      child’s concern? Why?
+      >{{ $t('createResearch.l15') }}
     </label>
     <textarea v-model="marry_sgbv"></textarea>
     <label
-      >Have there been any situations where your child or another CWD (child
-      with disability) has been sexually abused or violently attacked? Tell us
-      about it.
+      >{{ $t('createResearch.l16') }}
     </label>
     <textarea v-model="abused_sgbv"></textarea>
-    <label>Tell us how parental education can put an end to SGBV?</label>
+    <label>{{ $t('createResearch.l17') }}</label>
     <textarea v-model="parental_sgbv"></textarea>
     <label
-      >What do you think are some of the barriers that make victims of SGBV
-      hesitant to speak up?
+      >{{ $t('createResearch.l18') }}
     </label>
     <textarea v-model="barriers_sgbv"></textarea>
     <label
-      >Do you think that there is any justification for any form of SGBV?
+      >{{ $t('createResearch.l19') }}
     </label>
     <textarea v-model="justification_sgbv"></textarea>
     <label
-      >Can you give recommendations on how we can fight against SGBV in the
-      communities?
+      >{{ $t('createResearch.l20') }}
     </label>
     <textarea v-model="recommendation_sgbv"></textarea>
     <div class="btn-container">
-      <button class="apply-btn" @click.prevent="createResearch">Submit</button>
+
+         <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
+      <button v-else class="apply-btn" @click.prevent="createResearch">{{ $t('createResearch.btn1') }}</button>
     </div>
   </div>
   <Date :Cdate="getDate" :Ctime="getTime" />
@@ -134,10 +123,13 @@
 import axios from "axios";
 import Snavbar from "@/components/Snavbar";
 import Date from "@/components/toolpit/Date.vue";
+import Loader from '@/components/toolpit/Loader.vue'
+
 export default {
   components: {
     Snavbar,
     Date,
+    Loader
   },
   data() {
     return {
@@ -165,6 +157,7 @@ export default {
       currentDate: "",
       currentTime: "",
       token: "",
+      loading: false,
     };
   },
   methods: {
@@ -176,6 +169,7 @@ export default {
       this.currentTime = time;
     },
     async createResearch() {
+      this.loading = true;
       try {
         let result = await axios.post(
           `https://kwiklik.herokuapp.com/research/create/${this.token}/`,
@@ -222,10 +216,14 @@ export default {
           (this.barriers_sgbv = ""),
           (this.justification_sgbv = ""),
           (this.recommendation_sgbv = "");
-        (this.right_sgbv = ""), console.log(result);
+        (this.right_sgbv = "");
+        
+       return result
+        
       } catch (e) {
         console.log(e);
       }
+       this.loading = false;
     },
   },
   mounted() {
@@ -303,4 +301,8 @@ button{
 /* .apply-btn:hover {
   background: rgb(63, 52, 52);
 } */
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+}  
 </style>

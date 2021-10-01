@@ -1,3 +1,5 @@
+<!-- version 1.2 -->
+
 # figma-project-one
 
 ## Project setup

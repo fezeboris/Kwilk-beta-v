@@ -1,20 +1,23 @@
 <template>
   <div class="main-container">
-    <label class="lable">Type Job</label>
+    <label class="lable">{{ $t("jobSeekers.label") }}</label>
     <select v-model="jobType" required>
-      <option value="rider">Rider</option>
-      <option value="doctor">Doctor</option>
-      <option value="Psychologist">Psychologist</option>
-      <option value="consultant">Legal Consultant</option>
-      <option value="health_worker">Health Worker</option>
+      <option value="rider">{{ $t("jobSeekers.options.rider") }}</option>
+      <option value="doctor">{{ $t("jobSeekers.options.doctor") }}</option>
+      <option value="Psychologist">{{ $t("jobSeekers.options.psychologist") }}</option>
+      <option value="consultant">{{ $t("jobSeekers.options.consultant") }}</option>
+      <option value="health_worker">{{ $t("jobSeekers.options.health") }}</option>
     </select>
-     <label>Availability</label>
+     <label>{{ $t("jobSeekers.label2") }}</label>
     <input type="text" v-model="availability" />
-     <label>Location</label>
+     <label>{{ $t("jobSeekers.label3") }}</label>
     <input type="text" v-model="location" />
 
       <div class="btn-container">
-        <button class="apply-btn" @click.prevent="applyJob">Apply</button>
+       <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
+        <button v-else class="apply-btn" @click.prevent="applyJob">{{ $t("jobSeekers.btn") }}</button>
       </div>
   </div>
 
@@ -23,7 +26,11 @@
 
 <script>
 import axios from 'axios'
+import Loader from '@/components/toolpit/Loader.vue'
 export default {
+  components:{
+    Loader
+  },
   data() {
     return {
       
@@ -31,6 +38,7 @@ export default {
       location: '',
       token: '',
       availability: '',
+       loading: false,
 
 
 
@@ -38,6 +46,7 @@ export default {
   },
    methods: {
     async applyJob() {
+      this.loading = true;
       try {
         let result = await axios.post(
           `https://kwiklik.herokuapp.com/job/create/${this.token}/`,
@@ -50,6 +59,7 @@ export default {
           }
         
         );
+        
         if(result.data == 201){
           this.$router.push({name:'Profile'})
         }
@@ -57,6 +67,7 @@ export default {
       } catch (e) {
         console.log(e);
       }
+      this.loading = false;
     },
   },
    mounted() {
@@ -128,4 +139,9 @@ input:focus {
 .apply-btn:hover{
   background: rgb(63, 52, 52);
 }
+ .loader{
+    text-align: center;
+    margin: 0px auto;
+}         
+
 </style>
