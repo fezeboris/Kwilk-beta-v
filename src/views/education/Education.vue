@@ -19,6 +19,7 @@
       </button>
     </div>
   </div>
+  
   <div class="education" @click="showModal = false">
     <div class="loader" v-if="loading">
       <Loader />
