@@ -5,7 +5,7 @@
       ref="map"
       v-model:zoom="zoom"
       :center="[3.852877720994932, 11.519982783337552]"
-      style="height: 87vh"
+      style="height: 89vh"
     >
       <Navbar2 />
       <l-tile-layer
@@ -231,7 +231,7 @@ export default {
   background: white;
   text-align: left;
   padding: 0px 0px;
-  z-index: 2;
+  z-index: 1;
   opacity: 0.9;
   border-radius: 10px;
 }

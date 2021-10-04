@@ -147,7 +147,7 @@ nav {
   z-index: 9999;
   opacity: 3;
   /* right: 0; */
- margin: 25px 10px;
+ margin: 10px 10px;
   transition: ease-in-out 0.9s;
   padding: 10px 10px;
   background-color: #ffff;
