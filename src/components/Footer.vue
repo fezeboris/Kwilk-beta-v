@@ -72,7 +72,9 @@ a {
   overflow: hidden;
   position: fixed;
   bottom: 0;
+  opacity: 1;
   width: 100%;
+  z-index: 3;
   left: 0;
   background: #fff;
 }
