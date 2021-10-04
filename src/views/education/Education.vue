@@ -10,6 +10,7 @@
         <a href="#">Article</a>
       </button>
 
+
       <button
         @click="showVideos = false"
         :class="{ active: showVideos === false }"
