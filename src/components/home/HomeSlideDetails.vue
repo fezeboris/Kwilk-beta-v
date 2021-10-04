@@ -4,9 +4,9 @@
   <div class="container" @click="$emit('closeModal')">
     <!-- <div class="result-container"> -->
 
-    <div class="loader" v-if="loading">
+    <!-- <div class="loader" v-if="loading">
       <Loader />
-    </div>
+    </div> -->
     <div class="result">
       <div class="result-text">
         <div class="message_header">
@@ -48,7 +48,7 @@
   <div class="reports-image" v-if="mainReport.image !== ''">
     <img :src="mainReport.image" alt="" />
   </div>
-  <div class="container-2" >
+  <div class="container-2">
     <div class="comment-section">
       <Comments />
       <div class="comments">
@@ -84,12 +84,21 @@
     <div class="sub-comment" v-if="showModal">
       <keep-alive>
         <div class="keep">
-          <textarea v-model="reply" placeholder=" Enter your comment" autofocus></textarea>
+          <textarea
+            v-model="reply"
+            placeholder=" Enter your comment"
+            autofocus
+          ></textarea>
         </div>
       </keep-alive>
-      <div class="reply-btn">
-        <p class="btn1" @click="showModal = false">cancel</p>
-        <p class="btn2" @click.="replyComment ">comment</p>
+      <div >
+        <div class="loader" v-if="loading">
+          <Loader />
+        </div>
+        <div v-else class="reply-btn">
+          <p class="btn1" @click="showModal = false">cancel</p>
+          <p class="btn2" @click.prevent="replyComment">comment</p>
+        </div>
       </div>
     </div>
   </div>
@@ -105,20 +114,22 @@ import Snavbar from "@/components/Snavbar.vue";
 import Loader from "@/components/toolpit/Loader.vue";
 export default {
   props: ["comment"],
-  components: { Comments,
-  //  Reply, 
-   Snavbar, 
-   Loader },
+  components: {
+    Comments,
+    //  Reply,
+    Snavbar,
+    Loader,
+  },
   data() {
     return {
       showModal: false,
       token: "",
       mainReport: [],
       subReports: [],
-      id: '',
-     
+      id: "",
+
       messageDetailsId: "",
-      reply: '',
+      reply: "",
       showAudio: false,
       loading: false,
     };
@@ -126,8 +137,8 @@ export default {
   methods: {
     getId(id) {
       // localStorage.setItem("messageId", id);
-      this.id = id
-      console.log('hello', id)
+      this.id = id;
+      // console.log("hello", id);
       // this.messageDetailsId = localStorage.getItem("messageId");
       // this.modalOpenID = localStorage.getItem("messageId");
       // console.log(this.messageDetailsId);
@@ -150,27 +161,26 @@ export default {
       }
       this.loading = false;
     },
-     async replyComment() {
-       this.loading = true;
+    async replyComment() {
+      this.loading = true;
       try {
         let result = await axios.post(
           `https://kwiklik.herokuapp.com/reports/messages/create/${this.token}/${this.id}/`,
           {
             report: this.reply,
-           
           }
-          
         );
-       
-         
-        this.reply =''
-      
+
+        this.reply = "";
+
         this.showModal = false;
-       console.log(result)
+        window.location.reload();
+        // console.log(result);
+        return result
       } catch (e) {
         console.log(e);
       }
-       this.loading = false;
+      this.loading = false;
     },
 
     back() {
@@ -409,9 +419,9 @@ a:hover {
   opacity: 1;
   top: 40%;
   width: 100%; /* Full width */
-  height: 40%; /* Full height */
+  height: 60%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: #f0f0f0;
+  background-color: white;
   padding-top: 30px;
 }
 .child-comment {
@@ -484,11 +494,17 @@ i sup {
   margin: 0px auto;
 }
 textarea {
-  width: 100%;
-  outline: none;
-  height: 160px;
-  background: rgb(161, 204, 161);
+  padding: 10px 20px;
+  width: 335px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  background: #f0f0f0;
+  box-sizing: border-box;
+  border: 0.5px solid #aca7a7;
   border-radius: 5px;
+  outline: none;
+  height: 100px;
+  color: #555;
 }
 .reply-btn {
   display: flex;
@@ -504,8 +520,8 @@ textarea {
   color: lightblue;
   cursor: pointer;
 }
-.reply p{
-  font-size: .8rem;
+.reply p {
+  font-size: 0.8rem;
   color: lightblue;
 }
 </style>

@@ -31,10 +31,7 @@
       placeholder="Enter your password"
     />
     <div v-if="passwordError" class="error">{{ passwordError }}</div>
-    <div>
-    <router-link to="/terms"> I have read the terms and agreements</router-link>
-    </div>
-    <input type="checkbox" required />
+   
     <div class="submit">
       <div class="loader" v-if="loading">
         <Loader />

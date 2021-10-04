@@ -21,7 +21,7 @@
   <div class="popup" v-if="showModal" @click="showModal = false">
 
    <p> <router-link to="/profile">My Account</router-link></p>
-    <p><router-link to="/job-request" >Job Request</router-link></p>
+    <p><router-link to="/job-request"   v-if="job == 'clerk'">>Job Request</router-link></p>
     <p><router-link to="/professionals" v-if="job == 'clerk' ">Professionals</router-link></p>
     <p><router-link to="/patient-request" v-if="job == 'clerk' ">Patient Request</router-link></p>
     <p><router-link to="/create-research" v-if="job == 'health_worker'  ">Create Research</router-link></p>
