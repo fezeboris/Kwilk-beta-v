@@ -1,6 +1,6 @@
 <template>
      <div class="comment-btn">
-        <button  @click.prevent="showModal = true, getId()">{{ $t('header.reply') }}</button>
+        <button  @click.prevent="openModal(), getId()"></button>
         
       </div >
 
@@ -39,7 +39,8 @@ export default {
       comment: "",
       token: "",
       id: '',
-      loading: false
+      loading: false,
+      modalOpenID: '',
       
     };
   },
@@ -47,7 +48,17 @@ export default {
   methods: {
     getId(){
        this.id = localStorage.getItem('messageId')
-      //  console.log('my', this.id)
+       this.modalOpenID = localStorage.getItem('messageId')
+       console.log('my', this.modalOpenID)
+    },
+    openModal(){
+      if(this.id == this.modalOpenID){
+        this.showModal = true
+      }else{
+        this.showModal = false
+      }
+        
+      
     },
     async replyComment() {
        this.loading = true;
@@ -115,27 +126,27 @@ label {
 }
 textarea {
   /* display: block; */
-  padding: 20px 0px;
-  width: 335px;
+  padding: 10px 0px;
+  width: 340px;
   margin-bottom: 10px;
-  /* background: #e7faf5; */
+   background-color: #f0f0f0;
   box-sizing: border-box;
-  border: .5px solid #f0f0f0;
+  border: 0.5px solid #aca7a7;
   border-radius: 5px;
   outline: none;
-  height: 80px;
+  height: 100px;
   color: #555;
 }
 .btn-container {
   display: flex;
-
+ justify-content: flex-end;
   align-items: center;
 }
 .btn-1 {
   /* background: crimson; */
   padding: 3px 5px;
   border: none;
-  font-size: 10px;
+  font-size: .8rem;
   outline: none;
   border-radius: 5px;
   color: crimson;
@@ -145,16 +156,16 @@ textarea {
   /* background: lightgreen; */
   padding: 3px 5px;
   border: none;
-  font-size: 10px;
+  font-size: .8rem;
   outline: none;
   border-radius: 5px;
   color: lightblue;
 }
-textarea:focus {
+/* textarea:focus {
   outline: none;
-  /* border: 1px solid #1cb902; */
+  
   background: white;
-}
+} */
 
 .comment-btn button{
   /* background: rgb(151, 151, 19); */

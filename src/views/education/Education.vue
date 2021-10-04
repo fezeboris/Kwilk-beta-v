@@ -1,24 +1,24 @@
 <template>
   <EducationNav />
   <hr style="border-top: dotted 1px; color: #8ba0ae; width: 100%" />
-    <div class="button-switch">
-      <div class="education-btn">
-        <button
-          :class="{ active: showVideos === true }"
-          @click="showVideos = true"
-        >
-          <a href="#">Article</a>
-        </button>
+  <div class="button-switch">
+    <div class="education-btn">
+      <button
+        :class="{ active: showVideos === true }"
+        @click="showVideos = true"
+      >
+        <a href="#">Article</a>
+      </button>
 
-        <button
-          @click="showVideos = false"
-          :class="{ active: showVideos === false }"
-        >
-          <a href="#">Videos</a>
-        </button>
-      </div>
+      <button
+        @click="showVideos = false"
+        :class="{ active: showVideos === false }"
+      >
+        <a href="#">Videos</a>
+      </button>
     </div>
-  <div class="education">
+  </div>
+  <div class="education" @click="showModal = false">
     <div class="loader" v-if="loading">
       <Loader />
     </div>
@@ -32,50 +32,13 @@
       <div v-if="showVideos" class="aticle">
         <div v-if="education.type_education == 'text'">
           <div class="delete" v-if="job == 'clerk'">
-            <button
-              class="delete-btn"
-              onclick="document.getElementById('id01').style.display='block'"
-            >
-              {{ $t('delete.btn1') }}
-            </button>
-
-            <div id="id01" class="modal">
-              <span
-                onclick="document.getElementById('id01').style.display='none'"
-                class="close"
-                title="Close Modal"
-                >×</span
-              >
-              <form class="modal-content" action="/action_page.php">
-                <div class="container">
-                  <p>{{ $t('delete.p') }}</p>
-
-                  <div class="clearfix">
-                    <button
-                      type="button"
-                      onclick="document.getElementById('id01').style.display='none'"
-                      class="cancelbtn"
-                    >
-                       {{ $t('delete.btn2') }}
-                    </button>
-                    <button
-                      type="button"
-                      onclick="document.getElementById('id01').style.display='none'"
-                      class="deletebtn"
-                      @click.prevent="deleteArticle(education.id)"
-                    >
-                     {{ $t('delete.btn3') }}
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-
-            <!-- <button @click.prevent="deleteArticle(education.id)">delete</button> -->
+           <button @click="deleteVideo(education.id)">deletes</button>
           </div>
           <p class="text-title">{{ education.title }}</p>
           <p class="date">Uploaded on: {{ education.uploaded_on }}</p>
-          <a :href="education.link" target="_blank"> {{ $t('education.Nav.readM') }}</a>
+          <a :href="education.link" target="_blank">
+            {{ $t("education.Nav.readM") }}</a
+          >
         </div>
       </div>
 
@@ -83,50 +46,14 @@
         <div v-if="education.type_education == 'video'">
           <div class="delete" v-if="job == 'clerk'">
             <div class="delete">
-              <button
-                onclick="document.getElementById('id01').style.display='block'"
-              >
-                {{ $t('delete.btn1') }}
-              </button>
-
-              <div id="id01" class="modal">
-                <span
-                  onclick="document.getElementById('id01').style.display='none'"
-                  class="close"
-                  title="Close Modal"
-                  >×</span
-                >
-                <form class="modal-content" action="/action_page.php">
-                  <div class="container">
-                    <p>{{ $t('delete.p') }}</p>
-
-                    <div class="clearfix">
-                      <button
-                        type="button"
-                        onclick="document.getElementById('id01').style.display='none'"
-                        class="cancelbtn"
-                      >
-                        {{ $t('delete.btn2') }}
-                      </button>
-                      <button
-                        type="button"
-                        onclick="document.getElementById('id01').style.display='none'"
-                        class="deletebtn"
-                        @click.prevent="deleteVideo(education.id)"
-                      >
-                       {{ $t('delete.btn3') }}
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
+              <button @click="deleteVideo(education.id)">deletes</button>
 
               <!-- <button @click.prevent="deleteArticle(education.id)">delete</button> -->
             </div>
             <!-- <button @click.prevent="deleteVideo(education.id)">delete</button> -->
           </div>
           <p class="title">{{ education.title }}</p>
-          <p class="date">Uploaded on: {{ education.uploaded_on }}</p>
+         
           <iframe
             target="bla"
             :src="education.link"
@@ -136,6 +63,7 @@
             allowfullscreen
           >
           </iframe>
+           <p class="date">Uploaded on: {{ education.uploaded_on }}</p>
         </div>
       </div>
     </div>
@@ -149,6 +77,7 @@ import axios from "axios";
 import Footer from "@/components/Footer.vue";
 import EducationNav from "../education/EducationNav.vue";
 import Loader from "@/components/toolpit/Loader.vue";
+import Swal from "sweetalert2";
 // import ConfirmationDeleteVideo from '@/components/toolpit/ConfirmationDeleteVideo.vue'
 export default {
   components: {
@@ -160,10 +89,12 @@ export default {
   data() {
     return {
       showVideos: false,
+      showModal: false,
       token: "",
       educations: "",
       job: "",
       loading: false,
+      vID: ''
     };
   },
   methods: {
@@ -179,7 +110,7 @@ export default {
         );
         // console.log(result.data.education_list);
         this.educations = result.data.education_list;
-        
+        console.log(result);
       } catch (e) {
         console.log(e);
       }
@@ -195,26 +126,47 @@ export default {
             deleted: "True",
           }
         );
-       
+        window.location.reload();
         return result;
       } catch (e) {
         console.log(e);
       }
-       this.loading = false;
+      this.loading = false;
     },
-    async deleteVideo(id) {
+    async deleteVid() {
       try {
         let result = await axios.put(
-          `https://kwiklik.herokuapp.com/education/delete/${this.token}/${id}/`,
+          `https://kwiklik.herokuapp.com/education/delete/${this.token}/${this.vID}/`,
           {
             deleted: "True",
           }
         );
+        window.location.reload();
         console.log(result);
         // console.log(result.data.education_list);
       } catch (e) {
         console.log(e);
       }
+    },
+     deleteVideo(id) {
+      this.vID = id;
+      console.log( this.vID)
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          this.deleteVid()
+        }
+      });
+      
     },
     async handleGetStatus() {
       try {
@@ -228,6 +180,9 @@ export default {
         console.log(e);
       }
     },
+       callbackFunction(val) {
+         this.showModal = val;
+    }
   },
   mounted() {
     this.token = localStorage.getItem("userInfo");
@@ -235,16 +190,6 @@ export default {
     this.updateEducation();
 
     this.handleGetStatus();
-
-    // Get the modal
-    var modal = document.getElementById("id01");
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    };
   },
 };
 </script>
@@ -255,6 +200,7 @@ export default {
   margin: 0px auto;
   background: white;
   text-align: left;
+  margin-top: 50px;
   padding: 30px 10px;
   border-radius: 10px;
   text-align: justify;
@@ -279,10 +225,10 @@ small {
   align-items: center;
   margin-top: 0px;
 }
-.button-switch{
- background: white;
- width: 100%;
-position: fixed;
+.button-switch {
+  background: white;
+  width: 100%;
+  position: fixed;
 }
 .education-btn {
   background: rgba(5, 198, 82, 0.54);
@@ -294,7 +240,7 @@ position: fixed;
   align-items: center;
   width: 80px;
   height: 30px;
-  
+
   right: 0;
 }
 
@@ -328,6 +274,7 @@ iframe {
 }
 .date {
   color: lightskyblue;
+  font-size: .8rem;
 }
 a {
   color: mediumblue;
@@ -338,7 +285,7 @@ a:hover {
 }
 .text-title {
   font-size: 1.1rem;
-  font-style: italic;
+  /* font-style: oblique; */
 }
 .aticle {
   padding: 10px 5px;
@@ -353,9 +300,7 @@ a:hover {
   margin-bottom: 10px;
   outline: none;
 }
-.delete button:hover {
-  background: rgb(85, 10, 25);
-}
+
 .delete {
   text-align: right;
 }
@@ -431,14 +376,6 @@ button:hover {
   border-radius: 5px;
 }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  opacity: 1;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
 
 /* Style the horizontal ruler */
 hr {
@@ -446,36 +383,6 @@ hr {
   margin-bottom: 25px;
 }
 
-/* The Modal Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
-
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
-}
-
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
-
-/* Change styles for cancel button and delete button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn,
-  .deletebtn {
-    width: 100%;
-  }
-}
 
 .loader {
   text-align: center;

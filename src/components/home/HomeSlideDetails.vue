@@ -1,34 +1,40 @@
 
 <template>
-<Snavbar/>
-  <div class="container">
+  <Snavbar />
+  <div class="container" @click="$emit('closeModal')">
     <!-- <div class="result-container"> -->
 
-       <div class="loader" v-if="loading">
-            <Loader/>
-        </div>
+    <div class="loader" v-if="loading">
+      <Loader />
+    </div>
     <div class="result">
-       
       <div class="result-text">
         <div class="message_header">
-          <div >
-            <h1>{{ $t('header.anonymous') }}</h1>
+          <div>
+            <h1>{{ $t("header.anonymous") }}</h1>
             <!-- {{report.id}} -->
             <small>
               <!-- Case of: -->
-              <span style="color: #02b96c">{{
-                mainReport.case_type
-              }}</span></small
+              <p style="color: #02b96c; font-size: 0.7rem">
+                {{ mainReport.case_type }}
+              </p></small
             >
           </div>
           <div class="comment">
             <div class="audio">
-              <i class="fas fa-play play" style="color=#1CB902" @click="showAudio = !showAudio"></i>
+              <i
+                class="fas fa-play play"
+                style="color=#1CB902"
+                @click="showAudio = !showAudio"
+              ></i>
               <!-- <embed :src="mainReport.recording"> -->
-              <audio v-if="showAudio" controls="controls" :src="mainReport.recording"></audio>
+              <audio
+                v-if="showAudio"
+                controls="controls"
+                :src="mainReport.recording"
+              ></audio>
             </div>
           </div>
-         
         </div>
         <div class="report">
           <p>{{ mainReport.report }}</p>
@@ -39,85 +45,97 @@
       </div>
     </div>
   </div>
-  <div class="reports-image" v-if="mainReport.image !== '' " >
+  <div class="reports-image" v-if="mainReport.image !== ''">
     <img :src="mainReport.image" alt="" />
   </div>
-  <div class="comment-section">
-    <Comments />
-    <div class="comments">
-      <div>
-        <i class="fas fa-comment like"><sup>{{mainReport.number_comments}}</sup></i>
-      </div>
-      <div>
-        
+  <div class="container-2" >
+    <div class="comment-section">
+      <Comments />
+      <div class="comments">
+        <div>
+          <i class="fas fa-comment like"
+            ><sup>{{ mainReport.number_comments }}</sup></i
+          >
+        </div>
+        <div></div>
       </div>
     </div>
-  </div>
-  <!-- <HomeSliderComments /> -->
-  <!-- <AppRating /> -->
+    <!-- <HomeSliderComments /> -->
+    <!-- <AppRating /> -->
 
-  <div class="main-comment">
-    <div
-      class="parent-comment"
-      v-for="subReport in subReports"
-      :key="subReport.id"
-      @click.prevent="getId(subReport.id), messageDetails"
-     
-    >
-    <router-link :to="`/home-slider-comments/` + subReport.id">
-      <p>{{ subReport.reporter }}</p>
-      <div>{{ subReport.report }}</div>
-      <!-- {{ subReport.id }} -->
-    </router-link>
-      <div @click.prevent="getId(subReport.id)" class="reply">
-       <Reply />
+    <div class="main-comment">
+      <div
+        class="parent-comment"
+        v-for="subReport in subReports"
+        :key="subReport.id"
+        @click.prevent="getId(subReport.id), messageDetails"
+      >
+        <router-link :to="`/home-slider-comments/` + subReport.id">
+          <p>{{ subReport.reporter }}</p>
+          <div>{{ subReport.report }}</div>
+          <!-- {{ subReport.id }} -->
+        </router-link>
+        <div @click.prevent="getId(subReport.id)" class="reply">
+          <p @click="showModal = true">{{ $t("header.reply") }}</p>
+        </div>
       </div>
-       
+      <!-- <Reply /> -->
     </div>
-  </div>
-  <div class="sub-comment">
-    <div></div>
-    <!-- </div> -->
+    <div class="sub-comment" v-if="showModal">
+      <keep-alive>
+        <div class="keep">
+          <textarea v-model="reply" placeholder=" Enter your comment" autofocus></textarea>
+        </div>
+      </keep-alive>
+      <div class="reply-btn">
+        <p class="btn1" @click="showModal = false">cancel</p>
+        <p class="btn2" @click.="replyComment ">comment</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 // import HomeSliderComments from "../home/HomeSliderComments.vue";
 // import AppRating from "../toolpit/AppRating.vue";
-import Reply from "../home/Reply.vue";
+// import Reply from "../home/Reply.vue";
 import Comments from "../home/Comments.vue";
 import axios from "axios";
-import Snavbar from '@/components/Snavbar.vue'
-import Loader from '@/components/toolpit/Loader.vue'
+import Snavbar from "@/components/Snavbar.vue";
+import Loader from "@/components/toolpit/Loader.vue";
 export default {
   props: ["comment"],
-  components: { Comments, Reply,Snavbar,Loader },
+  components: { Comments,
+  //  Reply, 
+   Snavbar, 
+   Loader },
   data() {
     return {
       showModal: false,
       token: "",
       mainReport: [],
       subReports: [],
-
-      replyComment: "",
+      id: '',
+     
       messageDetailsId: "",
+      reply: '',
       showAudio: false,
       loading: false,
-      
     };
   },
   methods: {
     getId(id) {
-      localStorage.setItem("messageId", id);
-
-      this.messageDetailsId = localStorage.getItem("messageId");
+      // localStorage.setItem("messageId", id);
+      this.id = id
+      console.log('hello', id)
+      // this.messageDetailsId = localStorage.getItem("messageId");
+      // this.modalOpenID = localStorage.getItem("messageId");
       // console.log(this.messageDetailsId);
     },
 
     async getMessages() {
-       this.loading = true;
+      this.loading = true;
       try {
-
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/reports/messages/get/${this.token}/${this.$route.params.id}`,
           {}
@@ -127,26 +145,43 @@ export default {
         (this.mainReport = result.data),
           (this.subReports = result.data.report_list);
         // console.log('main re',result);
-        
       } catch (e) {
         console.log(e);
+      }
+      this.loading = false;
+    },
+     async replyComment() {
+       this.loading = true;
+      try {
+        let result = await axios.post(
+          `https://kwiklik.herokuapp.com/reports/messages/create/${this.token}/${this.id}/`,
+          {
+            report: this.reply,
+           
+          }
+          
+        );
+       
          
+        this.reply =''
+      
+        this.showModal = false;
+       console.log(result)
+      } catch (e) {
+        console.log(e);
       }
        this.loading = false;
     },
 
-
     back() {
       this.$router.go(-1);
     },
-
-   
   },
   async mounted() {
     this.token = localStorage.getItem("userInfo");
 
     this.getMessages();
-  
+
     // console.log(this.$route.params.id)
   },
   // reports comments===============================================
@@ -164,10 +199,11 @@ export default {
   padding-bottom: 15px;
 }
 .message_header {
-  font-family: "Roboto", sans-serif;
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 40px;
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  grid-gap: 150px;
+  align-items: center;
+  margin: 0px 10px;
 }
 nav {
   display: flex;
@@ -203,7 +239,8 @@ a:hover {
   font-size: 1.5rem;
   margin: 10px 0;
 }
-.container {
+.container,
+.container-2 {
   max-width: 420px;
   margin: 0px auto;
   background: white;
@@ -216,9 +253,9 @@ a:hover {
   opacity: 0.7;
   padding-bottom: 10px;
 }
-.main-container {
+/* .main-container {
   margin-top: 60px;
-}
+} */
 .case {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto;
@@ -227,12 +264,6 @@ a:hover {
   margin: 0;
 }
 
-label {
-  display: inline-block;
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-size: 0.8rem;
-}
 .result-container {
   margin: 20px 0px;
 }
@@ -246,29 +277,6 @@ label {
 }
 .comments-header p {
   opacity: 1;
-}
-input,
-select,
-textarea {
-  /* display: block; */
-  padding: 10px 0px;
-  width: 100%;
-  height: 30px;
-  border-radius: 10px;
-  box-sizing: border-box;
-  border: none;
-  color: #4d8144;
-  outline: none;
-  opacity: 0.7;
-  /* z-index: 9999; */
-}
-input {
-  background: #bbcdd8;
-}
-option {
-  background: white;
-  border: none;
-  padding: 5px;
 }
 
 .result {
@@ -344,9 +352,9 @@ option {
   display: flex;
   text-align: center;
   align-items: center;
-  margin:0 10px;
+  margin: 0 10px;
 }
-.reply{
+.reply {
   margin-top: 20px;
 }
 .fa-comment {
@@ -395,15 +403,16 @@ option {
   margin-bottom: 10px;
 }
 .sub-comment {
-  width: 100%;
-  border-radius: 5px;
-  border: 1px solid #f0f0f0;
-  /* padding: 5px; */
-  color: rgb(7, 46, 46);
-  height: auto;
-  font-size: 0.9rem;
-  align-items: center;
-  text-align: justify;
+  background: #ffff;
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  opacity: 1;
+  top: 40%;
+  width: 100%; /* Full width */
+  height: 40%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #f0f0f0;
+  padding-top: 30px;
 }
 .child-comment {
   width: 90%;
@@ -422,14 +431,6 @@ option {
 .child-comment:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   transition: 1s all ease-in-out;
-}
-
-/* new style */
-.message_header {
-  /* display: flex; */
-  justify-content: space-between;
-  align-items: center;
-  margin: 0px 15px;
 }
 
 .report {
@@ -463,25 +464,48 @@ option {
   display: flex;
   justify-content: space-between;
 }
-a{
+a {
   text-decoration: none;
 }
-audio{
-   width: 100px;
-   /* background: lightgreen; */
+audio {
+  width: 100px;
+  /* background: lightgreen; */
   margin: 0;
   text-align: center;
   height: 30px;
 }
-i sup{
+i sup {
   color: rgb(211, 87, 197);
   /* margin-bottom: 10px; */
-  font-size: .6rem;
-  
+  font-size: 0.6rem;
 }
-.loader{
-    text-align: center;
-    margin: 0px auto;
-}         
-
+.loader {
+  text-align: center;
+  margin: 0px auto;
+}
+textarea {
+  width: 100%;
+  outline: none;
+  height: 160px;
+  background: rgb(161, 204, 161);
+  border-radius: 5px;
+}
+.reply-btn {
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 20px;
+}
+.reply-btn .btn1 {
+  margin: 0 20px;
+  color: crimson;
+  cursor: pointer;
+}
+.reply-btn .btn2 {
+  color: lightblue;
+  cursor: pointer;
+}
+.reply p{
+  font-size: .8rem;
+  color: lightblue;
+}
 </style>

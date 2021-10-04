@@ -9,9 +9,9 @@
         class="hr"
         style="border-top: dotted 1px; color: #8ba0ae; width: 100%"
       />
-      <div class="loader" v-if="loading">
+      <!-- <div class="loader" v-if="loading">
             <Loader/>
-        </div>
+        </div> -->
       <label class="lable">{{ $t('education.updates.lable1') }}</label>
       <select v-model="educTpye" required>
         <option value="text">Text</option>
@@ -83,11 +83,12 @@ export default {
             link: this.link,
             uploaded_on: this.currentDate,
             title: this.title
-
+           
           }
-        
+          
         )
-         
+         this.$router.push({ name: "Education" });
+        this.loading = false;
         this.educTpye = '',
         this.link=''
         this.title= ''

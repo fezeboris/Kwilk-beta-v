@@ -11,19 +11,19 @@
 
   <div class="popup" v-if="showModal">
     <!-- <label>Name</label> -->
-    <textarea type="text" v-model="comment" />
+    <textarea type="text" v-model="comment" autofocus></textarea>
 
     <div  v-if="loading">
       <Loader />
     </div>
 
     <div class="btn-container" v-else>
-      <button class="btn-1" @click.prevent="showModal = false">
+      <p class="btn-1" @click.prevent="showModal = false">
         {{ $t("header.cancel") }}
-      </button>
-      <button class="btn-2" @click.prevent="updateProfile">
+      </p>
+      <p class="btn-2" @click.prevent="updateProfile">
         {{ $t("header.comment") }}
-      </button>
+      </p>
     </div>
   </div>
 </template>
@@ -54,7 +54,7 @@ export default {
           }
         );
          
-        
+        window.location.reload();
         this.showModal = false;
         return result;
       } catch (e) {
@@ -62,6 +62,7 @@ export default {
       }
       this.loading = false;
     },
+   
   },
   mounted() {
     this.token = localStorage.getItem("userInfo");
@@ -100,26 +101,27 @@ textarea {
   padding: 10px 0px;
   width: 335px;
   margin-bottom: 10px;
-  background: white;
+  background: #f0f0f0;
   box-sizing: border-box;
-  border: 0.5px solid #f0f0f0;
+  border: 0.5px solid #aca7a7;
   border-radius: 5px;
   outline: none;
-  height: 80px;
+  height: 100px;
   color: #555;
 }
 .btn-container {
   display: flex;
-
+  justify-content: flex-end;
   align-items: center;
 }
 .btn-container .btn-1 {
   /* background: crimson; */
   padding: 3px 5px;
   border: none;
-  font-size: 10px;
+  font-size: .8rem;
   outline: none;
   border-radius: 5px;
+  text-align: right;
   color: crimson;
   margin-right: 20px;
 }
@@ -127,10 +129,11 @@ textarea {
   /* background: lightgreen; */
   padding: 3px 5px;
   border: none;
-  font-size: 10px;
+  font-size: .8rem;
   outline: none;
   border-radius: 5px;
   color: lightblue;
+  text-align: right;
 }
 textarea:focus {
   outline: none;

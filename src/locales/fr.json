@@ -51,7 +51,8 @@
       "rape": "viol",
       "mutilation": "mutilations génitales féminines",
       "sterilisation": "stérilisation forcée",
-      "harassement": "harcèlement sexuel"
+      "harassement": "harcèlement sexuel",
+      "abortion": "avortement forcé"
     },
     "option2":{
       "Prentive":" palliatifs préventifs",
@@ -104,7 +105,7 @@
     "update": "Mettre à jour"
   },
   "help": {
-    "p1": "Demande de consultant juridique",
+    "p1": "Spécialiste de la santé",
     "p2":"Spécialiste en santé psychologique",
     "p3":"Conseillers juridiques",
     "p4":"Les cyclistes",
@@ -113,7 +114,7 @@
   },
   "professionals":{
     "p":"Professionnels",
-    "small":"Utilisateurs pouvant offrir le service",
+    "small":"Utilisateurs pouvant offrir  service",
     "p2":"Je suis:",
     "h5":"Disponible le: ",
     "nav":{

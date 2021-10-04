@@ -1,12 +1,12 @@
 <template>
 
-  <button onclick="document.getElementById('id01').style.display='block'">
+  <button :onclick="document.getElementById('id01').style.display='block'">
    {{ $t('delete.btn1') }}
   </button>
 
   <div id="id01" class="modal">
     <span
-      onclick="document.getElementById('id01').style.display='none'"
+      :onclick="document.getElementById('id01').style.display='none'"
       class="close"
       title="Close Modal"
       >×</span
@@ -18,14 +18,14 @@
         <div class="clearfix">
           <button
             type="button"
-            onclick="document.getElementById('id01').style.display='none'"
+            :onclick="document.getElementById('id01').style.display='none'"
             class="cancelbtn"
           >
             {{ $t('delete.btn2') }}
           </button>
           <button
             type="button"
-            onclick="document.getElementById('id01').style.display='none'"
+            :onclick="document.getElementById('id01').style.display='none'"
             class="deletebtn"
           >
             {{ $t('delete.btn3') }}

@@ -11,31 +11,16 @@
         </div>
       </div>
       <div>
-        <!-- <div v-if="image != '' " class="login-profil-img">
-          <img :src="image" alt="" />
-        </div> -->
-
         <div class="profile-pic-div login-profil-img">
-          <!-- <img
-            v-if="profile == null"
-            src="../../assets/images/avatar.png"
-            id="photo"
-          /> -->
-           <label for="file" id="uploadBtn" >change</label>
-          <img :src="image" id="photo" />
-          <input type="file" id="file"   @change="onFileChange"/>
+          <div v-if="image != ''" class="login-profil-img">
+            <img :src="image" id="photo" />
+          </div>
 
-           
-         
+          <div v-else class="login-profil-img">
+            <i class="fas fa-user-circle"></i>
+            
+          </div>
         </div>
-         <div class="safe" v-if=" image != '' ">
-              <p @click="submitProfilePic">safe picture</p>
-            </div>
-
-        <!-- <div v-else class="login-profil-img">
-          <i class="fas fa-user-circle"></i>
-          <label for="file" id="uploadBtn">change</label>
-        </div> -->
       </div>
 
       <div class="loader" v-if="loading">
@@ -154,7 +139,7 @@ export default {
       job: "",
       occupation: "",
       loading: false,
-      profile: '',
+      profile: "",
     };
   },
   methods: {
@@ -197,36 +182,9 @@ export default {
         console.log(e);
       }
     },
-  
 
     back() {
       this.$router.go(-1);
-    },
-
-
-      onFileChange(e) {
-      var files = e.target.files || e.dataTransfer.files;
-      if (!files.length) return;
-      const file = e.target.files[0];
-      this.profile = e.target.files[0];
-      console.log('heeee', file);
-      
-    },
-     async submitProfilePic() {
-      let formData = new FormData();
-      formData.append("photo", this.profile);
-
-      try {
-        let result = await axios.put(
-          `https://kwiklik.herokuapp.com/profile/update/${this.token}/`,
-          formData
-        );
-
-        // this.profile = "";
-        console.log(result);
-      } catch (e) {
-        console.log(e);
-      }
     },
   },
   mounted() {
@@ -234,51 +192,6 @@ export default {
 
     this.handleGet();
     this.handleGetStatus();
-
-    // profile pic upload====================================================
-    
-    const imgDiv = document.querySelector(".profile-pic-div");
-    const img = document.querySelector("#photo");
-    const file = document.querySelector("#file");
-    const uploadBtn = document.querySelector("#uploadBtn");
-
-    //if user hover on img div
-
-    imgDiv.addEventListener("mouseenter", function () {
-      uploadBtn.style.display = "block";
-    });
-
-    //if we hover out from img div
-
-    imgDiv.addEventListener("mouseleave", function () {
-      uploadBtn.style.display = "none";
-    });
-
-    //lets work for image showing functionality when we choose an image to upload
-
-    //when we choose a foto to upload
-
-    file.addEventListener("change", function () {
-      //this refers to file
-      const choosedFile = this.files[0];
-
-      this.profile = choosedFile;
-      // console.log(this.profile);
-      if (choosedFile) {
-        const reader = new FileReader(); //FileReader is a predefined function of JS
-
-        reader.addEventListener("load", function () {
-          img.setAttribute("src", reader.result);
-        });
-
-        reader.readAsDataURL(choosedFile);
-      }
-     this.profile = choosedFile
-    //  console.log("yo", this.profile)
-    });
-    
-    
-   
   },
 };
 </script>
@@ -475,9 +388,8 @@ a {
   margin-top: 10px;
   width: 100%;
   background: white;
-  
 }
-.safe p{
+.safe p {
   text-align: center;
 }
 </style>

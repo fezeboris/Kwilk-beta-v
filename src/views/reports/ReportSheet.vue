@@ -106,6 +106,9 @@
             <option value="sexual harassement">
               {{ $t("report.options.harassement") }}
             </option>
+            <option value="forced abortion">
+              {{ $t("report.options.abortion") }}
+            </option>
           </datalist>
         </div>
         <div class="case-location">

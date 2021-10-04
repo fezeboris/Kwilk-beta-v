@@ -1,10 +1,10 @@
 <template>
   <ProfessionalNav />
   <div class="job-request">
-    <div class="request-header">
+    <!-- <div class="request-header">
       <p>{{ $t('professionals.p') }}</p>
       <small>{{ $t('professionals.small') }}</small>
-    </div>
+    </div> -->
      <div class="loader" v-if="loading">
             <Loader/>
         </div>

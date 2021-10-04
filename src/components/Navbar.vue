@@ -1,10 +1,20 @@
 <template>
-  <div class="background">
+  <div class="background" >
     <nav>
-      <div class="headers">
+      <div class="headers" >
         <div class="login-profil-img" @click="showModal = !showModal">
-          <img :src="image" alt="">
+          <div v-if="image != ''" class="login-profil-img">
+            <img :src="image" id="photo" />
+          </div>
+
+          <div v-else class="login-profil-img">
+            <i class="fas fa-user-circle"></i>
+           
+          </div>
         </div>
+
+     
+
         <div class="request-header">
           <p>{{ $t("Nav.gbvcases") }}</p>
           <small>{{ $t("Nav.explore") }}</small>
@@ -47,7 +57,7 @@
     <p>
       <router-link
         to="/vue-research"
-        v-if="job == 'health_worker' || 'clerk'"
+        v-if="job == 'health_worker' || job ==  'clerk'"
         >{{ $t("popup.vue") }}</router-link
       >
     </p>
@@ -70,6 +80,7 @@ export default {
     // MenuBar,
     LangSwitcher,
   },
+  emits:[],
   data() {
     const lang = localStorage.getItem("lang") || "en";
     return {
@@ -82,6 +93,7 @@ export default {
     };
   },
   methods: {
+     
     logout() {
       localStorage.clear();
       this.$router.push({ name: "Login" });
@@ -143,11 +155,17 @@ nav {
   align-items: center;
   justify-items: center;
 }
-.login-profil-img,  .login-profil-img img{
+.login-profil-img,  
+.login-profil-img img
+{
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: yellow;
+  
+}
+.login-profil-img i {
+  color: #d7eee8;
+  font-size: 2.5rem;
 }
 .popup {
   position: fixed;
@@ -158,7 +176,7 @@ nav {
   opacity: 1;
   left: 0;
   height: auto;
-  margin: 0px 10px;
+  margin: 25px 10px;
   transition: ease-in-out 0.9s;
   padding: 10px 10px;
   background-color: #ffff;

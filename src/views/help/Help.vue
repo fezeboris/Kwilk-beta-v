@@ -11,42 +11,42 @@
          <Loader/>
        </div>
         <div class="clinical-specialist">
-          <div class="clinical-logo"></div>
+         
 
-          <p>{{ $t('help.p1') }}</p>
-         <ClinicalDemande/>
+          <router-link :to="{name: 'ClinicalDemande'}"><p>{{ $t('help.p1') }}</p></router-link>
+         
         </div>
       <!-- </router-link> -->
 
       <!-- <router-link :to="{ name: 'Psychological' }"> -->
         <div class="clinical-specialist">
-          <div class="clinical-logo"></div>
-
-          <p>{{ $t('help.p2') }}</p>
-         <PsychoDemande/>
+        
+         
+         <router-link :to="{name: 'ClinicalDemande'}"> <p>{{ $t('help.p2') }}</p></router-link>
         </div>
       <!-- </router-link> -->
 
       <!-- <router-link :to="{ name: 'Consultant' }"> -->
         <div class="clinical-specialist">
-          <div class="clinical-logo"></div>
+         
 
-          <p>{{ $t('help.p3') }}</p>
-          <DemandConsultant/>
+          
+         <router-link :to="{name: 'DemandeConsultant'}"><p>{{ $t('help.p3') }}</p></router-link>
         </div>
       <!-- </router-link> -->
 
       <!-- <router-link :to="{ name: 'Bike' }"> -->
         <div class="clinical-specialist">
-          <div class="clinical-logo"></div>
+       
 
-          <p>{{ $t('help.p4') }}</p>
-          <DemandeBike/>
+          
+         <router-link :to="{name: 'DemandeBike'}"><p>{{ $t('help.p4') }}</p></router-link>
         </div>
       <!-- </router-link> -->
       <div class="myRequest">
         <router-link :to="{name: 'MyRequest'}">{{ $t('help.p5') }}</router-link>
       </div>
+
 
     
     </div>
@@ -56,10 +56,10 @@
 </template>
 
 <script>
-import ClinicalDemande from '../help/experts/helpDemande/ClinicalDemande.vue'
-import DemandConsultant from '../help/experts/helpDemande/DemandConsultant.vue'
-import PsychoDemande from '../help/experts/helpDemande/PsychoDemande.vue'
-import DemandeBike from '../help/experts/helpDemande/DemandeBike.vue'
+// import ClinicalDemande from '../help/experts/helpDemande/ClinicalDemande.vue'
+// import DemandConsultant from '../help/experts/helpDemande/DemandConsultant.vue'
+// import PsychoDemande from '../help/experts/helpDemande/PsychoDemande.vue'
+// import DemandeBike from '../help/experts/helpDemande/DemandeBike.vue'
 import Loader from '@/components/toolpit/Loader.vue'
 
 import axios from "axios";
@@ -70,10 +70,10 @@ export default {
   components: {
     Footer,
     HelpNav,
-    ClinicalDemande,
-    DemandConsultant,
-    PsychoDemande,
-    DemandeBike,
+    // ClinicalDemande,
+    // DemandConsultant,
+    // PsychoDemande,
+    // DemandeBike,
     Loader
 
   },
@@ -88,6 +88,8 @@ export default {
     getDate(date) {
       this.currentDate = date;
     },
+   
+  
 
     async updateEducation() {
       this.loading = true;
@@ -124,21 +126,7 @@ export default {
 .request-main-contain {
   margin-top: 50px;
 }
-.seek-help {
-  margin-top: 10px;
-  position: fixed;
-  width: 100%;
-  height: 60px;
-  background: white;
-}
-.seek-help p {
-  margin: 10px 25px 10px 0px;
-  color: #3f3d3d;
-  font-size: 1.3rem;
-  line-height: 0.2rem;
-  font-weight: bold;
-  letter-spacing: 0px;
-}
+
 small {
   color: #c4c4c4;
   font-size: 0.8rem;
@@ -146,22 +134,16 @@ small {
   margin: 0;
   /* line-height: 0.5rem; */
 }
-.clinical-logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: rgba(22, 85, 62, 0.12);
-}
+
 .clinical-specialist {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 40px;
-  font-size: 0.7rem;
-  font-weight: bold;
-  /* padding-right: 10px;
-    margin-left: 10px; */
+  text-align: center;
+  margin-top: 48px;
+  font-size: 1.5rem;
+}
+.clinical-specialist p{
+  background-color: lightgreen;
+  padding: 10px 0;
+  border-radius: 5px;
 }
 .arrow {
   color: #1cb902;

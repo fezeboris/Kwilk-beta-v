@@ -37,6 +37,11 @@ import CreateResearch from '../views/research/CreateResearch.vue'
 import VueResearch from '../views/research/VueResearch.vue'
 import Mapss from '../components/toolpit/Mapss.vue'
 import UpdateProfile from '../views/profile/UpdateProfile.vue'
+import Terms from '../components/toolpit/Terms.vue'
+import ClinicalDemande from '../views/help/experts/helpDemande/ClinicalDemande.vue'
+import DemandeBike from '../views/help/experts/helpDemande/DemandeBike.vue'
+import DemandeConsultant from '../views/help/experts/helpDemande/DemandConsultant.vue'
+import PsychoDemande from '../views/help/experts/helpDemande/PsychoDemande.vue'
 // import i18n from '../i18n'
 // import { h  } from 'Vue';
 // import MapaPage from '../components/home/MapaPage.vue'
@@ -100,6 +105,26 @@ const routes = [
     path: '/help',
     name: 'Help',
     component: Help
+  },
+  {
+    path: '/clinical-demand',
+    name: 'ClinicalDemande',
+    component: ClinicalDemande
+  },
+  {
+    path: '/demande-bike',
+    name: 'DemandeBike',
+    component: DemandeBike
+  },
+  {
+    path: '/demand-consultant',
+    name: 'DemandeConsultant',
+    component: DemandeConsultant
+  },
+  {
+    path: '/psycho-demand',
+    name: 'PsychoDemande',
+    component: PsychoDemande
   },
   {
     path: '/help/clinical_help',
@@ -251,6 +276,11 @@ const routes = [
     path: '/vue-research',
     name: 'VueResearch',
     component: VueResearch
+  },
+  {
+    path: '/terms',
+    name: 'Terms',
+    component: Terms
   },
 
 

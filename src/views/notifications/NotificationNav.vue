@@ -106,7 +106,7 @@ nav {
   opacity: 1;
   left: 0;
   height: auto;
-  margin: 0px 10px;
+ margin: 25px 10px;
   transition: ease-in-out 0.9s;
   padding: 10px 10px;
   background-color: #ffff;

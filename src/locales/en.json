@@ -50,7 +50,8 @@
       "rape": "rape",
       "mutilation": "female genital mutilation",
       "sterilisation": "forced sterilisation",
-      "harassement": "sexual harassement"
+      "harassement": "sexual harassement",
+      "abortion": "forced abortion"
     },
     "option2": {
       "Prentive": "Get Prentive Paliatives",
@@ -100,7 +101,7 @@
     "update": "update"
   },
   "help": {
-    "p1": "Legale Consultant demand",
+    "p1": "Clinical Health Specialist",
     "p2": "Psychological Health Specialist",
     "p3": "Legal Consultants",
     "p4": "Bike Riders",

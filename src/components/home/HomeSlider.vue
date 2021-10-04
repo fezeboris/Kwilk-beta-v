@@ -1,6 +1,6 @@
 <template>
   <Navbar />
-  <div class="home-slider">
+  <div class="home-slider" @click="showModal = false">
    
     <div class="main-container">
       <hr />
@@ -69,9 +69,9 @@
                   <!-- {{report.id}} -->
                   <small>
                     <!-- Case of: -->
-                    <span style="color: #02b96c">{{
+                    <p style="color: #02b96c; font-size:.7rem">{{
                       report.case_type
-                    }}</span></small
+                    }}</p></small
                   >
                   <!-- <div class="date">
                     <small>{{ report.date_abuse }}</small>
@@ -163,6 +163,7 @@ export default {
       }
       this.loading = false;
     },
+
   },
   mounted() {
  
@@ -243,8 +244,8 @@ small {
 }
 .message_header {
   display: grid;
-  grid-template-columns: 2fr 2fr 2fr;
-  grid-gap: 60px;
+  grid-template-columns: 4fr 1fr 1fr;
+  grid-gap: 65px;
   align-items: center;
   margin: 0px 10px;
 }

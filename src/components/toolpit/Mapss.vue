@@ -14,7 +14,7 @@
         name="OpenStreetMap"
       ></l-tile-layer>
 
-      <div v-for="report in reportList" :key="report.id">
+       <div v-for="report in reportList" :key="report.id">
         <div v-if="report.case_type == 'physical violence'">
           <l-marker :lat-lng="[report.latitude, report.longitude]">
             <l-popup> {{report.case_type}} </l-popup>
@@ -106,6 +106,44 @@
 
 
        
+      </div> 
+      <div v-for="report in reportList" :key="report.id">
+        <div v-if="report.case_type == 'forced abortion'">
+          <l-marker :lat-lng="[report.latitude, report.longitude]">
+            <l-popup>{{report.case_type}}</l-popup>
+            <l-icon>
+              <i class="fas fa-map-marker-alt abortion"></i>
+            </l-icon>
+          </l-marker>
+        </div>
+
+
+       
+      </div> 
+      <div v-for="report in reportList" :key="report.id">
+        <div
+         v-if="
+         report.case_type != 'forced marriages'&&
+         report.case_type != 'sexual harassement'&& 
+        
+         report.case_type != 'forced sterilisation'
+         && report.case_type != 'female genital mutilation'
+         && report.case_type != 'psychological violence'
+         && report.case_type != 'rape'
+         && report.case_type != 'stalking'
+         && report.case_type != 'physical violence'
+         && report.case_type != 'sexual violence'"
+        >
+          <l-marker :lat-lng="[report.latitude, report.longitude]">
+            <l-popup>{{report.case_type}}</l-popup>
+            <l-icon>
+              <i class="fas fa-map-marker-alt others"></i>
+            </l-icon>
+          </l-marker>
+        </div>
+       
+
+       
       </div>
       
     </l-map>
@@ -169,7 +207,7 @@ export default {
           {}
         );
         this.reportList = result.data.report_list;
-        console.log(result.data);
+        // console.log(result.data);
       } catch (e) {
         console.log(e);
       }
@@ -227,8 +265,11 @@ i {
 .harassement {
   color: lightblue;
 }
+.abortion{
+  color: sandybrown;
+}
 .others{
-  color: lightgray;
+  color: rgb(0, 130, 22);
 }
 </style>
 
