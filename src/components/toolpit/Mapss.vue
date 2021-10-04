@@ -5,7 +5,7 @@
       ref="map"
       v-model:zoom="zoom"
       :center="[3.852877720994932, 11.519982783337552]"
-      style="height: 90vh"
+      style="height: 87vh"
     >
       <Navbar2 />
       <l-tile-layer

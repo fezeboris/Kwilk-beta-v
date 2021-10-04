@@ -48,7 +48,7 @@
     bottom: 0px;
     width: 100%;
     margin: 0px auto;
-    height: 60px;
+    height: 65px;
     padding: 0px 0px;
     text-align: center;
     
