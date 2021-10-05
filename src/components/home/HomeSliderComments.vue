@@ -20,7 +20,7 @@
     </div>
   </div>
 
-  <div class="comment-section">
+
     
     <div class="comments">
       <div>
@@ -28,9 +28,11 @@
           ><sup>{{ comments.number_comments }}</sup></i
         >
       </div>
-      <div></div>
+      <div class="no_view">
+         <i class="far fa-eye"><sup>{{comments.number_views}}</sup></i>
+      </div>
     </div>
-  </div>
+  
   <!-- <HomeSliderComments /> -->
   <!-- <AppRating /> -->
 
@@ -301,15 +303,18 @@ option {
 }
 .comments {
   display: flex;
-  text-align: center;
+  text-align: right;
   align-items: center;
+  justify-content: flex-end;
+
   margin: 0 10px;
 }
 .fa-comment {
-  margin-left: 30px;
-  margin-right: 35px;
+  margin-left: 25px;
+  margin-right: 25px;
+  
 }
-.like {
+.like, .fa-eye {
   color: #bbcdd8;
   /* margin:0px 15px ; */
   font-size: 0.7rem;
@@ -415,10 +420,7 @@ option {
 }
 
 /* comment section */
-.comment-section {
-  display: flex;
-  justify-content: space-between;
-}
+
 a {
   text-decoration: none;
 }

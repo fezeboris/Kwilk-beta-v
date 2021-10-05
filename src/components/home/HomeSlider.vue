@@ -92,6 +92,10 @@
                     <div class="no_comment">
                       
                       <i class="fas fa-comment like"><sup>{{report.number_comments}}</sup></i>
+                      
+                    </div>
+                    <div class="no_view">
+                      <i class="far fa-eye"><sup>{{report.number_views}}</sup></i>
                     </div>
                     <div>
                       
@@ -348,7 +352,7 @@ small {
   margin-left: 45px;
   margin-right: 15px;
 }
-.like {
+.like, .fa-eye {
   color: #bbcdd8;
   /* margin:0px 15px ; */
   font-size: 0.7rem;

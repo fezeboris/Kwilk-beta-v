@@ -57,7 +57,11 @@
             ><sup>{{ mainReport.number_comments }}</sup></i
           >
         </div>
-        <div></div>
+
+        <div class="no_view">
+          <i class="far fa-eye"><sup>{{mainReport.number_views}}</sup></i>
+        </div>       
+       
       </div>
     </div>
     <!-- <HomeSliderComments /> -->
@@ -371,7 +375,7 @@ a:hover {
   margin-left: 30px;
   margin-right: 35px;
 }
-.like {
+.like, .fa-eye {
   color: #bbcdd8;
   /* margin:0px 15px ; */
   font-size: 0.7rem;
