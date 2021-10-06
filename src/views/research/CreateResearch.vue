@@ -217,7 +217,7 @@ export default {
           (this.justification_sgbv = ""),
           (this.recommendation_sgbv = "");
         (this.right_sgbv = "");
-        
+        this.loading = false;
        return result
         
       } catch (e) {

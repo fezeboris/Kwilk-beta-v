@@ -16,12 +16,14 @@
           <small>{{job.type_job}}</small>
           <div class="btn" v-if="job.status == 'Pending'">
 
-         
+          <div class="loader" v-if="loading">
+            <Loader/>
+        </div>
 
-         
+         <div v-else>
             <button  class="btn1" @click.prevent="jobAccept(job.id)">{{ $t('jobRequest.btn1') }}</button>
             <button  class="btn2"  @click.prevent="jobDecline(job.id)">{{ $t('jobRequest.btn2') }}</button>
-            
+            </div>
           </div>
           <h2 class="confirmed" v-if="job.status == 'Confirmed'">{{ $t('jobRequest.btn3') }}</h2>
           <h2 class="declined" v-if="job.status == 'Declined'">{{ $t('jobRequest.btn4') }}</h2>

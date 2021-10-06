@@ -139,7 +139,7 @@
   },
   "jobRequest": {
     "p": "I want to be acknoledged on this plateform as:",
-    "bt1": "Accept",
+    "btn1": "Accept",
     "btn2": "Decline",
     "btn3": "Accepeted",
     "btn4": "Declined",

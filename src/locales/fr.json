@@ -146,7 +146,7 @@
   },
   "jobRequest":{
     "p": "Je souhaite travailler sur cette plateforme en tant que :",
-    "bt1":"Accept",
+    "btn1":"Accept",
     "btn2": "Déclin",
     "btn3": "Accepté",
     "btn4": "refusé",
