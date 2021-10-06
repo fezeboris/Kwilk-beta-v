@@ -34,7 +34,7 @@
       <div v-if="showVideos" class="aticle">
         <div v-if="education.type_education == 'text'">
           <div class="delete" v-if="job == 'clerk'">
-           <button @click="deleteVideo(education.id)">deletes</button>
+           <button @click="deleteVideo(education.id)">delete</button>
           </div>
           <p class="text-title">{{ education.title }}</p>
           <p class="date">Uploaded on: {{ education.uploaded_on }}</p>
@@ -48,7 +48,7 @@
         <div v-if="education.type_education == 'video'">
           <div class="delete" v-if="job == 'clerk'">
             <div class="delete">
-              <button @click="deleteVideo(education.id)">deletes</button>
+              <button @click="deleteVideo(education.id)">delete</button>
 
               <!-- <button @click.prevent="deleteArticle(education.id)">delete</button> -->
             </div>
@@ -57,7 +57,7 @@
           <p class="title">{{ education.title }}</p>
          
           <iframe
-            target="bla"
+            target="blank"
             :src="education.link"
             title="YouTube video player"
             frameborder="0"
@@ -292,16 +292,15 @@ a:hover {
 .aticle {
   padding: 10px 5px;
 }
-.delete button {
+/* .delete button {
   background: crimson;
-  /* padding: 1px 3px; */
   border-radius: 5px;
   color: white;
   width: 60px;
   text-align: center;
   margin-bottom: 10px;
   outline: none;
-}
+} */
 
 .delete {
   text-align: right;
@@ -329,57 +328,6 @@ button:hover {
   opacity: 1;
 }
 
-/* Float cancel and delete buttons and add an equal width */
-.delete .cancelbtn,
-.delete .deletebtn {
-  float: none;
-  width: 70px;
-  padding: 5px;
-  text-align: center;
-}
-
-/* Add a color to the cancel button */
-.clearfix .cancelbtn {
-  background-color: #ccc;
-  color: black;
-}
-
-/* Add a color to the delete button */
-.delete .deletebtn {
-  background-color: crimson;
-  margin-left: 20px;
-}
-
-/* Add padding and center-align text to the container */
-.container {
-  padding: 16px;
-  text-align: center;
-}
-.container p {
-  color: crimson;
-  margin: 10px;
-}
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  opacity: 0.9;
-  top: 0;
-  margin-top: 115px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 98%; /* Full width */
-  height: 50%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
-  padding-top: 50px;
-  border-radius: 5px;
-}
-
-
-/* Style the horizontal ruler */
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;

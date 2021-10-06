@@ -59,6 +59,7 @@ export default {
       passwordError: "",
       token: "",
       loading: false,
+      id: '',
     };
   },
   methods: {
@@ -77,10 +78,12 @@ export default {
 
         if (result.data.id !== undefined) {
           localStorage.setItem("userInfo", result.data.token);
+          localStorage.setItem("userId", result.data.id);
+          localStorage.setItem("username", result.data.username);
           setAuthHeader(result.data.token);
           this.$router.push({ name: "HomeSlider" });
           this.token = result.data.token;
-          //  console.log(this.token)
+           console.log(result)
         } else {
           this.passwordError =
             "A user with this email and password was not found";

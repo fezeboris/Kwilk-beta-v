@@ -59,9 +59,10 @@
         </div>
 
         <div class="no_view">
-          <i class="far fa-eye"><sup>{{mainReport.number_views}}</sup></i>
-        </div>       
-       
+          <i class="far fa-eye"
+            ><sup>{{ mainReport.number_views }}</sup></i
+          >
+        </div>
       </div>
     </div>
     <!-- <HomeSliderComments /> -->
@@ -70,12 +71,21 @@
     <div class="main-comment">
       <div
         class="parent-comment"
-        v-for="subReport in subReports"
+        v-for="subReport in subReports.slice().reverse()"
         :key="subReport.id"
         @click.prevent="getId(subReport.id), messageDetails"
       >
-        <router-link :to="`/home-slider-comments/` + subReport.id">
+        <div class="edit">
           <p>{{ subReport.reporter }}</p>
+          <router-link :to="`/update-comment/` + subReport.id">
+            <i
+              v-if="this.username == subReport.reporter"
+              class="fas fa-pencil-alt"
+            ></i
+          ></router-link>
+        </div>
+
+        <router-link :to="`/home-slider-comments/` + subReport.id">
           <div>{{ subReport.report }}</div>
           <!-- {{ subReport.id }} -->
         </router-link>
@@ -95,7 +105,7 @@
           ></textarea>
         </div>
       </keep-alive>
-      <div >
+      <div>
         <div class="loader" v-if="loading">
           <Loader />
         </div>
@@ -131,7 +141,7 @@ export default {
       mainReport: [],
       subReports: [],
       id: "",
-
+      username: "",
       messageDetailsId: "",
       reply: "",
       showAudio: false,
@@ -140,8 +150,9 @@ export default {
   },
   methods: {
     getId(id) {
-      // localStorage.setItem("messageId", id);
+      
       this.id = id;
+      localStorage.setItem("replyMessageId", id);
       // console.log("hello", id);
       // this.messageDetailsId = localStorage.getItem("messageId");
       // this.modalOpenID = localStorage.getItem("messageId");
@@ -180,7 +191,7 @@ export default {
         this.showModal = false;
         window.location.reload();
         // console.log(result);
-        return result
+        return result;
       } catch (e) {
         console.log(e);
       }
@@ -193,10 +204,11 @@ export default {
   },
   async mounted() {
     this.token = localStorage.getItem("userInfo");
+    this.username = localStorage.getItem("username");
 
     this.getMessages();
 
-    // console.log(this.$route.params.id)
+    // console.log(this.username)
   },
   // reports comments===============================================
 };
@@ -375,7 +387,8 @@ a:hover {
   margin-left: 30px;
   margin-right: 35px;
 }
-.like, .fa-eye {
+.like,
+.fa-eye {
   color: #bbcdd8;
   /* margin:0px 15px ; */
   font-size: 0.7rem;
@@ -527,5 +540,12 @@ textarea {
 .reply p {
   font-size: 0.8rem;
   color: lightblue;
+}
+.edit {
+  display: flex;
+  justify-content: space-between;
+}
+.edit i {
+  font-size: 0.8rem;
 }
 </style>

@@ -29,7 +29,7 @@
       <router-link to="/profile">{{ $t("popup.account") }}</router-link>
     </p>
     <p>
-      <router-link to="/job-request"  v-if="job == 'clerk'">>{{ $t("popup.job") }}</router-link>
+      <router-link to="/job-request"  v-if="job == 'clerk'">{{ $t("popup.job") }}</router-link>
     </p>
     <p>
       <router-link to="/professionals" v-if="job == 'clerk'">{{
@@ -57,6 +57,9 @@
       <router-link to="/updates" v-if="job == 'clerk'">{{
         $t("popup.edu")
       }}</router-link>
+    </p>
+     <p>
+      <router-link to="/my-report">{{ $t("popup.report") }}</router-link>
     </p>
 
     <button @click="logout">{{ $t("popup.logout") }}</button>

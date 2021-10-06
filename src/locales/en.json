@@ -14,6 +14,7 @@
     "research": "Create Research",
     "vue": "View Research",
     "edu": "Education Create",
+    "report": "My reports",
     "logout": "Logout"
   },
   "header": {
@@ -184,5 +185,13 @@
     "btn1": "Submit"
 
 
+  },
+  "notiNav":{
+    "h1": "Notifications",
+    "p": "Time is up"
+  },
+  "myreports":{
+    
+    
   }
 }

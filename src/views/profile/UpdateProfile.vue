@@ -141,7 +141,7 @@ export default {
       Swal.fire({
         position: "center-end",
         icon: "success",
-        title: "Your profile have been updated",
+        title: "Your profile has been updated",
         showConfirmButton: false,
         timer: 1500,
       });

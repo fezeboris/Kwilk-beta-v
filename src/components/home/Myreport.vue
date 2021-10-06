@@ -1,7 +1,6 @@
 <template>
   <Navbar />
   <div class="home-slider" @click="showModal = false">
-   
     <div class="main-container">
       <hr />
       <!-- <div class="case-container"> 
@@ -50,9 +49,9 @@
         </div> 
       </div> -->
 
-       <div class="loader" v-if="loading">
-            <Loader/>
-        </div>
+      <div class="loader" v-if="loading">
+        <Loader />
+      </div>
 
       <div
         class="result-container"
@@ -64,69 +63,83 @@
             <div class="result-text">
               <div class="message_header">
                 <div>
-                   <h1>{{ $t('header.anonymous') }}</h1>
+                  <h1>{{ $t("header.anonymous") }}</h1>
                   <!-- <h1>Anonymous</h1> -->
                   <!-- {{report.id}} -->
                   <small>
                     <!-- Case of: -->
-                    <p style="color: #02b96c; font-size:.7rem">{{
-                      report.case_type
-                    }}</p></small
+                    <p style="color: #02b96c; font-size: 0.7rem">
+                      {{ report.case_type }}
+                    </p></small
                   >
                   <!-- <div class="date">
                     <small>{{ report.date_abuse }}</small>
                   </div> -->
                 </div>
-               
+
                 <div class="comment">
-                   <!-- <div v-if="report.recording == null">
+                  <!-- <div v-if="report.recording == null">
                   <i>No Audio</i>
                 </div> -->
                   <div class="audio">
-                    <i class="fas fa-play play" style="color=#1CB902" @click="showAudio = !showAudio"></i>
-                    <audio  v-if="showAudio" controls="controls" :src="report.recording"></audio>
+                    <i
+                      class="fas fa-play play"
+                      style="color=#1CB902"
+                      @click="showAudio = !showAudio"
+                    ></i>
+                    <audio
+                      v-if="showAudio"
+                      controls="controls"
+                      :src="report.recording"
+                    ></audio>
                   </div>
                 </div>
                 <div>
                   <div class="comments">
                     <div class="no_comment">
-                      
-                      <i class="fas fa-comment like"><sup>{{report.number_comments}}</sup></i>
-                      
+                      <i class="fas fa-comment like"
+                        ><sup>{{ report.number_comments }}</sup></i
+                      >
                     </div>
                     <div class="no_view">
-                      <i class="far fa-eye"><sup>{{report.number_views}}</sup></i>
+                      <i class="far fa-eye"
+                        ><sup>{{ report.number_views }}</sup></i
+                      >
                     </div>
-                    <div>
-                      
-                    </div>
+                    <div></div>
                   </div>
                 </div>
               </div>
               <div class="report">
                 <p>{{ report.report }}</p>
-                <div class="date">
-                  <small>{{ report.date_abuse }}</small>
+                <div class="report-footer">
+                  <div class="date">
+                    <small>{{ report.date_abuse }}</small>
+                  </div>
+
+                  <div class="delete">
+                    <button @click="deleteMyReport(report.report_id)">delete</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="report-image" v-if="report.image !== ''">
-            <img  :src="report.image" alt="" />
+            <img :src="report.image" alt="" />
           </div>
-
-          
         </router-link>
-        <hr style="margin-top: 10px;">
+        <hr style="margin-top: 10px" />
       </div>
     </div>
 
-    <div class="map">
+    <!-- <div class="map">
       <div class="map-btn">
-        <router-link to="/map"><i class="fas fa-map-marker-alt"></i></router-link>
+        <router-link to="/map"
+          ><i class="fas fa-map-marker-alt"></i
+        ></router-link>
       </div>
-    </div>
-    
+    </div> -->
+
     <!-- <svg width="200" height="300" viewBox="-1 0 101 100">
             <path d="M20,0 L80,0 L100,60 L50,100 L0,60z" stroke="#BBCDD8" fill="#BBCDD8" />
             </svg> -->
@@ -138,48 +151,81 @@
 import axios from "axios";
 // import { useRoute } from "vue-router";
 import Navbar from "@/components/Navbar.vue";
-import Loader from '@/components/toolpit/Loader.vue'
+import Loader from "@/components/toolpit/Loader.vue";
+import Swal from "sweetalert2";
 import Footer from "@/components/Footer.vue";
 
 export default {
-  props: ["comment"],
   components: {
     Navbar,
     Footer,
-    Loader
+    Loader,
   },
   data() {
     return {
       token: "",
       reportList: [],
       showAudio: false,
-       loading: false,
+      loading: false,
+      userId: "",
+      reportId: '',
     };
   },
   methods: {
     async getReports() {
-       this.loading = true;
+      this.loading = true;
       try {
         let result = await axios.get(
-          `https://kwiklik.herokuapp.com/reports/get/${this.token}/`,
+          `https://kwiklik.herokuapp.com/reports/get/${this.token}/${this.userId}/`,
           {}
         );
         this.reportList = result.data.report_list;
-         
+
         // console.log(result.data.report_list);
       } catch (e) {
         console.log(e);
       }
       this.loading = false;
     },
-
+    async reportDelete() {
+      try {
+        let result = await axios.put(
+          `https://kwiklik.herokuapp.com/reports/delete/${this.token}/${this.reportId}/`,
+          {
+            deleted: "True",
+          }
+        );
+       this.$router.push({ name: "Myreport" });
+        return result;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    deleteMyReport(id){
+        this.reportId = id
+         Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.reportDelete()
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          
+        }
+      });
+    }
   },
   mounted() {
- 
-      (this.token = localStorage.getItem("userInfo"));
+    this.token = localStorage.getItem("userInfo");
+    this.userId = localStorage.getItem("userId");
+    // console.log(this.userId);
     this.getReports();
 
-    
     let user = localStorage.getItem("userInfo");
     if (!user) {
       this.$router.push({ name: "Login" });
@@ -250,7 +296,7 @@ small {
 }
 .result-container {
   margin: 20px 0px;
-   /* display: flex;
+  /* display: flex;
   flex-direction: column-reverse; */
 }
 .message_header {
@@ -359,51 +405,50 @@ small {
   margin-left: 45px;
   margin-right: 15px;
 }
-.like, .fa-eye {
+.like,
+.fa-eye {
   color: #bbcdd8;
   /* margin:0px 15px ; */
   font-size: 0.7rem;
   text-align: center;
   align-items: center;
 }
-a{
+a {
   text-decoration: none;
 }
-audio{
-   width: 100px;
-   /* background: lightgreen; */
+audio {
+  width: 100px;
+  /* background: lightgreen; */
   margin: 0;
   text-align: center;
   height: 30px;
 }
-i sup{
+i sup {
   color: rgb(211, 87, 197);
   /* margin-bottom: 10px; */
-  font-size: .6rem;
-  
+  font-size: 0.6rem;
 }
- .loader{
-    text-align: center;
-    margin: 0px auto;
-}   
-.map{
-  overflow: hidden;
-  position: fixed;
-  bottom: 13%;
-  z-index: 9999;
-  opacity: 3;
-  left: 91%;
-  
- 
-} 
-
-.map-btn{
- background: white;
- width: 30px;
- padding: 5px 10px;
-  color: rgb(17, 118, 151);
- border-radius: 5px;
-  
-}     
-
+.loader {
+  text-align: center;
+  margin: 0px auto;
+}
+.report-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.delete button {
+  background-color: crimson;
+  color: white;
+  /* padding: 3px 0px ; */
+  margin: 0px 5px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  width: 40px;
+  opacity: 0.9;
+  font-size: 0.7rem;
+  border-radius: 5px;
+  /* float: right; */
+  outline: none;
+}
 </style>

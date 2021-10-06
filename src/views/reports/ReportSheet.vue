@@ -79,7 +79,7 @@
       <div class="case">
         <div class="case-type">
           <label class="lable">{{ $t("report.case") }}</label>
-          <input class="input" type="text" list="caseType" v-model="caseType" />
+          <input class="input date" type="text" list="caseType" v-model="caseType" />
           <datalist id="caseType">
             <option value="psychological violence">
               {{ $t("report.options.psychological") }}
@@ -114,7 +114,7 @@
         <div class="case-location">
           <label class="label">{{ $t("report.date") }}</label>
           <input
-            class="input"
+            class="input "
             type="date"
             placeholder="01-12-2021"
             v-model="dateOfAbuse"
@@ -478,7 +478,7 @@ function initVisualizer(stream) {
 <style scoped>
 .report {
   max-width: 420px;
-  margin: 0px auto;
+  margin: 20px auto;
   background: white;
   text-align: left;
   padding: 0px 10px;
@@ -541,6 +541,9 @@ textarea,
   border-bottom: 1px solid #ddd;
   color: #3f3d3d;
   outline: none;
+}
+.date{
+  height: 42px;
 }
 input[type="date"] {
   color: #3f3d3d;
@@ -607,7 +610,7 @@ audio,
 
 audio {
   width: 150px;
-  margin: 0;
+  margin: 20px 0;
   text-align: center;
   /* margin-top: 25px; */
 }
@@ -642,7 +645,7 @@ button {
   display: flex;
   justify-content: space-between;
   max-width: 420px;
-  margin: 0 auto;
+  margin: 30px auto;
   height: 100px;
   align-items: center;
   /* padding-bottom: 10px; */

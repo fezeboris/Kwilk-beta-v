@@ -13,6 +13,7 @@
     "research":"Créer une recherche",
     "vue": "Voir la recherche",
     "edu":"Éducation Créer",
+    "report": "Mes rapports",
     "logout": "Se déconnecter"
   },
   "header": {
@@ -191,7 +192,13 @@
     "btn1": "Envoyer"
 
 
+  },
+  "notiNav":{
+    "h1": "Notifications",
+    "p": "Le temps est écoulé"
+  },
+  "myreports":{
+    "h1": "Mes rapports"
+    
   }
-
-
 }

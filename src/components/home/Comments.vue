@@ -21,7 +21,7 @@
       <p class="btn-1" @click.prevent="showModal = false">
         {{ $t("header.cancel") }}
       </p>
-      <p class="btn-2" @click.prevent="updateProfile">
+      <p class="btn-2" @click.prevent="submitComment">
         {{ $t("header.comment") }}
       </p>
     </div>
@@ -44,7 +44,7 @@ export default {
     };
   },
   methods: {
-    async updateProfile() {
+    async submitComment() {
        this.loading = true;
       try {
         let result = await axios.post(

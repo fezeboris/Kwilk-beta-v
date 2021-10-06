@@ -9,45 +9,44 @@
     </div>
     <div class="result">
       <div class="result-text">
-
         <div class="report">
           <p>{{ comments.report }}</p>
-          <div class="date">
-            
-          </div>
+          <div class="date"></div>
         </div>
       </div>
     </div>
   </div>
 
-
-    
-    <div class="comments">
-      <div>
-        <i class="fas fa-comment like"
-          ><sup>{{ comments.number_comments }}</sup></i
-        >
-      </div>
-      <div class="no_view">
-         <i class="far fa-eye"><sup>{{comments.number_views}}</sup></i>
-      </div>
+  <div class="comments">
+    <div>
+      <i class="fas fa-comment like"
+        ><sup>{{ comments.number_comments }}</sup></i
+      >
     </div>
-  
+    <div class="no_view">
+      <i class="far fa-eye"
+        ><sup>{{ comments.number_views }}</sup></i
+      >
+    </div>
+  </div>
+
   <!-- <HomeSliderComments /> -->
   <!-- <AppRating /> -->
 
   <div class="main-comment">
-    <div
-     class="parent-comment"
-      v-for="reply in replies"
-      :key="reply.id"
-    >
-
+    <div class="parent-comment" v-for="reply in replies" :key="reply.id">
+      <div class="edit">
         <p>{{ reply.reporter }}</p>
-        <div>{{ reply.report }}</div>
-        <!-- {{ subReport.id }} -->
 
-    
+        <router-link :to="`/update-reply/` + reply.id ">
+          <i
+            v-if="this.username == reply.reporter"
+            class="fas fa-pencil-alt"
+          ></i
+        ></router-link>
+      </div>
+      <div>{{ reply.report }}</div>
+      <!-- {{ subReport.id }} -->
     </div>
   </div>
   <div class="sub-comment">
@@ -65,17 +64,15 @@ import axios from "axios";
 import Snavbar from "@/components/Snavbar.vue";
 import Loader from "@/components/toolpit/Loader.vue";
 export default {
-  
-  components: {  Snavbar, Loader },
+  components: { Snavbar, Loader },
   data() {
     return {
       showModal: false,
       token: "",
       comments: [],
       replies: [],
+      username: "",
 
-     
-     
       loading: false,
     };
   },
@@ -92,22 +89,19 @@ export default {
           {}
         );
         // console.log("hey child", result.data), console.log("msag", result);
-  
-        this.comments =  result.data,
-        this.replies = result.data.report_list
-       
 
+        (this.comments = result.data), (this.replies = result.data.report_list);
       } catch (e) {
         console.log(e);
       }
-       this.loading = false;
+      this.loading = false;
     },
   },
   async mounted() {
     this.token = localStorage.getItem("userInfo");
 
     this.messageDetails();
-
+    this.username = localStorage.getItem("username");
     // console.log(this.$route.params.id);
   },
   // reports comments===============================================
@@ -312,9 +306,9 @@ option {
 .fa-comment {
   margin-left: 25px;
   margin-right: 25px;
-  
 }
-.like, .fa-eye {
+.like,
+.fa-eye {
   color: #bbcdd8;
   /* margin:0px 15px ; */
   font-size: 0.7rem;
@@ -439,5 +433,12 @@ i sup {
 .loader {
   text-align: center;
   margin: 0px auto;
+}
+.edit {
+  display: flex;
+  justify-content: space-between;
+}
+.edit i {
+  font-size: 0.8rem;
 }
 </style>

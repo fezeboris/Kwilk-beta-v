@@ -42,6 +42,9 @@ import ClinicalDemande from '../views/help/experts/helpDemande/ClinicalDemande.v
 import DemandeBike from '../views/help/experts/helpDemande/DemandeBike.vue'
 import DemandeConsultant from '../views/help/experts/helpDemande/DemandConsultant.vue'
 import PsychoDemande from '../views/help/experts/helpDemande/PsychoDemande.vue'
+import Myreport from '../components/home/Myreport.vue'
+import UpdateComments from '../components/home/UpdateComment.vue'
+import UpdateReply from '../components/home/UpdateReply.vue'
 // import i18n from '../i18n'
 // import { h  } from 'Vue';
 // import MapaPage from '../components/home/MapaPage.vue'
@@ -86,10 +89,26 @@ const routes = [
     component: HomeSliderComments
   },
   {
+    path: '/update-reply/:id',
+    name: 'UpdateReply',
+    component: UpdateReply
+  },
+  {
     path: '/home-slider/detail/:id', //:id
     name: 'HomeSlideDetails',
     component: HomeSlideDetails,
     props: true
+  },
+  {
+    path: '/update-comment/:id', //:id
+    name: 'UpdateComments',
+    component: UpdateComments,
+    
+  },
+  {
+    path: '/my-report',
+    name: 'Myreport',
+    component: Myreport
   },
   {
     path: '/profile',
