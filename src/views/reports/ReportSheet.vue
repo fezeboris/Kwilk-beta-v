@@ -538,13 +538,12 @@ textarea,
   border-radius: 10px;
   box-sizing: border-box;
   border: none;
+  height: 40px;
   border-bottom: 1px solid #ddd;
   color: #3f3d3d;
   outline: none;
 }
-.date{
-  height: 42px;
-}
+
 input[type="date"] {
   color: #3f3d3d;
   font-size: 0.8rem;
