@@ -323,13 +323,15 @@ small {
   width: 340px;
 } */
 .report-image img {
-  width: 100%;
-  height: 100%;
+display: flex;
+  /* width: 100%;  */
+  margin: 0 auto;
 }
-.report-image {
+.report-image{
   border-bottom: 0.2px solid #f0f0f0f0;
   width: 100%;
-  height: 170px;
+  /* height: 170px; */
+  margin: 0 auto;
 }
 .text {
   color: #8ba0ae;
