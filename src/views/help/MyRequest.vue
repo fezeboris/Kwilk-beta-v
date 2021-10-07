@@ -7,7 +7,7 @@
          <div class="loader" v-if="loading">
             <Loader/>
         </div>
-    <div class="request" v-for="request in requests.slice().reverse()" :key="request.id">
+    <div class="request" v-for="request in requests" :key="request.id">
         
       <div class="request_text">
         <div class="header_request">

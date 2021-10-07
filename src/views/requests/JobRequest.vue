@@ -67,12 +67,12 @@ export default {
         this.jobRequest = result.data.job_list;
      
         // console.log( result.data.job_list)
+       this.loading = false;
        
-
       } catch (e) {
         console.log(e);
       }
-       this.loading = false;
+       
     },
     async jobAccept(id) {
        this.loading = true;
@@ -84,10 +84,11 @@ export default {
         );
 
          this.loading = false;
-
+        window.location.reload();
        return result
       } catch (e) {
         console.log(e);
+         this.loading = false;
       }
     },
     async jobDecline(id) {
@@ -100,9 +101,11 @@ export default {
         );
 
         this.loading = false;
+         window.location.reload();
         return result
       } catch (e) {
         console.log(e);
+         this.loading = false;
       }
     },
 

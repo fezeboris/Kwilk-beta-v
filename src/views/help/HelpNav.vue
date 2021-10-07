@@ -50,10 +50,10 @@
         $t("popup.research")
       }}</router-link>
     </p>
-    <p>
+   <p>
       <router-link
         to="/vue-research"
-        v-if="job == 'health_worker' || 'clerk'"
+       v-if="job == 'health_worker' || job ==  'clerk'"
         >{{ $t("popup.vue") }}</router-link
       >
     </p>

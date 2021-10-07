@@ -55,7 +55,7 @@
 
       <div
         class="result-container"
-        v-for="(report, index) in reportList.slice().reverse()"
+        v-for="(report, index) in reportList"
         :key="index"
       >
         <router-link :to="`/home-slider/detail/` + report.report_id">

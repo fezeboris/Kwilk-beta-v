@@ -53,10 +53,10 @@
        <div class="loader" v-if="loading">
             <Loader/>
         </div>
-
+ <hr style="margin-top: 20px;">
       <div
         class="result-container"
-        v-for="(report, index) in reportList.slice().reverse()"
+        v-for="(report, index) in reportList"
         :key="index"
       >
         <router-link :to="`/home-slider/detail/` + report.report_id">
@@ -392,18 +392,21 @@ i sup{
   bottom: 13%;
   z-index: 9999;
   opacity: 3;
-  left: 91%;
+  left: 90%;
   
  
 } 
 
 .map-btn{
  background: white;
- width: 30px;
- padding: 5px 10px;
+ width: 33px;
+ padding: 4px 10px;
   color: rgb(17, 118, 151);
  border-radius: 5px;
   
-}     
+} 
+.fa-map-marker-alt{
+  text-align: center;
+}    
 
 </style>

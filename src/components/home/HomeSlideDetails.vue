@@ -71,7 +71,7 @@
     <div class="main-comment">
       <div
         class="parent-comment"
-        v-for="subReport in subReports.slice().reverse()"
+        v-for="subReport in subReports"
         :key="subReport.id"
         @click.prevent="getId(subReport.id), messageDetails"
       >

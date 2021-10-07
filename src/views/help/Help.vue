@@ -50,7 +50,7 @@
 
     
     </div>
-    <hr />
+    <!-- <hr /> -->
     <Footer />
   </div>
 </template>

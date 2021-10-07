@@ -43,10 +43,11 @@
     flex: row;
     justify-content: space-around;
     align-items: center;
+    border-top:  .5px solid #f0f0f0;
     text-align: center;
     bottom: 0px;
     width: 100%;
-    margin: 0px auto;
+    
     height: 65px;
     padding: 0px 0px;
     text-align: center;
@@ -76,6 +77,7 @@ a {
   width: 100%;
   left: 0;
   background: #fff;
+  
 }
 
 .router-link-active{
