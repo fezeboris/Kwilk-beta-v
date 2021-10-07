@@ -13,7 +13,15 @@
         <div class="header_request">
           <p class="date">{{ request.date_of_demand }}</p>
           <p class="type">{{ request.type_help }}</p>
-          <p class="status">{{ request.status }}</p>
+           <p class="status resolve" v-if="request.status == 'Resolved'">
+               {{ request.status }}
+            </p>
+            <p class="status reject" v-if="request.status == 'Rejected'">
+               {{ request.status }}
+            </p>
+            <p class="status unresolve" v-if="request.status == 'Unresolved' ">
+               {{ request.status }}
+            </p>
         </div>
         <div class="request_contain">
           <p>
@@ -212,6 +220,15 @@ input:focus {
 }
 h1 {
   font-size: 1rem;
+}
+.resolve {
+  color: lightgreen;
+}
+.unresolve {
+  color: lightblue;
+}
+.reject {
+  color: crimson;
 }
 
  .loader{
