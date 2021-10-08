@@ -9,7 +9,7 @@
       </div>
 
        <div v-for="unseen in uNofications" :key="unseen.index">
-        <div class="notification-content-unread" @click="read">
+        <div class="notification-content-unread">
           <p>{{ unseen }}</p>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default {
           `https://kwiklik.herokuapp.com/notifications/get/${this.token}/`
         );
 
-        console.log(result.data);
+        // console.log(result.data);
         this.uNofications = result.data.notification_unseen;
         this.sNofications = result.data.notification_seen;
       } catch (e) {
@@ -73,12 +73,13 @@ export default {
         console.log(e);
       }
     //   this.loading = false;
-      window.location.reload();
+    //   window.location.reload();
     },
   },
   mounted() {
     this.token = localStorage.getItem("userInfo");
     this.getNofif();
+    this.read()
   },
 };
 </script>

@@ -69,7 +69,7 @@ export default {
 }
 .fa-bell{
     font-size: 18px;
-    margin-left: 4px;
+    margin-left: 3px;
 }
 
 .footer-btn {
