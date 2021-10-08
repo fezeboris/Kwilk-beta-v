@@ -91,6 +91,18 @@
         </router-link>
         <div @click.prevent="getId(subReport.id)" class="reply">
           <p @click="showModal = true">{{ $t("header.reply") }}</p>
+          <div class="comments">
+            <div class="no_comment">
+              <i class="fas fa-comment like"
+                ><sup>{{ subReport.number_comments }}</sup></i
+              >
+            </div>
+            <div class="no_view">
+              <i class="far fa-eye"
+                ><sup>{{ subReport.number_views }}</sup></i
+              >
+            </div>
+          </div>
         </div>
       </div>
       <!-- <Reply /> -->
@@ -150,7 +162,6 @@ export default {
   },
   methods: {
     getId(id) {
-      
       this.id = id;
       localStorage.setItem("replyMessageId", id);
       // console.log("hello", id);
@@ -170,7 +181,7 @@ export default {
         // console.log(result.data);
         (this.mainReport = result.data),
           (this.subReports = result.data.report_list);
-        // console.log('main re',result);
+        console.log("main re", result);
       } catch (e) {
         console.log(e);
       }
@@ -382,6 +393,8 @@ a:hover {
 }
 .reply {
   margin-top: 20px;
+  display: flex;
+  justify-content:space-between;
 }
 .fa-comment {
   margin-left: 30px;
@@ -477,7 +490,7 @@ a:hover {
 }
 
 .reports-image img {
-display: flex;
+  display: flex;
   /* width: 100%;  */
   margin: 0 auto;
 }
@@ -549,5 +562,11 @@ textarea {
 }
 .edit i {
   font-size: 0.8rem;
+}
+
+.comments {
+  display: flex;
+  text-align: center;
+  align-items: center;
 }
 </style>

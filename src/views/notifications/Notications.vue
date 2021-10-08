@@ -1,136 +1,126 @@
 <template>
-<NotificationNav/>
+  <NotificationNav />
 
-    <div class="notifications">
+  <div class="notifications">
+    <div class="notification-main-content">
+      <hr style="border-top: dotted 1px; color: #8ba0ae; width: 100%" />
+      <div class="loader" v-if="loading">
+        <Loader />
+      </div>
 
-
-       <div class="notification-main-content">
-           <hr style="border-top: dotted 1px; color:#8BA0AE; width:100%;"  />
-            <div class="notification-content">
-            <p>Dear Jacob, Your are reminded to: Report Your case to a lawyer</p>
-            <div class="notification-status-read"></div>
+       <div v-for="unseen in uNofications" :key="unseen.index">
+        <div class="notification-content-unread" @click="read">
+          <p>{{ unseen }}</p>
         </div>
-        <div class="notification-content">
-            <p>Dear Jacob, Your are reminded to: Report Your case to a lawyer</p>
-            <div class="notification-status-unread"></div>
+      </div>
+      <div v-for="seen in sNofications" :key="seen.index" >
+        <div class="notification-content-read">
+          <p>{{ seen }}</p>
         </div>
-        <div class="notification-content">
-            <p>Dear Jacob, Your are reminded to: Report Your case to a lawyer</p>
-            <div class="notification-status-read"></div>
-        </div>
-        <div class="notification-content">
-            <p>Dear Jacob, Your are reminded to: Report Your case to a lawyer</p>
-            <div class="notification-status-unread"></div>
-        </div>
-       </div>
-        <Footer/>
+      </div>
+     
     </div>
+    <Footer />
+  </div>
 </template>
 
 <script>
-import Footer from '@/components/Footer.vue'
+import axios from "axios";
+import Footer from "@/components/Footer.vue";
+import Loader from "@/components/toolpit/Loader.vue";
 
-import NotificationNav from '../notifications/NotificationNav.vue'
-    export default {
-         components:{
-            Footer,
-            // Sidebar,
-            // Side,
-            NotificationNav
-        },
-        data(){
-            return{
+import NotificationNav from "../notifications/NotificationNav.vue";
+export default {
+  components: {
+    Footer,
+    Loader,
+    NotificationNav,
+  },
+  data() {
+    return {
+      token: "",
+      sNofications: [],
+      uNofications: [],
+      loading: false,
+    };
+  },
+  methods: {
+    async getNofif() {
+      this.loading = true;
+      try {
+        let result = await axios.get(
+          `https://kwiklik.herokuapp.com/notifications/get/${this.token}/`
+        );
 
-            }
-        }    
-    }
+        console.log(result.data);
+        this.uNofications = result.data.notification_unseen;
+        this.sNofications = result.data.notification_seen;
+      } catch (e) {
+        console.log(e);
+      }
+      this.loading = false;
+    },
+    async read() {
+    //   this.loading = true;
+      try {
+        let result = await axios.get(
+          `https://kwiklik.herokuapp.com/notifications/update/${this.token}/`
+        );
+
+        // console.log(result.data);
+        this.sNofications = result.data.notification_seen;
+      } catch (e) {
+        console.log(e);
+      }
+    //   this.loading = false;
+      window.location.reload();
+    },
+  },
+  mounted() {
+    this.token = localStorage.getItem("userInfo");
+    this.getNofif();
+  },
+};
 </script>
 
 <style scoped>
-.notifications{
-    max-width: 420px;
-    margin: 0px auto;
-    background: white;
-    text-align: left;
-    padding: 30px 10px;
-    border-radius: 10px;
-    
-    }
-
-
-.request-header{
-    position: fixed;
-    background: #fff;
-    width: 100%;
-    margin: 10px 0;
-    padding-top: 10px;
-}
-.request-header p{
-    margin: 0px 15px 10px 0px;
-    color: #3F3D3D;
-    font-size: 1.3rem ;
-    line-height: 0rem;
-    font-weight: bold;
-    
-}
-
-small{   
-    color: #8BA0AE;
-    font-size:0.8rem ;
-    line-height: 0.5rem;
-}
-.notification-content{
-    display: flex;
-    align-items: center;
-    font-size: 0.8rem;
-    justify-content: space-between;
-    background: #C4C4C4;
-    padding: 8px 0px;
-    margin-top: 10px;
-
-    /* margin: 10px 0px; */
-}
-.notification-content p{
-    margin-left: 10px;
-}
-.notification-status-read{
-    width: 15px;
-    height: 15px;
-    border-radius: 20%;
-    background:#11A35D ;
-    margin-right: 0px;
-    padding-right: 0px;
-}
-.notification-status-unread{
-    width: 15px;
-    height: 15px;
-    border-radius: 20%;
-    background:#9b8787 ;
-    margin-right: 0px;
-    padding-right: 0px;
-}
-.popup{
-  position: fixed;
-  width: 120px;
+.notifications {
+  max-width: 420px;
+  margin: 0px auto;
+  background: white;
+  text-align: left;
+  padding: 30px 10px;
   border-radius: 10px;
-  box-shadow: 1px 1px 1px 1px rgb(224, 220, 220);
-  z-index: 9999;
-   opacity: 1;
-  right: 0;
-  margin: 0px 10px;
-  transition: ease-in-out 0.9s;
-  padding: 10px 10px;
-  background-color: #ffff;
-  
-
 }
-.popup a{
-  text-decoration: none;
-  color:black;
-  font-weight: bold;
+.notification-main-content{
+    margin-top: 20px;
 }
-.popup a:hover{
-  color: green;
 
+
+.notification-content-read p
+ {
+    font-size: .9rem;
+    padding: 0px 5px;
+}
+.notification-content-unread p{
+    font-size: .9rem;
+    padding: 0px 5px;
+}
+.notification-content-read {
+  background: lightgreen;
+  margin: 10px 0px;
+  padding: 3px;
+  border-radius: 5px;
+}
+.notification-content-unread {
+  background: #ebe8e8;
+  margin: 10px 0px;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.loader {
+  text-align: center;
+  margin: 0px auto;
 }
 </style>

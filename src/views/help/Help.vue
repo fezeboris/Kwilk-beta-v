@@ -109,6 +109,11 @@ export default {
     this.token = localStorage.getItem("userInfo");
     //    console.log(this.currentDate)
     // this.updateEducation();
+
+     let user = localStorage.getItem("userInfo");
+    if (!user) {
+      this.$router.push({ name: "Login" });
+    }
   },
 };
 </script>

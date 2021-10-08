@@ -192,6 +192,11 @@ export default {
     this.updateEducation();
 
     this.handleGetStatus();
+
+     let user = localStorage.getItem("userInfo");
+    if (!user) {
+      this.$router.push({ name: "Login" });
+    }
   },
 };
 </script>

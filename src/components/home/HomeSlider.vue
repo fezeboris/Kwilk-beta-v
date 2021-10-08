@@ -97,9 +97,7 @@
                     <div class="no_view">
                       <i class="far fa-eye"><sup>{{report.number_views}}</sup></i>
                     </div>
-                    <div>
-                      
-                    </div>
+
                   </div>
                 </div>
               </div>

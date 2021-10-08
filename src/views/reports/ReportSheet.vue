@@ -409,6 +409,10 @@ export default {
 
     // var seconds = new Date().getTime()/1000
     // console.log('sec', seconds)
+     let user = localStorage.getItem("userInfo");
+    if (!user) {
+      this.$router.push({ name: "Login" });
+    }
   },
   created() {
     //do we support geolocation
