@@ -51,35 +51,39 @@
 
       <!-- ===============Image========================== -->
       <div class="body">
-        <div class="image-main-container">
-          <div>
-            <h1>{{ $t("report.image") }}</h1>
-          </div>
+            <div class="image-main-container">
+              <div>
+                <h1>{{ $t("report.image") }}</h1>
+              </div>
 
-          <figure class="image-container">
-            <img :src="image" />
-          </figure>
-          <div v-if="!image">
-            <input id="upload-button" type="file" @change="onFileChange" />
-            <label class="image-label" for="upload-button">
-              <i class="far fa-images"></i>&nbsp;
-            </label>
-          </div>
+              <figure class="image-container">
+                <img :src="image" />
+              </figure>
+              <div v-if="!image">
+                <input id="upload-button" type="file" @change="onFileChange" />
+                <label class="image-label" for="upload-button">
+                  <i class="far fa-images"></i>&nbsp;
+                </label>
+              </div>
 
-          <div v-else>
-            <button class="delete-btn" @click="removeImage">
-              {{ $t("report.btn1") }}
-            </button>
+              <div v-else>
+                <button class="delete-btn" @click="removeImage">
+                  {{ $t("report.btn1") }}
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-
       <!-- =============================================== -->
 
       <div class="case">
         <div class="case-type">
           <label class="lable">{{ $t("report.case") }}</label>
-          <input class="input date" type="text" list="caseType" v-model="caseType" />
+          <input
+            class="input date"
+            type="text"
+            list="caseType"
+            v-model="caseType"
+          />
           <datalist id="caseType">
             <option value="psychological violence">
               {{ $t("report.options.psychological") }}
@@ -114,7 +118,7 @@
         <div class="case-location">
           <label class="label">{{ $t("report.date") }}</label>
           <input
-            class="input "
+            class="input"
             type="date"
             placeholder="01-12-2021"
             v-model="dateOfAbuse"
@@ -304,8 +308,8 @@ export default {
         formData.append("image", this.imageFile, this.currentTime + ".jpg");
       }
 
-        formData.append("date_abuse", this.dateOfAbuse);
-      
+      formData.append("date_abuse", this.dateOfAbuse);
+
       formData.append("reporting", this.report);
       formData.append("parent_report", "0");
       formData.append("latitude", this.latitude);
@@ -398,6 +402,8 @@ export default {
   computed: {},
   // =================================
   mounted() {
+
+
     // console.log('token is', this.token)
     // Audio
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
@@ -409,7 +415,7 @@ export default {
 
     // var seconds = new Date().getTime()/1000
     // console.log('sec', seconds)
-     let user = localStorage.getItem("userInfo");
+    let user = localStorage.getItem("userInfo");
     if (!user) {
       this.$router.push({ name: "Login" });
     }
@@ -651,7 +657,7 @@ button {
   margin: 30px auto;
   height: 100px;
   align-items: center;
-  /* padding-bottom: 10px; */
+  
 }
 img {
   max-width: 80%;
@@ -664,8 +670,7 @@ img {
   margin: 0;
 }
 .image-container img {
-  /* display: block;
-    position: relative; */
+
   max-width: 80%;
   max-height: 80px;
   margin: auto;
@@ -686,21 +691,22 @@ input[type="file"] {
   color: rgb(112, 216, 112);
   font-size: 1rem;
   text-align: left;
-  /* margin: 30px 20px; */
+ 
   padding: 10px;
   background: #c4f2dc;
   margin-right: 40px;
   border-radius: 50%;
-  /* box-shadow:  0 0 8px 5px rgba(6, 214, 17, 0.6); */
+
 }
 .image-main-container h1 {
   font-size: 1rem;
-  /* padding: 0px 30px 30px 30px; */
+  
   margin: 20px 30px;
 }
 .delete-btn {
   margin-right: 30px;
 }
+
 
 .checkbox-main-container {
   display: flex;

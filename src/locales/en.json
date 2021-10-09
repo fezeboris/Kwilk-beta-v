@@ -135,7 +135,23 @@
     "label11": "Ethnicity",
     "route1": "Professionals ?",
     "route2": "Rate this App ?",
-    "b": "Update"
+    "b": "Update",
+    "update":{
+      "English": "English",
+      "French": "French",
+      "Male": "Male",
+      "Female": "Female",
+      "Single": "Single",
+      "Maried": "Maried",
+      "Divorced": "Divorced",
+      "ER": "East",
+      "FN": "Far North",
+      "N": "North",
+      "NW": "North West",
+      "WR": "West",
+      "SR": "South",
+      "SW": "South Wesrt"
+    }
   },
   "jobRequest": {
     "p": "I want to be acknoledged on this plateform as:",

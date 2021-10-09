@@ -34,21 +34,25 @@
     <label class="label">{{ $t("profile.label2") }}</label>
     <input class="input" name="email" type="email" v-model="updates.email" />
     <label class="label">{{ $t("profile.label3") }}</label>
-    <input
-      class="input"
-      name="language"
-      type="text"
-      v-model="updates.language"
-    />
-    <label class="label">{{ $t("profile.label4") }}</label>
-    <input class="input" name="sex" type="text" v-model="updates.sex" />
+
+    <select v-model="updates.language" name="language">
+      <option value="English">{{ $t("profile.update.English") }}</option>
+      <option value="French">{{ $t("profile.update.French") }}</option>
+    </select>
+
+    <label class="label">{{ $t("profile.label4") }}</label>  
+    <select v-model="updates.sex" name="sex">
+      <option value="Male">{{ $t("profile.update.Male") }}</option>
+      <option value="Female">{{ $t("profile.update.Female") }}</option>
+    </select>
     <label class="label">{{ $t("profile.label5") }}</label>
-    <input
-      class="input"
-      name="marital_status"
-      type="text"
-      v-model="updates.marital_status"
-    />
+
+   <select v-model="updates.marital_status"  name="marital_status">
+      <option value="Single">{{ $t("profile.update.Single") }}</option>
+      <option value="Maried">{{ $t("profile.update.Maried") }}</option>
+      <option value="Divorced">{{ $t("profile.update.Divorced") }}</option>
+    </select>
+   
     <label class="label">{{ $t("profile.label7") }}</label>
     <input
       class="input"
@@ -56,15 +60,24 @@
       type="text"
       v-model="updates.occupation"
     />
-    <labe class="label">{{ $t("profile.label6") }}</labe>
+    <label class="label">{{ $t("profile.label6") }}</label>
     <input class="input" name="phone" type="text" v-model="updates.phone" />
     <label class="label">{{ $t("profile.label8") }}</label>
-    <input
-      class="input"
-      name="region_of_residence"
-      type="text"
-      v-model="updates.region_of_residence"
-    />
+
+     <select v-model="updates.region_of_residence"  name="region_of_residence">
+      <option value="Adamawa">Adamawa</option>
+      <option value="Centre">Centre</option>
+      <option value="East">{{ $t("profile.update.ER") }}</option>
+      <option value="Far North">{{ $t("profile.update.FN") }}</option>
+      <option value="Littoral">Littoral</option>
+      <option value="North">{{ $t("profile.update.N") }}</option>
+      <option value="North West">{{ $t("profile.update.NW") }}</option>
+      <option value=" West"> {{ $t("profile.update.WR") }}</option>
+      <option value="South">{{ $t("profile.update.SR") }}</option>
+      <option value="South West">{{ $t("profile.update.SW") }}</option>
+      
+    </select>
+   
     <label class="label">{{ $t("profile.label9") }}</label>
     <input
       class="input"

@@ -112,7 +112,7 @@ export default {
         );
         // console.log(result.data.education_list);
         this.educations = result.data.education_list;
-        console.log(result);
+        // console.log(result);
       } catch (e) {
         console.log(e);
       }

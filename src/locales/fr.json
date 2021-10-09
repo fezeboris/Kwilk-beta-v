@@ -141,7 +141,23 @@
     "label11": "Ethnicité",
     "route1": "Professionnels ?",
     "route2": "Évaluer l'application ?",
-    "b":"Mettre à jour"
+    "b":"Mettre à jour",
+    "update":{
+      "English": "Anglais",
+      "French": "Français",
+      "Male": "Homme",
+      "Female": "Femme",
+      "Single": "Célibataire",
+      "Maried": "Marié",
+      "Divorced": "Divorcé",
+      "ER": "Est",
+      "FN": "Extrème nord",
+      "N": "Nord",
+      "NW": "Nord Ouest",
+      "WR": "Ouest",
+      "SR": "Sud",
+      "SW": "Sud Ouest"
+    }
     
   },
   "jobRequest":{
