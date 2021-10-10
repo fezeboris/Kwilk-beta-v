@@ -245,7 +245,7 @@ small {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80px;
+  width: 90px;
   height: 30px;
 
   right: 0;
@@ -255,7 +255,7 @@ small {
 button {
   text-decoration: none;
   color: black;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 
 .active {
