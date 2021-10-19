@@ -278,7 +278,8 @@ export default {
 
       const file = e.target.files[0];
       this.imageFile = e.target.files[0];
-      console.log(file);
+     
+     console.log(file);
     },
 
     createImage(file) {

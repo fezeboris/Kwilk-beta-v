@@ -1,6 +1,6 @@
 <!-- version 1.2 -->
 
-# figma-project-one
+# kwiklik
 
 ## Project setup
 ```

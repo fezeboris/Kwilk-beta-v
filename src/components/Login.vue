@@ -38,7 +38,9 @@
       </div>
       <button v-else>Login</button>
 
-      <!-- <p>Forgot password ?</p> -->
+      <div class="apk">
+        <a href="https://storage.googleapis.com/sincere-signal-267510.appspot.com/kwikklik/kwikklik.apk">Get the Mobile App</a>
+      </div>
     </div>
   </form>
 </template>
@@ -219,5 +221,13 @@ a {
   font-size: 0.9rem;
   color: grey;
   text-decoration: none;
+}
+.apk{
+  text-align: right;
+  margin-top: 70px;
+}
+.apk a{
+  text-decoration: none;
+  color: #d9bc23;
 }
 </style>
