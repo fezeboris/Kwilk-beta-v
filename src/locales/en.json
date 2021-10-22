@@ -144,16 +144,18 @@
       "Single": "Single",
       "Maried": "Maried",
       "Divorced": "Divorced",
+      "AR": "Adamawa",
       "ER": "East",
       "FN": "Far North",
+      "CE": "Center",
       "N": "North",
       "NW": "North West",
       "WR": "West",
       "SR": "South",
-      "SW": "South Wesrt"
+      "SW": "South West"
     }
   },
-  "jobRequest": {
+  "jobRuest": {
     "p": "I want to be acknoledged on this plateform as:",
     "btn1": "Accept",
     "btn2": "Decline",

@@ -65,8 +65,8 @@
     <label class="label">{{ $t("profile.label8") }}</label>
 
      <select v-model="updates.region_of_residence"  name="region_of_residence">
-      <option value="Adamawa">Adamawa</option>
-      <option value="Centre">Centre</option>
+      <option value="Adamawa">{{ $t("profile.update.AR") }}</option>
+      <option value="Centre">{{ $t("profile.update.CE") }}</option>
       <option value="East">{{ $t("profile.update.ER") }}</option>
       <option value="Far North">{{ $t("profile.update.FN") }}</option>
       <option value="Littoral">Littoral</option>
