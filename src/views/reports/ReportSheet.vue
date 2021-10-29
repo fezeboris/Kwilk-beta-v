@@ -51,28 +51,28 @@
 
       <!-- ===============Image========================== -->
       <div class="body">
-            <div class="image-main-container">
-              <div>
-                <h1>{{ $t("report.image") }}</h1>
-              </div>
-
-              <figure class="image-container">
-                <img :src="image" />
-              </figure>
-              <div v-if="!image">
-                <input id="upload-button" type="file" @change="onFileChange" />
-                <label class="image-label" for="upload-button">
-                  <i class="far fa-images"></i>&nbsp;
-                </label>
-              </div>
-
-              <div v-else>
-                <button class="delete-btn" @click="removeImage">
-                  {{ $t("report.btn1") }}
-                </button>
-              </div>
-            </div>
+        <div class="image-main-container">
+          <div>
+            <h1>{{ $t("report.image") }}</h1>
           </div>
+
+          <figure class="image-container">
+            <img :src="image" />
+          </figure>
+          <div v-if="!image">
+            <input id="upload-button" type="file" @change="onFileChange" />
+            <label class="image-label" for="upload-button">
+              <i class="far fa-images"></i>&nbsp;
+            </label>
+          </div>
+
+          <div v-else>
+            <button class="delete-btn" @click="removeImage">
+              {{ $t("report.btn1") }}
+            </button>
+          </div>
+        </div>
+      </div>
       <!-- =============================================== -->
 
       <div class="case">
@@ -278,8 +278,8 @@ export default {
 
       const file = e.target.files[0];
       this.imageFile = e.target.files[0];
-     
-     console.log(file);
+
+      console.log(file);
     },
 
     createImage(file) {
@@ -403,8 +403,6 @@ export default {
   computed: {},
   // =================================
   mounted() {
-
-
     // console.log('token is', this.token)
     // Audio
     navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
@@ -658,7 +656,6 @@ button {
   margin: 30px auto;
   height: 100px;
   align-items: center;
-  
 }
 img {
   max-width: 80%;
@@ -671,7 +668,6 @@ img {
   margin: 0;
 }
 .image-container img {
-
   max-width: 80%;
   max-height: 80px;
   margin: auto;
@@ -692,22 +688,20 @@ input[type="file"] {
   color: rgb(112, 216, 112);
   font-size: 1rem;
   text-align: left;
- 
+
   padding: 10px;
   background: #c4f2dc;
   margin-right: 40px;
   border-radius: 50%;
-
 }
 .image-main-container h1 {
   font-size: 1rem;
-  
+
   margin: 20px 30px;
 }
 .delete-btn {
   margin-right: 30px;
 }
-
 
 .checkbox-main-container {
   display: flex;
