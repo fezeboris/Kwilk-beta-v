@@ -36,10 +36,9 @@
       placeholder="Please enter your username"
     />
     <label class="lable">Gender</label>
-     <select v-model="gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            
+    <select v-model="gender" required>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
     </select>
 
     <div class="error-b" role="alert" v-if="phoneNumberError">
@@ -75,30 +74,32 @@
     <div v-if="passwordVerificationError" class="error">
       {{ passwordVerificationError }}
     </div>
-      <div v-if="errorRes" class="errors">
-        {{errorRes}}
-      </div>
-       <div>
-    <router-link to="/terms"> I have read the terms and agreements</router-link>
+    <div v-if="errorRes" class="errors">
+      {{ errorRes }}
     </div>
-    <input type="checkbox" required />
+    <div>
+      <input type="checkbox" required />
+      <router-link to="/terms">
+        I have read the terms and agreements</router-link
+      >
+    </div>
+
     <div class="submit">
-       <div class="loader" v-if="loading">
-         <Loader/>
-       </div>
+      <div class="loader" v-if="loading">
+        <Loader />
+      </div>
       <button v-else>Registration</button>
-      
     </div>
   </form>
 </template>
 
 <script>
 import axios from "axios";
-import Loader from '@/components/toolpit/Loader.vue'
+import Loader from "@/components/toolpit/Loader.vue";
 export default {
   name: "SignIn",
-  components:{
-      Loader
+  components: {
+    Loader,
   },
   data() {
     return {
@@ -117,7 +118,7 @@ export default {
       userNameError: "",
       phoneNumberError: "",
       passwordEr: "",
-      loading: false
+      loading: false,
     };
   },
   methods: {
@@ -132,11 +133,8 @@ export default {
           "Password must match with Password verification";
       }
       if (!this.passwordError && !this.passwordVerificationError) {
-
         this.loading = true;
         try {
-          
-
           let result = await axios.post(
             "https://kwiklik.herokuapp.com/register/",
             {
@@ -147,7 +145,7 @@ export default {
               phone_number: this.phone_number,
             }
           );
-         
+
           if (result.data == 201) {
             // console.log(result);
             // localStorage.setItem("userInfo", JSON.stringify(result.data));
@@ -164,7 +162,7 @@ export default {
         } catch (e) {
           this.errorRes = "user with these credentials already exist";
         }
-         this.loading = false;
+        this.loading = false;
       }
     },
   },
@@ -196,7 +194,8 @@ label {
   font-style: normal;
 }
 
-.input, select {
+.input,
+select {
   display: block;
   padding: 10px 6px;
   width: 100%;
@@ -242,7 +241,7 @@ button {
   border: 1px solid #ffff;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
-.errors{
+.errors {
   color: #ff0062;
   margin-top: 10px;
   font-size: 0.8em;
@@ -317,9 +316,9 @@ hr {
 .gender-input input {
   margin-left: 85px;
 }
-.loader{
-    text-align: center;
-    margin: 0px auto;
+.loader {
+  text-align: center;
+  margin: 0px auto;
 }
 
 a {
