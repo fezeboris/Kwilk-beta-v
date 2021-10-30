@@ -31,7 +31,7 @@
       placeholder="Enter your password"
     />
     <div v-if="passwordError" class="error">{{ passwordError }}</div>
-   
+
     <div class="submit">
       <div class="loader" v-if="loading">
         <Loader />
@@ -39,7 +39,10 @@
       <button v-else>Login</button>
 
       <div class="apk">
-        <a href="https://storage.googleapis.com/sincere-signal-267510.appspot.com/kwikklik/kwikklik.apk">Get the Mobile App</a>
+        <a
+          href="https://play.google.com/store/apps/details?id=com.vinsight.kwikklik"
+          >Get the Mobile App</a
+        >
       </div>
     </div>
   </form>
@@ -61,7 +64,7 @@ export default {
       passwordError: "",
       token: "",
       loading: false,
-      id: '',
+      id: "",
     };
   },
   methods: {
@@ -85,7 +88,7 @@ export default {
           setAuthHeader(result.data.token);
           this.$router.push({ name: "HomeSlider" });
           this.token = result.data.token;
-           console.log(result)
+          console.log(result);
         } else {
           this.passwordError =
             "A user with this email and password was not found";
@@ -222,11 +225,11 @@ a {
   color: grey;
   text-decoration: none;
 }
-.apk{
+.apk {
   text-align: right;
   margin-top: 70px;
 }
-.apk a{
+.apk a {
   text-decoration: none;
   color: #d9bc23;
 }
