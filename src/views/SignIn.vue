@@ -152,14 +152,16 @@ export default {
             // localStorage.setItem('userInfo', (result.data.token))
             this.$router.push({ name: "Login" });
           } else if (result.data !== 201) {
-            this.emailerror = result.data.email;
-            this.passwordEr = result.data.password;
-            this.phoneNumberError = result.data.phone_number;
-            this.userNameError = result.data.username;
+            // this.emailerror = result.data.email;
+            // this.passwordEr = result.data.password;
+            // this.phoneNumberError = result.data.phone_number;
+            // this.userNameError = result.data.username;
             // emailError: this.data.email
             // phoneNumberError: this.
           }
+          // console.log("res", result);
         } catch (e) {
+          // console.log(e);
           this.errorRes = "user with these credentials already exist";
         }
         this.loading = false;

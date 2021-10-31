@@ -38,6 +38,10 @@
       </div>
       <button v-else>Login</button>
 
+      <div class="forgot">
+        <router-link to="/forgotten">Forgotten Password ?</router-link>
+      </div>
+
       <div class="apk">
         <a
           href="https://play.google.com/store/apps/details?id=com.vinsight.kwikklik"
@@ -231,6 +235,13 @@ a {
 }
 .apk a {
   text-decoration: none;
+  color: #d9bc23;
+}
+.forgot {
+  text-align: left;
+  color: #d9bc23;
+}
+.forgot a {
   color: #d9bc23;
 }
 </style>
