@@ -80,7 +80,7 @@ export default {
         icon: "success",
         title: "You have been sent an email to reset your password",
         showConfirmButton: false,
-        timer: 1500,
+        timer: 2000,
       });
     },
   },
