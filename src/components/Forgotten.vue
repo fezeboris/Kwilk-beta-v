@@ -30,6 +30,7 @@
 
 <script>
 import axios from "axios";
+import Swal from "sweetalert2";
 import Loader from "@/components/toolpit/Loader.vue";
 export default {
   components: {
@@ -61,8 +62,10 @@ export default {
               password: this.password,
             }
           );
-          if (result.data == 201) {
+          console.log(result);
+          if (result.status == 200) {
             // console.log(result);
+            this.doSomething();
             this.$router.push({ name: "Login" });
           }
         } catch (e) {
@@ -70,6 +73,15 @@ export default {
         }
         this.loading = false;
       }
+    },
+    doSomething() {
+      Swal.fire({
+        position: "center-end",
+        icon: "success",
+        title: "You have been sent an email to reset your password",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     },
   },
   mounted() {
