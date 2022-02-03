@@ -307,7 +307,7 @@
             <div class="contact-logo">
               <img src="../../../assets/images/call.png" alt="" />
             </div>
-            <p>+237 6XXXXXXXX/ +237 6XXXXXXXX</p>
+            <p>+237 69XXXXXXX/ +237 67XXXXXXX</p>
           </div>
         </div>
         <div class="col-12 col-lg-6 mt-0 text-center adress2">
