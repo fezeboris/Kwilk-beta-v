@@ -46,6 +46,8 @@ import Myreport from "../components/home/Myreport.vue";
 import UpdateComments from "../components/home/UpdateComment.vue";
 import UpdateReply from "../components/home/UpdateReply.vue";
 import Forgotten from "../components/Forgotten.vue";
+import LandingPage from "../components/home/landingPage/LandingPage.vue";
+
 // import i18n from '../i18n'
 // import { h  } from 'Vue';
 // import MapaPage from '../components/home/MapaPage.vue'
@@ -63,9 +65,15 @@ const routes = [
   //   children:[
   {
     path: "/",
+    name: "LandingPage",
+    component: LandingPage,
+  },
+  {
+    path: "/login",
     name: "Login",
     component: Login,
   },
+
   {
     path: "/forgotten",
     name: "Forgotten",

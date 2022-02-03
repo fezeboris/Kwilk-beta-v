@@ -44,6 +44,7 @@
 
       <div class="apk">
         <a
+          target="_blank"
           href="https://play.google.com/store/apps/details?id=com.vinsight.kwikklik"
           >Get the Mobile App</a
         >
