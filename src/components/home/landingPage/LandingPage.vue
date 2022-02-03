@@ -6,7 +6,7 @@
           ><div class="endsgbv">
             <p style="fontweight: bold">endsgbv</p>
             <!-- <div class="vl"></div> -->
-            <img src="../../../assets/images/lg.jpeg" alt="" /></div
+            <img src="../../../assets/images/lg.png" alt="" /></div
         ></a>
         <button
           class="navbar-toggler"
@@ -73,14 +73,15 @@
           </div>
           <div
             class="
-              col-md-5
+              col-md-4
               text-center text-md-start
               d-none d-lg-block d-sm-block
+              p-5
             "
           >
             <div class="container">
               <div class="left">
-                <img src="../../../assets/images/1.jpeg" alt="" />
+                <img src="../../../assets/images/1.png" alt="" />
               </div>
               <div class="right"></div>
             </div>
@@ -90,7 +91,7 @@
               <div>
                 <img
                   class="rounded"
-                  src="../../../assets/images/1.jpeg"
+                  src="../../../assets/images/1.png"
                   alt=""
                 />
               </div>
@@ -193,7 +194,7 @@
         <div class="col-8 col-lg-3 text-center">
           <div class="ebase1 my-3">
             <div class="img">
-              <img src="../../../assets/images/e1.jpeg" alt="" />
+              <img src="../../../assets/images/e1.png" alt="" />
             </div>
             <div class="ebase-content">
               <p>
@@ -206,7 +207,7 @@
         <div class="col-8 col-lg-3 text-center">
           <div class="ebase1 my-3">
             <div class="img">
-              <img src="../../../assets/images/e2.jpeg" alt="" />
+              <img src="../../../assets/images/e2.png" alt="" />
             </div>
             <div class="ebase-content">
               <p>
@@ -219,7 +220,7 @@
         <div class="col-8 col-lg-3 text-center">
           <div class="ebase1 my-3">
             <div class="img">
-              <img src="../../../assets/images/e3.jpeg" alt="" />
+              <img src="../../../assets/images/e3.png" alt="" />
             </div>
             <div class="ebase-content">
               <p>
@@ -252,7 +253,7 @@
             <div class="aim-img d-none d-lg-block d-sm-block">
               <div class="container content-2">
                 <div class="left">
-                  <img src="../../../assets/images/e4.jpeg" alt="" />
+                  <img src="../../../assets/images/e4.png" alt="" />
                 </div>
                 <div class="right right2"></div>
               </div>
@@ -331,7 +332,7 @@
           <div class="row justify-content-center">
             <div class="col-6">
               <div class="footer-logo d-none d-lg-block d-sm-block">
-                <img src="../../../assets/images/flg.jpeg" alt="" />
+                <img src="../../../assets/images/flg.png" alt="" />
               </div>
             </div>
 
