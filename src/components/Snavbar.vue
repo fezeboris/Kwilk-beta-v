@@ -76,7 +76,7 @@ export default {
     },
     logout() {
       localStorage.clear();
-      this.$router.push({ name: "Login" });
+      this.$router.push({ name: "LandingPage" });
     },
      async handleGetStatus(){
       try{
