@@ -35,8 +35,9 @@
               <a target="_blank" href="https://endsgbv.medium.com">Stories</a>
             </li>
             <li class="nav-item mr-6">
-              <router-link to="/terms">Team</router-link>
-              <!-- <a class="nav-link" href="#team">Team</a> -->
+              <a target="_blank" href="https://www.ebaseafrica.org/team"
+                >Team</a
+              >
             </li>
           </ul>
           <ul class="navbar-nav ml-auto">
@@ -60,7 +61,7 @@
           <div class="col-md-5 text-center text-md-start">
             <div class="container content-1">
               <small
-                >eBASE Africa In collaboration with the French Embassy in
+                >eBASE Africa with Funding from the French Embassy in
                 Cameroon</small
               >
               <h1 class="fs-1 fw-bold">Fighting the Wicked Problem of SGBV</h1>
@@ -99,11 +100,18 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-center align-items-center">
-        <div class="col-10 col-lg-4">
+      <div
+        class="container-lg d-none d-lg-block d-sm-block d-sm-none d-md-block"
+      >
+        <div class="container">
           <div class="container enterprises mt-5">
-            <img src="../../../assets/images/entreprises.jpeg" alt="" />
+            <img src="../../../assets/images/enterpriseslogo.jpeg" alt="" />
           </div>
+        </div>
+      </div>
+      <div class="row align-content-center mt-3 d-block d-sm-none">
+        <div class="col-12">
+          <img src="../../../assets/images/enterpriseslogo.jpeg" alt="" />
         </div>
       </div>
     </div>
@@ -348,10 +356,25 @@
               <div class="row justify-content-center">
                 <div class="col-6 text-left">
                   <div class="features1">
-                    <p>fEATURES</p>
-                    <p>STORIES</p>
-                    <p>EDUCATION</p>
-                    <p>TEAM</p>
+                    <p><a href="#features">FEATURES</a></p>
+                    <p>
+                      <a target="_" href="https://endsgbv.medium.com/"
+                        >STORIES</a
+                      >
+                    </p>
+                    <p>
+                      <a target="_blank" href="https://endsgbv.medium.com/"
+                        >EDUCATION</a
+                      >
+                    </p>
+                    <p>
+                      <a
+                        target="_blank"
+                        href="https://www.ebaseafrica.org/team"
+                      >
+                        TEAM</a
+                      >
+                    </p>
                   </div>
                 </div>
                 <div class="col-6 text-left">
@@ -371,14 +394,6 @@
             </div>
           </div>
         </div>
-
-        <div class="col-8 col-lg-6 text-center mx-auto">
-          <div class="features2">
-            <div class="logo2"></div>
-            <div class="logo2"></div>
-            <div class="logo2"></div>
-          </div>
-        </div>
       </div>
     </div>
     <div class="hr3"></div>
@@ -390,8 +405,15 @@
           </div>
         </div>
         <div class="col-8 col-lg-5">
-          <div class="container"><small>Terms of Service</small></div>
+          <div class="container">
+            <small
+              ><router-link to="/terms">Terms of services</router-link></small
+            >
+          </div>
         </div>
+      </div>
+      <div class="container mt-3 text-center">
+        <p class="builtby">built by Vinsight technologies</p>
       </div>
     </div>
   </section>
@@ -404,9 +426,6 @@ export default {};
 <style scoped>
 a {
   text-decoration: none;
-}
-a.nav-link {
-  color: red;
 }
 .applink {
   color: #0472448f;
@@ -697,13 +716,26 @@ a:hover {
   color: #c7fee4;
   font-size: 0.7rem;
 }
+.footer small a {
+  color: #c7fee4;
+  font-size: 0.7rem;
+  text-decoration: none;
+}
 .percent {
   font-size: 80px;
 }
 .enterprises img {
   margin: 0px auto;
+  height: 100%;
+  width: 100%;
 }
 .enterprises {
   margin: 0px auto;
+  height: 80px;
+  width: 700px;
+}
+.builtby {
+  font-size: 0.9rem;
+  color: white;
 }
 </style>
