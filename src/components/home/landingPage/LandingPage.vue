@@ -25,21 +25,17 @@
         >
           <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
             <li class="nav-item mr-6">
-              <router-link to="#">Features</router-link>
-              <!-- <a class="nav-link active" aria-current="page" href="#"
-                >Features</a
-              > -->
+              <a aria-current="page" href="#features">Features</a>
             </li>
             <li class="nav-item mr-6">
-              <router-link to="#">Education</router-link>
-              <!-- <a class="nav-link;" href="#">Education</a> -->
+              <a target="_blank" href="https://endsgbv.medium.com">Education</a>
             </li>
             <li class="nav-item mr-6">
-              <router-link to="#">Stories</router-link>
-              <!-- <a class="nav-link" href="#">Stories</a> -->
+              <!-- <router-link to="#">Stories</router-link> -->
+              <a target="_blank" href="https://endsgbv.medium.com">Stories</a>
             </li>
             <li class="nav-item mr-6">
-              <router-link to="#">Team</router-link>
+              <router-link to="/terms">Team</router-link>
               <!-- <a class="nav-link" href="#team">Team</a> -->
             </li>
           </ul>
@@ -68,14 +64,18 @@
                 Cameroon</small
               >
               <h1 class="fs-1 fw-bold">Fighting the Wicked Problem of SGBV</h1>
-              <button class="btn btn-lg get-started">Get Started</button>
+              <router-link to="/login"
+                ><button class="btn btn-lg get-started my-3">
+                  Get Started
+                </button></router-link
+              >
             </div>
           </div>
           <div
             class="
               col-md-4
               text-center text-md-start
-              d-none d-lg-block d-sm-block
+              d-none d-lg-block d-sm-block d-sm-none d-md-block
               p-5
             "
           >
@@ -86,7 +86,7 @@
               <div class="right"></div>
             </div>
           </div>
-          <div class="col-md-5 text-center text-md-start d-block d-sm-none">
+          <div class="col-md-5 text-center d-md-none d-lg-none text-md-start">
             <div class="container mt-2">
               <div>
                 <img
@@ -99,11 +99,18 @@
           </div>
         </div>
       </div>
+      <div class="row justify-content-center align-items-center">
+        <div class="col-10 col-lg-4">
+          <div class="container enterprises mt-5">
+            <img src="../../../assets/images/entreprises.jpeg" alt="" />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <section class="section my-4">
     <div class="container text-center">
-      <p class="h5 text-success">Features</p>
+      <p class="h5 text-success" id="features">Features</p>
       <h1 class="h1 mb-5">
         Main Components of <br />
         the Kwikklik App
@@ -111,7 +118,7 @@
     </div>
     <div class="container-lg">
       <div class="row justify-content-center ms-auto">
-        <div class="col-8 col-lg-5 text-center">
+        <div class="col-11 col-lg-5 text-center">
           <div class="feature1">
             <div class="headers">
               <div class="square">
@@ -127,7 +134,7 @@
             </p>
           </div>
         </div>
-        <div class="col-8 col-lg-5 text-center">
+        <div class="col-11 col-lg-5 text-center">
           <div class="feature3">
             <div class="headers">
               <div class="square">
@@ -143,10 +150,9 @@
             </p>
           </div>
         </div>
-        <div class="col-8 col-lg-4 text-center"></div>
       </div>
       <div class="row justify-content-center mt-2 ms-auto">
-        <div class="col-8 col-lg-5 text-center">
+        <div class="col-11 col-lg-5 text-center">
           <div class="feature2">
             <div class="headers">
               <div class="square">
@@ -162,7 +168,7 @@
             </p>
           </div>
         </div>
-        <div class="col-8 col-lg-5 text-center">
+        <div class="col-11 col-lg-5 text-center">
           <div class="feature4">
             <div class="headers">
               <div class="square">
@@ -191,7 +197,7 @@
     </div>
     <div class="container-lg">
       <div class="row justify-content-center">
-        <div class="col-8 col-lg-3 text-center">
+        <div class="col-9 col-lg-3 text-center">
           <div class="ebase1 my-3">
             <div class="img">
               <img src="../../../assets/images/e1.png" alt="" />
@@ -204,7 +210,7 @@
             </div>
           </div>
         </div>
-        <div class="col-8 col-lg-3 text-center">
+        <div class="col-9 col-lg-3 text-center">
           <div class="ebase1 my-3">
             <div class="img">
               <img src="../../../assets/images/e2.png" alt="" />
@@ -217,7 +223,7 @@
             </div>
           </div>
         </div>
-        <div class="col-8 col-lg-3 text-center">
+        <div class="col-9 col-lg-3 text-center">
           <div class="ebase1 my-3">
             <div class="img">
               <img src="../../../assets/images/e3.png" alt="" />
@@ -237,12 +243,14 @@
     <div class="container-lg our-aim">
       <div class="container-lg">
         <div class="row justify-content-center">
-          <div class="col-8 col-lg-5 text-center">
+          <div class="col-10 col-lg-5 text-center">
             <div class="container aim-text me-5">
               <h1 class="h1 text-center display-1 d-none d-lg-block d-sm-block">
                 90%
               </h1>
-              <h1 class="h2 text-center display-1 d-block d-sm-none">90%</h1>
+              <h1 class="h2 text-center display-1 d-block d-sm-none percent">
+                90%
+              </h1>
               <p>
                 Our aim is to reduce the number of SGBV cases and the name of
                 deaths due to SGBV complications by 90% in the year 2023.
@@ -250,7 +258,7 @@
             </div>
           </div>
           <div class="col-8 col-lg-5 text-center mt-4">
-            <div class="aim-img d-none d-lg-block d-sm-block">
+            <div class="aim-img d-none d-sm-none d-lg-block">
               <div class="container content-2">
                 <div class="left">
                   <img src="../../../assets/images/e4.png" alt="" />
@@ -273,7 +281,7 @@
     </div>
     <div class="container-lg">
       <div class="row justify-content-center">
-        <div class="col-8 col-lg-4 text-center">
+        <div class="col-10 col-lg-4 text-center">
           <div class="expert1">
             <h1>Health Personnels</h1>
             <div class="hr2"></div>
@@ -287,7 +295,7 @@
             <div class="hr2"></div>
           </div>
         </div>
-        <div class="col-8 col-lg-4 mt-0 text-center">
+        <div class="col-10 col-lg-4 mt-0 text-center">
           <div class="expert1">
             <h1>Community Health Workers</h1>
             <div class="hr2"></div>
@@ -308,7 +316,7 @@
             <div class="contact-logo">
               <img src="../../../assets/images/call.png" alt="" />
             </div>
-            <p>+237 69XXXXXXX/ +237 67XXXXXXX</p>
+            <p>+237 677 319 374/ +237 679 499 759</p>
           </div>
         </div>
         <div class="col-12 col-lg-6 mt-0 text-center adress2">
@@ -397,6 +405,9 @@ export default {};
 a {
   text-decoration: none;
 }
+a.nav-link {
+  color: red;
+}
 .applink {
   color: #0472448f;
 }
@@ -448,7 +459,6 @@ a:hover {
 }
 .main-home {
   background: #a999050f;
-  padding-bottom: 75px;
 }
 .content-1 small {
   font-size: 12px;
@@ -549,7 +559,7 @@ a:hover {
 .ebase3 {
   width: 250px;
   height: 250px;
-  /* border: 1px solid grey; */
+  margin: 0px auto;
   border-radius: 0px 0px 30px 30px;
   /* display: flex; */
   /* justify-content: space-between; */
@@ -636,11 +646,13 @@ a:hover {
   color: black;
   font-size: 0.7rem;
   text-align: left;
+  margin-top: 5px;
 }
 .contact-logo {
   margin: 0px 20px;
-  width: 60px;
-  height: 60px;
+
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
 .contact-logo img {
@@ -684,5 +696,14 @@ a:hover {
 .footer small {
   color: #c7fee4;
   font-size: 0.7rem;
+}
+.percent {
+  font-size: 80px;
+}
+.enterprises img {
+  margin: 0px auto;
+}
+.enterprises {
+  margin: 0px auto;
 }
 </style>

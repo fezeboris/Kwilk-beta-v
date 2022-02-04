@@ -2,7 +2,9 @@
   <form @submit.prevent="handleSubmit">
     <div class="hearder">
       <div class="login-profil">
-        <div class="login-profil-img"></div>
+        <div class="login-profil-img">
+          <img src="../assets/images/logo-circle.png" alt="" />
+        </div>
         <div class="login-profil-message">
           <h1>Registration</h1>
           <p>create an account</p>
@@ -290,7 +292,10 @@ hr {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: yellow;
+}
+.login-profil-img img {
+  width: 100%;
+  height: 100%;
 }
 .signup a {
   color: #1cb902;
