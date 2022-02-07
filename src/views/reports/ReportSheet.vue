@@ -204,6 +204,7 @@ import Footer from "@/components/Footer";
 import ReportNav from "../reports/ReportNav.vue";
 import axios from "axios";
 import Loader from "@/components/toolpit/Loader.vue";
+import Swal from "sweetalert2";
 // import setAuthHeader from '../../components/utils/setAuthHeader'
 // import Geolocalisation from "@/components/toolpit/Geolocalisation.vue";
 import Date from "@/components/toolpit/Date.vue";
@@ -255,6 +256,17 @@ export default {
     };
   },
   methods: {
+    //======= Popup ===============//
+    doSomething() {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Your report has been sent",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    },
+    // ========================
     // Audio methods
     startRecording() {
       this.deleteRecording();
@@ -335,6 +347,7 @@ export default {
           //   },
           // }
         );
+        this.doSomething();
         this.$router.push({ name: "HomeSlider" });
 
         (this.report = ""),
