@@ -136,7 +136,7 @@
     "route1": "Professionals ?",
     "route2": "Rate this App ?",
     "b": "Update",
-    "update":{
+    "update": {
       "English": "English",
       "French": "French",
       "Male": "Male",
@@ -155,7 +155,7 @@
       "SW": "South West"
     }
   },
-  "jobRuest": {
+  "jobRequest": {
     "p": "I want to be acknoledged on this plateform as:",
     "btn1": "Accept",
     "btn2": "Decline",
@@ -179,37 +179,32 @@
     "op1": "Yes",
     "op2": "NO",
     "l3": "Can you share a story of anyone you know who had experienced any of the forms of SGBV and how the situation was handled.",
-    "l4":"Do you think providing educative talks through school clubs and community radios programs can reduce the incidence of SGBV cases? Why?",
-    "l5":"if a girl is wearing a more revealing dress where some of her body parts such as breast etc. are exposed and gets harassed or rape, who do you think is to be blamed. Why?",
+    "l4": "Do you think providing educative talks through school clubs and community radios programs can reduce the incidence of SGBV cases? Why?",
+    "l5": "if a girl is wearing a more revealing dress where some of her body parts such as breast etc. are exposed and gets harassed or rape, who do you think is to be blamed. Why?",
     "l6": "If a girl is walks at night and raped or harassed, do you think it’s her fault?",
-    "h2":" Crisis",
+    "h2": " Crisis",
     "l7": "How has the crisis affected the rate of SGBV in the community?",
-    "l8":"Do you have emergency lines or report system that you can rely on?",
+    "l8": "Do you have emergency lines or report system that you can rely on?",
     "l9": "Do you think the pandemic Covid has affected the occurrence rate of SGBV?",
     "h3": "Culture",
     "l10": "What myths or superstitious or spiritual beliefs exists around rape or intimate partner violence or homosexuality etc.?",
     "l11": "Do you think you have rights over your partner, and over your partners body for any reason? Why?",
     "l12": "If you want sex and your partner is not in the mood, do you have the right to force him/her?",
     "l13": "Is it right for a one partner to beat up his/her partner?",
-    "l14":"Can you give some of the factors that lead to early child marriage?",
+    "l14": "Can you give some of the factors that lead to early child marriage?",
     "l15": "Do you think it’s ok for a parent to marry off their child without the child’s concern? Why?",
     "l16": "Have there been any situations where your child or another CWD (child with disability) has been sexually abused or violently attacked? Tell us about it.",
     "l17": "Tell us how parental education can put an end to SGBV?",
     "l18": "What do you think are some of the barriers that make victims of SGBV hesitant to speak up?",
-    "l19":"Do you think that there is any justification for any form of SGBV?",
+    "l19": "Do you think that there is any justification for any form of SGBV?",
     "l20": "Can you give recommendations on how we can fight against SGBV in the communities?",
-    "l21":"reponse",
+    "l21": "reponse",
     "l22": "User",
     "btn1": "Submit"
-
-
   },
-  "notiNav":{
+  "notiNav": {
     "h1": "Notifications",
     "p": "Time is up"
   },
-  "myreports":{
-    
-    
-  }
+  "myreports": {}
 }

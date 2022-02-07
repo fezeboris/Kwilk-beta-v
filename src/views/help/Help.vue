@@ -2,53 +2,52 @@
   <HelpNav />
 
   <div class="help">
-    
-
     <div class="request-main-contain">
       <!-- <router-link :to="{ name: 'Clinical' }"> -->
-       
-       <div class="loader" v-if="loading">
-         <Loader/>
-       </div>
-        <div class="clinical-specialist">
-         
 
-          <router-link :to="{name: 'ClinicalDemande'}"><p>{{ $t('help.p1') }}</p></router-link>
-         
-        </div>
+      <div class="loader" v-if="loading">
+        <Loader />
+      </div>
+      <div class="clinical-specialist">
+        <img src="../../assets/images/hospital.png" alt="" />
+
+        <router-link :to="{ name: 'ClinicalDemande' }"
+          ><p>{{ $t("help.p1") }}</p></router-link
+        >
+      </div>
       <!-- </router-link> -->
 
       <!-- <router-link :to="{ name: 'Psychological' }"> -->
-        <div class="clinical-specialist">
-        
-         
-         <router-link :to="{name: 'ClinicalDemande'}"> <p>{{ $t('help.p2') }}</p></router-link>
-        </div>
+      <div class="clinical-specialist">
+        <img src="../../assets/images/brain.png" alt="" />
+        <router-link :to="{ name: 'ClinicalDemande' }">
+          <p>{{ $t("help.p2") }}</p></router-link
+        >
+      </div>
       <!-- </router-link> -->
 
       <!-- <router-link :to="{ name: 'Consultant' }"> -->
-        <div class="clinical-specialist">
-         
-
-          
-         <router-link :to="{name: 'DemandeConsultant'}"><p>{{ $t('help.p3') }}</p></router-link>
-        </div>
+      <div class="clinical-specialist">
+        <img src="../../assets/images/advisor.png" alt="" />
+        <router-link :to="{ name: 'DemandeConsultant' }"
+          ><p>{{ $t("help.p3") }}</p></router-link
+        >
+      </div>
       <!-- </router-link> -->
 
       <!-- <router-link :to="{ name: 'Bike' }"> -->
-        <div class="clinical-specialist">
-       
-
-          
-         <router-link :to="{name: 'DemandeBike'}"><p>{{ $t('help.p4') }}</p></router-link>
-        </div>
+      <div class="clinical-specialist">
+        <img src="../../assets/images/bike.png" alt="" />
+        <router-link :to="{ name: 'DemandeBike' }"
+          ><p>{{ $t("help.p4") }}</p></router-link
+        >
+      </div>
       <!-- </router-link> -->
       <div class="myRequest">
-        <router-link :to="{name: 'MyRequest'}">{{ $t('help.p5') }}</router-link>
+        <router-link :to="{ name: 'MyRequest' }">{{
+          $t("help.p5")
+        }}</router-link>
       </div>
-
-
-    
     </div>
     <!-- <hr /> -->
     <Footer />
@@ -60,7 +59,7 @@
 // import DemandConsultant from '../help/experts/helpDemande/DemandConsultant.vue'
 // import PsychoDemande from '../help/experts/helpDemande/PsychoDemande.vue'
 // import DemandeBike from '../help/experts/helpDemande/DemandeBike.vue'
-import Loader from '@/components/toolpit/Loader.vue'
+import Loader from "@/components/toolpit/Loader.vue";
 
 import axios from "axios";
 import Footer from "../../components/Footer.vue";
@@ -74,8 +73,7 @@ export default {
     // DemandConsultant,
     // PsychoDemande,
     // DemandeBike,
-    Loader
-
+    Loader,
   },
   data() {
     return {
@@ -88,8 +86,6 @@ export default {
     getDate(date) {
       this.currentDate = date;
     },
-   
-  
 
     async updateEducation() {
       this.loading = true;
@@ -98,7 +94,7 @@ export default {
           `https://kwiklik.herokuapp.com/help/create/${this.token}/`
         );
         // console.log(result.data.education_list);
-        console.log(result)
+        console.log(result);
       } catch (e) {
         console.log(e);
       }
@@ -110,7 +106,7 @@ export default {
     //    console.log(this.currentDate)
     // this.updateEducation();
 
-     let user = localStorage.getItem("userInfo");
+    let user = localStorage.getItem("userInfo");
     if (!user) {
       this.$router.push({ name: "Login" });
     }
@@ -141,14 +137,23 @@ small {
 }
 
 .clinical-specialist {
-  text-align: center;
+  text-align: left;
+  display: flex;
+
+  align-items: center;
   margin-top: 48px;
-  font-size: 1.5rem;
 }
-.clinical-specialist p{
-  background-color: lightgreen;
-  padding: 10px 0;
+.clinical-specialist p {
+  /* background-color: lightgreen; */
+  text-align: left;
+  font-size: 1rem;
+  font-weight: bold;
   border-radius: 5px;
+}
+.clinical-specialist img {
+  margin-right: 20px;
+  width: 60px;
+  height: 60px;
 }
 .arrow {
   color: #1cb902;
@@ -164,19 +169,17 @@ hr {
 a {
   text-decoration: none;
 }
-.myRequest{
+.myRequest {
   text-align: right;
   color: lightblue;
   font-size: 1.1rem;
   margin-top: 20px;
- 
 }
-.myRequest a{
- box-shadow: rgba(2, 236, 253, 0.2) 0px 7px 29px 0px;
+.myRequest a {
+  box-shadow: rgba(2, 236, 253, 0.2) 0px 7px 29px 0px;
 }
-.loader{
-    text-align: center;
-    margin: 0px auto;
+.loader {
+  text-align: center;
+  margin: 0px auto;
 }
-
 </style>
