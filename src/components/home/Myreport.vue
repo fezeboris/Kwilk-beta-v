@@ -281,7 +281,7 @@ export default {
       // console.log(id);
       Swal.fire({
         title: "Are you sure?",
-        text: "",
+        text: "The image will now be visible for all",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -290,7 +290,7 @@ export default {
       }).then((result) => {
         if (result.isConfirmed) {
           this.imageDelete();
-          Swal.fire("Deleted!", "Your file has been deleted.", "success");
+          Swal.fire("Deleted!", "Your file has been hidden");
         }
       });
     },
@@ -299,7 +299,7 @@ export default {
       // console.log(id);
       Swal.fire({
         title: "Are you sure?",
-        text: "",
+        text: "The image will now be visible for all",
         icon: "success",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
