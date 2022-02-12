@@ -718,7 +718,7 @@ input[type="file"] {
 
 .checkbox-main-container {
   display: flex;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   justify-content: space-between;
 }
 

@@ -31,8 +31,8 @@
               <a target="_blank" href="https://endsgbv.medium.com">Education</a>
             </li>
             <li class="nav-item mr-6">
-              <!-- <router-link to="#">Stories</router-link> -->
-              <a target="_blank" href="https://endsgbv.medium.com">Stories</a>
+              <router-link to="/our-stories">Stories</router-link>
+              <!-- <a target="_blank" href="https://endsgbv.medium.com">Stories</a> -->
             </li>
             <li class="nav-item mr-6">
               <a target="_blank" href="https://www.ebaseafrica.org/team"
@@ -105,13 +105,13 @@
       >
         <div class="container">
           <div class="container enterprises mt-5">
-            <img src="../../../assets/images/enterpriseslogo.jpeg" alt="" />
+            <img src="../../../assets/images/elogo.jpeg" alt="" />
           </div>
         </div>
       </div>
       <div class="row align-content-center mt-3 d-block d-sm-none">
         <div class="col-12">
-          <img src="../../../assets/images/enterpriseslogo.jpeg" alt="" />
+          <img src="../../../assets/images/elogo.jpeg" alt="" />
         </div>
       </div>
     </div>
@@ -313,6 +313,20 @@
             <div class="hr2"></div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="container text-center">
+      <h1 class="h2 pt-2 mb-5">Our Partners</h1>
+    </div>
+    <div class="container-lg">
+      <div class="container">
+        <img
+          class="img-fluid our-partner"
+          src="../../../assets/images/partners.jpeg"
+          alt=""
+        />
       </div>
     </div>
   </section>
@@ -573,13 +587,11 @@ a:hover {
   margin: 15px 15px;
 }
 
-.ebase1,
-.ebase2,
-.ebase3 {
+.ebase1 {
   width: 250px;
   height: 250px;
   margin: 0px auto;
-  border-radius: 0px 0px 30px 30px;
+  border-radius: 0px 0px 15px 15px;
   /* display: flex; */
   /* justify-content: space-between; */
   /* align-items: flex-end; */
@@ -587,7 +599,7 @@ a:hover {
 .ebase-content {
   height: 60px;
   color: black;
-  border-radius: 0px 0px 30px 30px;
+  border-radius: 0px 0px 15px 15px;
   background: #6a6214f7;
   bottom: 0;
 }
@@ -737,5 +749,8 @@ a:hover {
 .builtby {
   font-size: 0.9rem;
   color: white;
+}
+.our-partner {
+  margin: 0 auto;
 }
 </style>
