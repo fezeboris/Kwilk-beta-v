@@ -45,7 +45,10 @@
       </div>
     </div>
   </div>
-  <div class="reports-image" v-if="mainReport.image !== ''">
+  <div
+    class="reports-image"
+    v-if="mainReport.image !== '' && mainReport.image_deleted == 'False'"
+  >
     <img :src="mainReport.image" alt="" />
   </div>
   <div class="container-2">
@@ -181,7 +184,7 @@ export default {
         // console.log(result.data);
         (this.mainReport = result.data),
           (this.subReports = result.data.report_list);
-        console.log("main re", result);
+        // console.log("main re", result);
       } catch (e) {
         console.log(e);
       }
@@ -394,7 +397,7 @@ a:hover {
 .reply {
   margin-top: 20px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 .fa-comment {
   margin-left: 30px;

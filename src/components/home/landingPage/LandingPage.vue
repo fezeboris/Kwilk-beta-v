@@ -260,8 +260,8 @@
                 90%
               </h1>
               <p>
-                Our aim is to reduce the number of SGBV cases and the name of
-                deaths due to SGBV complications by 90% in the year 2023.
+                Our aim is to reduce the number of SGBV cases and deaths due to
+                SGBV complications by 90% in the year 2023.
               </p>
             </div>
           </div>

@@ -126,18 +126,18 @@
           </div>
         </div>
         <router-link :to="`/home-slider/detail/` + report.report_id">
-          <div
-            class="report-image"
-            v-if="report.image !== '' && report.image_deleted == 'False'"
-          >
+          <div class="report-image" v-if="report.image !== ''">
             <img :src="report.image" alt="" />
           </div>
         </router-link>
         <div class="delete-image">
-          <small class="mx-3 fw-bold">delete image</small>
+          <small class="mx-3 fw-bold">hide image</small>
           <div class="education-btn">
             <button
-              @click="deleteImage = false"
+              @click="
+                imageVisibleConfirmation(report.report_id),
+                  (deleteImage = false)
+              "
               :class="{ active: report.image_deleted == 'False' }"
             >
               <a href="#">No</a>
@@ -228,6 +228,21 @@ export default {
         console.log(e);
       }
     },
+    async imageVisible() {
+      try {
+        let result = await axios.put(
+          `https://kwiklik.herokuapp.com/reports/messages/update/${this.token}/${this.reportId}/`,
+          {
+            image_deleted: "False",
+          }
+        );
+        this.getReports();
+        // console.log("hey", result);
+        return result;
+      } catch (e) {
+        console.log(e);
+      }
+    },
     async reportDelete() {
       try {
         let result = await axios.put(
@@ -271,11 +286,29 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete image!",
+        confirmButtonText: "Yes, hide image!",
       }).then((result) => {
         if (result.isConfirmed) {
           this.imageDelete();
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        }
+      });
+    },
+    imageVisibleConfirmation(id) {
+      this.reportId = id;
+      // console.log(id);
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.imageVisible();
+          Swal.fire("our image is now visible for all");
         }
       });
     },
