@@ -221,6 +221,7 @@ export default {
             image_deleted: "True",
           }
         );
+        this.getReports();
         // console.log("hey", result);
         return result;
       } catch (e) {
@@ -236,7 +237,8 @@ export default {
           }
         );
         // location.reload();
-        this.$router.push({ name: "HomeSlider" });
+        // this.$router.push({ name: "HomeSlider" });
+        this.getReports();
         return result;
       } catch (e) {
         console.log(e);
