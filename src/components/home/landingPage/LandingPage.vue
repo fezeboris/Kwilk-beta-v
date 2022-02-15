@@ -338,7 +338,7 @@
             <div class="contact-logo">
               <img src="../../../assets/images/call.png" alt="" />
             </div>
-            <p>+237 677 319 374/ +237 679 499 759</p>
+            <p>+237 693 184 050/ +237 679 499 759</p>
           </div>
         </div>
         <div class="col-12 col-lg-6 mt-0 text-center adress2">

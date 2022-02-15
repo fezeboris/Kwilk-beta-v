@@ -10,7 +10,6 @@
         <a href="#">Article</a>
       </button>
 
-
       <button
         @click="showVideos = false"
         :class="{ active: showVideos === false }"
@@ -19,7 +18,7 @@
       </button>
     </div>
   </div>
-  
+
   <div class="education" @click="showModal = false">
     <div class="loader" v-if="loading">
       <Loader />
@@ -34,7 +33,7 @@
       <div v-if="showVideos" class="aticle">
         <div v-if="education.type_education == 'text'">
           <div class="delete" v-if="job == 'clerk'">
-           <button @click="deleteVideo(education.id)">delete</button>
+            <button @click="deleteVideo(education.id)">delete</button>
           </div>
           <p class="text-title">{{ education.title }}</p>
           <p class="date">Uploaded on: {{ education.uploaded_on }}</p>
@@ -55,17 +54,18 @@
             <!-- <button @click.prevent="deleteVideo(education.id)">delete</button> -->
           </div>
           <p class="title">{{ education.title }}</p>
-         
-          <iframe
+
+          <!-- <iframe
             target="blank"
-            :src="education.link"
+            :src="education.link + '&embedded=true'"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           >
-          </iframe>
-           <p class="date">Uploaded on: {{ education.uploaded_on }}</p>
+          </iframe> -->
+
+          <p class="date">Uploaded on: {{ education.uploaded_on }}</p>
         </div>
       </div>
     </div>
@@ -86,6 +86,7 @@ export default {
     Footer,
     EducationNav,
     Loader,
+
     // ConfirmationDeleteVideo
   },
   data() {
@@ -96,7 +97,7 @@ export default {
       educations: "",
       job: "",
       loading: false,
-      vID: ''
+      vID: "",
     };
   },
   methods: {
@@ -110,9 +111,9 @@ export default {
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/education/get/${this.token}/`
         );
-        // console.log(result.data.education_list);
+        console.log(result.data.education_list[1].link);
         this.educations = result.data.education_list;
-        // console.log(result);
+        // console.log(this.educations.link);
       } catch (e) {
         console.log(e);
       }
@@ -150,9 +151,9 @@ export default {
         console.log(e);
       }
     },
-     deleteVideo(id) {
+    deleteVideo(id) {
       this.vID = id;
-      console.log( this.vID)
+      console.log(this.vID);
       Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
@@ -163,12 +164,10 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
-          this.deleteVid()
+          this.deleteVid();
         }
       });
-      
     },
     async handleGetStatus() {
       try {
@@ -182,9 +181,9 @@ export default {
         console.log(e);
       }
     },
-       callbackFunction(val) {
-         this.showModal = val;
-    }
+    callbackFunction(val) {
+      this.showModal = val;
+    },
   },
   mounted() {
     this.token = localStorage.getItem("userInfo");
@@ -193,7 +192,7 @@ export default {
 
     this.handleGetStatus();
 
-     let user = localStorage.getItem("userInfo");
+    let user = localStorage.getItem("userInfo");
     if (!user) {
       this.$router.push({ name: "Login" });
     }
@@ -281,7 +280,7 @@ iframe {
 }
 .date {
   color: lightskyblue;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 a {
   color: mediumblue;
@@ -337,7 +336,6 @@ hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
 }
-
 
 .loader {
   text-align: center;
