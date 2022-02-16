@@ -57,13 +57,20 @@
 
           <!-- <iframe
             target="blank"
-            :src="education.link + '&embedded=true'"
+            :src="education.link"
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
           >
           </iframe> -->
+          <a
+            :href="education.link"
+            class="btn videobtn"
+            type="button"
+            rel="noopener noreferrer"
+            >Play video</a
+          >
 
           <p class="date">Uploaded on: {{ education.uploaded_on }}</p>
         </div>
@@ -80,6 +87,13 @@ import Footer from "@/components/Footer.vue";
 import EducationNav from "../education/EducationNav.vue";
 import Loader from "@/components/toolpit/Loader.vue";
 import Swal from "sweetalert2";
+// import Embed from "v-video-embed";
+// import VueYouTubeEmbed from "vue-youtube-embed";
+
+// import { createApp } from "vue";
+// import App from "../../App.vue";
+// createApp(App).use(VueYouTubeEmbed);
+
 // import ConfirmationDeleteVideo from '@/components/toolpit/ConfirmationDeleteVideo.vue'
 export default {
   components: {
@@ -340,5 +354,10 @@ hr {
 .loader {
   text-align: center;
   margin: 0px auto;
+}
+.videobtn {
+  background: rgba(5, 198, 82, 0.54);
+  color: #fff;
+  text-decoration: none;
 }
 </style>

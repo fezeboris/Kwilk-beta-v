@@ -9,7 +9,6 @@ import i18n from "./i18n";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// import axios from 'axios'
 // const lang = localStorage.getItem('lang') || 'en';
 // axios.defaults.baseURL = 'https://kwiklik.herokuapp.com/'
 // axios.defaults.headers['Accept-Language'] = lang;

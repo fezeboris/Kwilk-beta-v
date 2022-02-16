@@ -79,7 +79,7 @@
         </div>
         <div class="mt-5">
           <p class="fs-4 fw-bold">What is Gender Based Violence (GBV)?</p>
-          <p class="fs-4">
+          <p class="fs-5">
             Gender Based Violence is any act of violence committed against a
             person due to the person’s <b>gender</b> and results in
             <b>physical, psychological, sexual or economic harm.</b> Victims of
@@ -89,7 +89,7 @@
               stigmatization.</b
             >
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             In different regions in Cameroon, there are several conflicts. In
             the Northern regions <b>Boko Haram</b> constantly attacks civilians
             and children and kids are generally the target. Some girls are being
@@ -100,7 +100,7 @@
             <b>cultural and religious</b>
             beliefs have permitted gender-based violence for a long time.
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             In the <b>North West and South West regions</b> of Cameroon, there
             is a war between
             <b>separatist fighters and the Cameroon army;</b> which lives again
@@ -110,7 +110,7 @@
             are many times forced into relationships and in general are at high
             risk to falling in the hands of sex predators.
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             In the <b>Eastern region,</b> many young girls have been obliged to
             get into the <b>sex trade in order to make a living,</b> hence
             leaving them very exposed to gender based violence, in addition to
@@ -119,7 +119,7 @@
             refugee camps are poorly funded. This leads to girls been targets of
             sexual gender-based violence by locals and even the male refugees.
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             Although we have cited some regions, in the other regions, we still
             witness gender-based violence; especially in the form of
             <b>
@@ -128,7 +128,7 @@
             >
             just to name a few.
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             Those whose rights are violated are also faced with weak health
             systems <b>(mental, clinical, psycho social)</b> are weak in
             capacity and resources, coupled with weak legal systems;
@@ -137,7 +137,7 @@
           <p class="fs-4 fw-bold">
             Using Technology to help reduce Gender Based Violence.
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             In the context of general insecurity (In the North West and South
             West Regions, East Region, North Region),
             <b>misinformation, stigmatization and weak legal systems,</b> it
@@ -154,7 +154,7 @@
             developed over the years hence making it easier for Gender Based
             Violence victims to receive care.
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             Thanks to advancements in technology, and availability of local app
             development firms and institutes like
             <b> eBASE (Effective Basic Services) Africa</b> in collaboration
@@ -171,7 +171,7 @@
             How does the Kwikklik App help reduce and prevent Gender Based
             Violence (GBV)?.
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             It is made of a <b>reporting unit</b> platform which uses an
             innovative approach in which mobile phones can be used to report 3D
             (<b>GPS, Image, Voice, Time</b>) data of GBV cases. A
@@ -181,35 +181,35 @@
             intelligence (AI) will be used to help notify people in a certain
             area about the risks of GBV.
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             In cases where the harm has already been done, the
             <b> consultancy unit</b> permits victims get in contact easily with
             experts (<b>medical, psychology and legal</b>) and emergency units
             (<b>‘Okadas’</b>), so that they can be taken immediate care of.
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             In order to create awareness and prevent future cases of GBV, the
             <b>education unit</b> will help sensitize users about measures of
             prevention of GBV and also emergency steps to be taken when such
             crimes are committed.
           </p>
           <p class="fs-4 fw-bold">How does the Kwikklik App work?</p>
-          <p class="fs-4">
+          <p class="fs-5">
             This App is multi-platform an can be accessed on most devices.
           </p>
-          <p class="fs-4">
+          <p class="fs-5">
             You can access the app by clicking on <b>Get App</b> on the landing
             page:
           </p>
         </div>
-        <p class="fs-4">
+        <p class="fs-5">
           <b
             ><a href="https://www.endsgbv.org">https://www.endsgbv.org</a>. Once
             you gain access to the app, you can then:</b
           >
         </p>
         <p class="fs-4 fw-bold">Sign Up:</p>
-        <p class="fs-4">
+        <p class="fs-5">
           In case you have yet created an account, once You get to fill in all
           necessary information to get registered as a user.
         </p>
@@ -217,7 +217,7 @@
         <p class="fs-4">Note:</p>
         <br />
         <ul>
-          <li class="fs-4">
+          <li class="fs-5">
             <p>
               <span class="fw-bold me-2">*</span> Make sure to put in a valid
               email address
@@ -226,16 +226,16 @@
           <li class="fs-4">
             <p><span class="fw-bold me-2">*</span>Email addresses are unique</p>
           </li>
-          <li class="fs-4">
+          <li class="fs-5">
             <p><span class="fw-bold me-2">*</span> Usernames are unique</p>
           </li>
-          <li class="fs-4">
+          <li class="fs-5">
             <p>
               <span class="fw-bold me-2">*</span> The password in the
               verification box must match the original password
             </p>
           </li>
-          <li class="fs-4">
+          <li class="fs-5">
             <p>
               <span class="fw-bold me-2">*</span>You must accept the terms and
               agreements.
@@ -254,7 +254,7 @@
         </p>
       </div>
       <p class="fs-4 fw-bold">Sign In:</p>
-      <p class="fs-4">
+      <p class="fs-5">
         In case you already have an account, you just put in your credentials
         and gain access to the platform.
       </p>
@@ -266,7 +266,7 @@
         />
       </div>
       <p class="fs-4 fw-bold">Homepage</p>
-      <p class="fs-4">
+      <p class="fs-5">
         Now logged in, the first page you see is the home page which contains
         different user’s reports and you can choose to comment or view any of
         these reports by simply clicking on them.
@@ -281,7 +281,7 @@
       </div>
 
       <p class="fs-4 fw-bold">Reporting</p>
-      <p class="fs-4">
+      <p class="fs-5">
         Once you click on the reporting icon, you have this report abuse page
         which comes up. You can insert <b> textual details</b> about your case,
         do an optional <b> voice recording,</b> upload an optional
@@ -298,7 +298,7 @@
         />
       </div>
       <p class="fs-4 fw-bold">Education Content Page</p>
-      <p class="fs-4">
+      <p class="fs-5">
         Any user can gain access to <b>free educational content</b> by clicking
         on the education icon, and then choosing to view either videos or
         articles. The videos can be viewed on this platform or on the platform
@@ -312,7 +312,7 @@
         />
       </div>
       <p class="fs-4 fw-bold">Getting Help (Medical, Psychological, Legal)</p>
-      <p class="fs-4">
+      <p class="fs-5">
         All users can get access to
         <b
           >Preventive Palliatives, Medical practitioners, legal consultants and
@@ -330,7 +330,7 @@
         />
       </div>
       <p class="fs-4 fw-bold">Map view</p>
-      <p class="fs-4">
+      <p class="fs-5">
         Reports apart from being just viewed as plain text and multimedia files,
         can be viewed on a map, with different colors representing different
         case types
@@ -343,7 +343,7 @@
         />
       </div>
       <p class="fs-4 fw-bold">User Profile</p>
-      <p class="fs-4">
+      <p class="fs-5">
         You can view and update profile information, by selecting My account,
         when you click on the top left icon. Then if you want to update, just
         click on edit profile, and once the update is done, click on update.
@@ -365,12 +365,12 @@
         />
       </div>
       <p class="fs-4 fw-bold">Conclusion</p>
-      <p class="fs-4">
+      <p class="fs-5">
         In this blogpost, we have discussed how a technological solution like
         the Kwikklik App can help in the prevention of GBV and taking care of
         GBV victims. We have also seen how to use this App effectively.
       </p>
-      <p class="fs-4">Let’s all take care :)</p>
+      <p class="fs-5">Let’s all take care :)</p>
     </div>
   </section>
 </template>
