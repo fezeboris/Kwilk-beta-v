@@ -8,41 +8,20 @@
       <div class="loader" v-if="loading">
         <Loader />
       </div>
-      <div class="clinical-specialist">
-        <img src="../../assets/images/hospital.png" alt="" />
 
-        <router-link :to="{ name: 'ClinicalDemande' }"
-          ><p>{{ $t("help.p1") }}</p></router-link
-        >
+      <div class="demandes">
+        <DemandConsultant />
       </div>
-      <!-- </router-link> -->
+      <div class="demandes">
+        <ClinicalDemande />
+      </div>
+      <div class="demandes">
+        <PsychoDemande />
+      </div>
+      <div class="demandes">
+        <DemandeBike />
+      </div>
 
-      <!-- <router-link :to="{ name: 'Psychological' }"> -->
-      <div class="clinical-specialist">
-        <img src="../../assets/images/brain.png" alt="" />
-        <router-link :to="{ name: 'ClinicalDemande' }">
-          <p>{{ $t("help.p2") }}</p></router-link
-        >
-      </div>
-      <!-- </router-link> -->
-
-      <!-- <router-link :to="{ name: 'Consultant' }"> -->
-      <div class="clinical-specialist">
-        <img src="../../assets/images/advisor.png" alt="" />
-        <router-link :to="{ name: 'DemandeConsultant' }"
-          ><p>{{ $t("help.p3") }}</p></router-link
-        >
-      </div>
-      <!-- </router-link> -->
-
-      <!-- <router-link :to="{ name: 'Bike' }"> -->
-      <div class="clinical-specialist">
-        <img src="../../assets/images/bike.png" alt="" />
-        <router-link :to="{ name: 'DemandeBike' }"
-          ><p>{{ $t("help.p4") }}</p></router-link
-        >
-      </div>
-      <!-- </router-link> -->
       <div class="myRequest">
         <router-link :to="{ name: 'MyRequest' }">{{
           $t("help.p5")
@@ -55,10 +34,10 @@
 </template>
 
 <script>
-// import ClinicalDemande from '../help/experts/helpDemande/ClinicalDemande.vue'
-// import DemandConsultant from '../help/experts/helpDemande/DemandConsultant.vue'
-// import PsychoDemande from '../help/experts/helpDemande/PsychoDemande.vue'
-// import DemandeBike from '../help/experts/helpDemande/DemandeBike.vue'
+import ClinicalDemande from "../help/experts/helpDemande/ClinicalDemande.vue";
+import DemandConsultant from "../help/experts/helpDemande/DemandConsultant.vue";
+import PsychoDemande from "../help/experts/helpDemande/PsychoDemande.vue";
+import DemandeBike from "../help/experts/helpDemande/DemandeBike.vue";
 import Loader from "@/components/toolpit/Loader.vue";
 
 import axios from "axios";
@@ -69,10 +48,10 @@ export default {
   components: {
     Footer,
     HelpNav,
-    // ClinicalDemande,
-    // DemandConsultant,
-    // PsychoDemande,
-    // DemandeBike,
+    ClinicalDemande,
+    DemandConsultant,
+    PsychoDemande,
+    DemandeBike,
     Loader,
   },
   data() {
@@ -115,6 +94,11 @@ export default {
 </script>
 
 <style  scoped>
+textarea {
+  border-radius: 5px;
+  outline: none;
+  height: 200px;
+}
 .help {
   max-width: 420px;
   margin: 0px auto;
@@ -127,41 +111,10 @@ export default {
 .request-main-contain {
   margin-top: 50px;
 }
-
-small {
-  color: #c4c4c4;
-  font-size: 0.8rem;
-  letter-spacing: 0px;
-  margin: 0;
-  /* line-height: 0.5rem; */
+.demandes {
+  margin-bottom: 40px;
 }
 
-.clinical-specialist {
-  text-align: left;
-  display: flex;
-
-  align-items: center;
-  margin-top: 48px;
-}
-.clinical-specialist p {
-  /* background-color: lightgreen; */
-  text-align: left;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
-}
-.clinical-specialist img {
-  margin-right: 20px;
-  width: 60px;
-  height: 60px;
-}
-.arrow {
-  color: #1cb902;
-  font-size: 2rem;
-}
-.bands {
-  margin-bottom: 20px;
-}
 hr {
   margin-top: 50px;
   color: #c4c4c4;

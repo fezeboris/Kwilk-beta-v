@@ -18,7 +18,6 @@
 
           <div v-else class="login-profil-img">
             <i class="fas fa-user-circle"></i>
-            
           </div>
         </div>
       </div>
