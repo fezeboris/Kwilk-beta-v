@@ -2,7 +2,7 @@
   <div class="">
     <button
       type="button"
-      class="btn btn-lg text-center"
+      class="btn-lg text-center"
       data-bs-toggle="modal"
       data-bs-target="#exampleModal"
     >

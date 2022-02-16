@@ -29,7 +29,7 @@
       </div>
     </div>
     <!-- <hr /> -->
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>
 
@@ -41,12 +41,12 @@ import DemandeBike from "../help/experts/helpDemande/DemandeBike.vue";
 import Loader from "@/components/toolpit/Loader.vue";
 
 import axios from "axios";
-import Footer from "../../components/Footer.vue";
+// import Footer from "../../components/Footer.vue";
 import HelpNav from "../help/HelpNav.vue";
 // import Loader from '../../components/toolpit/Loader.vue'
 export default {
   components: {
-    Footer,
+    // Footer,
     HelpNav,
     ClinicalDemande,
     DemandConsultant,
