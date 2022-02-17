@@ -50,7 +50,7 @@
               class="btn btn-secondary"
               data-bs-dismiss="modal"
             >
-              Cancel
+              close
             </button>
             <button
               type="button"
@@ -116,7 +116,7 @@ export default {
         this.demand = "";
         // console.log(result);
         this.doSomething();
-        
+
         this.loading = false;
         return result;
       } catch (e) {
