@@ -105,13 +105,13 @@
       >
         <div class="container">
           <div class="container enterprises mt-5">
-            <img src="../../../assets/images/elogo.jpeg" alt="" />
+            <img src="../../../assets/images/mlogo.png" alt="" />
           </div>
         </div>
       </div>
       <div class="row align-content-center mt-3 d-block d-sm-none">
         <div class="col-12">
-          <img src="../../../assets/images/elogo.jpeg" alt="" />
+          <img src="../../../assets/images/mlogo.png" alt="" />
         </div>
       </div>
     </div>
