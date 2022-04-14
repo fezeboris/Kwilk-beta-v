@@ -1,7 +1,6 @@
 <template>
   <Navbar />
   <div class="home-slider" @click="showModal = false">
-   
     <div class="main-container">
       <hr />
       <!-- <div class="case-container"> 
@@ -50,10 +49,10 @@
         </div> 
       </div> -->
 
-       <div class="loader" v-if="loading">
-            <Loader/>
-        </div>
- <hr style="margin-top: 20px;">
+      <div class="loader" v-if="loading">
+        <Loader />
+      </div>
+      <hr style="margin-top: 20px" />
       <div
         class="result-container"
         v-for="(report, index) in reportList"
@@ -64,40 +63,49 @@
             <div class="result-text">
               <div class="message_header">
                 <div>
-                   <h1>{{ $t('header.anonymous') }}</h1>
+                  <h1>{{ $t("header.anonymous") }}</h1>
                   <!-- <h1>Anonymous</h1> -->
                   <!-- {{report.id}} -->
                   <small>
                     <!-- Case of: -->
-                    <p style="color: #02b96c; font-size:.7rem">{{
-                      report.case_type
-                    }}</p></small
+                    <p style="color: #02b96c; font-size: 0.7rem">
+                      {{ report.case_type }}
+                    </p></small
                   >
                   <!-- <div class="date">
                     <small>{{ report.date_abuse }}</small>
                   </div> -->
                 </div>
-               
+
                 <div class="comment">
-                   <!-- <div v-if="report.recording == null">
+                  <!-- <div v-if="report.recording == null">
                   <i>No Audio</i>
                 </div> -->
                   <div class="audio">
-                    <i class="fas fa-play play" style="color=#1CB902" @click="showAudio = !showAudio"></i>
-                    <audio  v-if="showAudio" controls="controls" :src="report.recording"></audio>
+                    <i
+                      class="fas fa-play play"
+                      style="color=#1CB902"
+                      @click="showAudio = !showAudio"
+                    ></i>
+                    <audio
+                      v-if="showAudio"
+                      controls="controls"
+                      :src="report.recording"
+                    ></audio>
                   </div>
                 </div>
                 <div>
                   <div class="comments">
                     <div class="no_comment">
-                      
-                      <i class="fas fa-comment like"><sup>{{report.number_comments}}</sup></i>
-                      
+                      <i class="fas fa-comment like"
+                        ><sup>{{ report.number_comments }}</sup></i
+                      >
                     </div>
                     <div class="no_view">
-                      <i class="far fa-eye"><sup>{{report.number_views}}</sup></i>
+                      <i class="far fa-eye"
+                        ><sup>{{ report.number_views }}</sup></i
+                      >
                     </div>
-
                   </div>
                 </div>
               </div>
@@ -109,22 +117,25 @@
               </div>
             </div>
           </div>
-          <div class="report-image" v-if="report.image !== ''">
-            <img  :src="report.image" alt="" />
+          <div
+            class="report-image"
+            v-if="report.image !== '' && report.image_deleted == 'False'"
+          >
+            <img :src="report.image" alt="" />
           </div>
-
-          
         </router-link>
-        <hr style="margin-top: 10px;">
+        <hr style="margin-top: 10px" />
       </div>
     </div>
 
     <div class="map">
       <div class="map-btn">
-        <router-link to="/map"><i class="fas fa-map-marker-alt"></i></router-link>
+        <router-link to="/map"
+          ><i class="fas fa-map-marker-alt"></i
+        ></router-link>
       </div>
     </div>
-    
+
     <!-- <svg width="200" height="300" viewBox="-1 0 101 100">
             <path d="M20,0 L80,0 L100,60 L50,100 L0,60z" stroke="#BBCDD8" fill="#BBCDD8" />
             </svg> -->
@@ -136,7 +147,7 @@
 import axios from "axios";
 // import { useRoute } from "vue-router";
 import Navbar from "@/components/Navbar.vue";
-import Loader from '@/components/toolpit/Loader.vue'
+import Loader from "@/components/toolpit/Loader.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
@@ -144,40 +155,37 @@ export default {
   components: {
     Navbar,
     Footer,
-    Loader
+    Loader,
   },
   data() {
     return {
       token: "",
       reportList: [],
       showAudio: false,
-       loading: false,
+      loading: false,
     };
   },
   methods: {
     async getReports() {
-       this.loading = true;
+      this.loading = true;
       try {
         let result = await axios.get(
           `https://kwiklik.herokuapp.com/reports/get/${this.token}/`,
           {}
         );
         this.reportList = result.data.report_list;
-         
+
         // console.log(result.data.report_list);
       } catch (e) {
         console.log(e);
       }
       this.loading = false;
     },
-
   },
   mounted() {
- 
-      (this.token = localStorage.getItem("userInfo"));
+    this.token = localStorage.getItem("userInfo");
     this.getReports();
 
-    
     let user = localStorage.getItem("userInfo");
     if (!user) {
       this.$router.push({ name: "Login" });
@@ -248,7 +256,7 @@ small {
 }
 .result-container {
   margin: 20px 0px;
-   /* display: flex;
+  /* display: flex;
   flex-direction: column-reverse; */
 }
 .message_header {
@@ -276,7 +284,7 @@ small {
 } */
 .report-image img {
   display: flex;
-  width: auto; 
+  width: auto;
   margin: 0 auto;
 }
 .report-image {
@@ -359,54 +367,50 @@ small {
   margin-left: 45px;
   margin-right: 15px;
 }
-.like, .fa-eye {
+.like,
+.fa-eye {
   color: #bbcdd8;
   /* margin:0px 15px ; */
   font-size: 0.7rem;
   text-align: center;
   align-items: center;
 }
-a{
+a {
   text-decoration: none;
 }
-audio{
-   width: 100px;
-   /* background: lightgreen; */
+audio {
+  width: 100px;
+  /* background: lightgreen; */
   margin: 0;
   text-align: center;
   height: 30px;
 }
-i sup{
+i sup {
   color: rgb(211, 87, 197);
   /* margin-bottom: 10px; */
-  font-size: .6rem;
-  
+  font-size: 0.6rem;
 }
- .loader{
-    text-align: center;
-    margin: 0px auto;
-}   
-.map{
+.loader {
+  text-align: center;
+  margin: 0px auto;
+}
+.map {
   overflow: hidden;
   position: fixed;
   bottom: 13%;
   z-index: 9999;
   opacity: 3;
   left: 90%;
-  
- 
-} 
+}
 
-.map-btn{
- background: white;
- width: 33px;
- padding: 4px 10px;
+.map-btn {
+  background: white;
+  width: 33px;
+  padding: 4px 10px;
   color: rgb(17, 118, 151);
- border-radius: 5px;
-  
-} 
-.fa-map-marker-alt{
+  border-radius: 5px;
+}
+.fa-map-marker-alt {
   text-align: center;
-}    
-
+}
 </style>

@@ -47,7 +47,8 @@ import UpdateComments from "../components/home/UpdateComment.vue";
 import UpdateReply from "../components/home/UpdateReply.vue";
 import Forgotten from "../components/Forgotten.vue";
 import LandingPage from "../components/home/landingPage/LandingPage.vue";
-
+import OurStories from "../components/home/landingPage/stories/OurStories.vue";
+import Story from "../components/home/landingPage/stories/Story.vue";
 // import i18n from '../i18n'
 // import { h  } from 'Vue';
 // import MapaPage from '../components/home/MapaPage.vue'
@@ -67,6 +68,16 @@ const routes = [
     path: "/",
     name: "LandingPage",
     component: LandingPage,
+  },
+  {
+    path: "/our-stories",
+    name: "OurStories",
+    component: OurStories,
+  },
+  {
+    path: "/our-stories/Story",
+    name: "Story",
+    component: Story,
   },
   {
     path: "/login",

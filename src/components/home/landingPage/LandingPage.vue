@@ -31,8 +31,8 @@
               <a target="_blank" href="https://endsgbv.medium.com">Education</a>
             </li>
             <li class="nav-item mr-6">
-              <!-- <router-link to="#">Stories</router-link> -->
-              <a target="_blank" href="https://endsgbv.medium.com">Stories</a>
+              <router-link to="/our-stories">Stories</router-link>
+              <!-- <a target="_blank" href="https://endsgbv.medium.com">Stories</a> -->
             </li>
             <li class="nav-item mr-6">
               <a target="_blank" href="https://www.ebaseafrica.org/team"
@@ -105,13 +105,13 @@
       >
         <div class="container">
           <div class="container enterprises mt-5">
-            <img src="../../../assets/images/enterpriseslogo.jpeg" alt="" />
+            <img src="../../../assets/images/mlogo.png" alt="" />
           </div>
         </div>
       </div>
       <div class="row align-content-center mt-3 d-block d-sm-none">
         <div class="col-12">
-          <img src="../../../assets/images/enterpriseslogo.jpeg" alt="" />
+          <img src="../../../assets/images/mlogo.png" alt="" />
         </div>
       </div>
     </div>
@@ -260,8 +260,8 @@
                 90%
               </h1>
               <p>
-                Our aim is to reduce the number of SGBV cases and the name of
-                deaths due to SGBV complications by 90% in the year 2023.
+                Our aim is to reduce the number of SGBV cases and deaths due to
+                SGBV complications by 90% in the year 2023.
               </p>
             </div>
           </div>
@@ -317,6 +317,20 @@
     </div>
   </section>
   <section>
+    <div class="container text-center">
+      <h1 class="h2 pt-2 mb-5">Our Partners</h1>
+    </div>
+    <div class="container-lg">
+      <div class="container">
+        <img
+          class="img-fluid our-partner"
+          src="../../../assets/images/partners.jpeg"
+          alt=""
+        />
+      </div>
+    </div>
+  </section>
+  <section>
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-12 col-lg-6 mt-0 text-center adress1">
@@ -324,7 +338,7 @@
             <div class="contact-logo">
               <img src="../../../assets/images/call.png" alt="" />
             </div>
-            <p>+237 677 319 374/ +237 679 499 759</p>
+            <p>+237 693 184 050/ +237 679 499 759</p>
           </div>
         </div>
         <div class="col-12 col-lg-6 mt-0 text-center adress2">
@@ -573,13 +587,11 @@ a:hover {
   margin: 15px 15px;
 }
 
-.ebase1,
-.ebase2,
-.ebase3 {
+.ebase1 {
   width: 250px;
   height: 250px;
   margin: 0px auto;
-  border-radius: 0px 0px 30px 30px;
+  border-radius: 0px 0px 15px 15px;
   /* display: flex; */
   /* justify-content: space-between; */
   /* align-items: flex-end; */
@@ -587,7 +599,7 @@ a:hover {
 .ebase-content {
   height: 60px;
   color: black;
-  border-radius: 0px 0px 30px 30px;
+  border-radius: 0px 0px 15px 15px;
   background: #6a6214f7;
   bottom: 0;
 }
@@ -737,5 +749,8 @@ a:hover {
 .builtby {
   font-size: 0.9rem;
   color: white;
+}
+.our-partner {
+  margin: 0 auto;
 }
 </style>

@@ -2,38 +2,36 @@
   <div class="background">
     <nav>
       <div class="headers">
-       <div class="login-profil-img" @click="showModal = !showModal ">
-             <div v-if="image != ''" class="login-profil-img">
+        <div class="login-profil-img" @click="showModal = !showModal">
+          <div v-if="image != ''" class="login-profil-img">
             <img :src="image" id="photo" />
           </div>
 
           <div v-else class="login-profil-img">
             <i class="fas fa-user-circle"></i>
-           
           </div>
-       </div>
-        <div class="request-header">
-        <p>Seek for Help</p>
-        <small>Explore</small>
-    </div>
-
         </div>
-       
+        <div class="request-header">
+          <p>Seek for Help</p>
+          <small>Explore</small>
+        </div>
+      </div>
+
       <div class="language">
         <LangSwitcher />
       </div>
       <!-- <i class="material-icons menu" @click="showSidebar= true">dehaze</i> -->
-     
     </nav>
   </div>
   <br />
   <div class="popup" v-if="showModal" @click="showModal = false">
-
-  <p>
+    <p>
       <router-link to="/profile">{{ $t("popup.account") }}</router-link>
     </p>
     <p>
-      <router-link to="/job-request"  v-if="job == 'clerk'">{{ $t("popup.job") }}</router-link>
+      <router-link to="/job-request" v-if="job == 'clerk'">{{
+        $t("popup.job")
+      }}</router-link>
     </p>
     <p>
       <router-link to="/professionals" v-if="job == 'clerk'">{{
@@ -50,10 +48,10 @@
         $t("popup.research")
       }}</router-link>
     </p>
-   <p>
+    <p>
       <router-link
         to="/vue-research"
-       v-if="job == 'health_worker' || job ==  'clerk'"
+        v-if="job == 'health_worker' || job == 'clerk'"
         >{{ $t("popup.vue") }}</router-link
       >
     </p>
@@ -62,7 +60,7 @@
         $t("popup.edu")
       }}</router-link>
     </p>
-     <p>
+    <p>
       <router-link to="/my-report">{{ $t("popup.report") }}</router-link>
     </p>
 
@@ -73,17 +71,17 @@
 <script>
 import LangSwitcher from "@/components/LangSwitcher";
 
-import axios from 'axios'
+import axios from "axios";
 export default {
   components: {
-    LangSwitcher
+    LangSwitcher,
   },
   data() {
     return {
       showModal: false,
-      token: '',
-      job: '',
-      image: '',
+      token: "",
+      job: "",
+      image: "",
     };
   },
   methods: {
@@ -91,14 +89,16 @@ export default {
       localStorage.clear();
       this.$router.push({ name: "LandingPage" });
     },
-    async handleGetStatus(){
-      try{
-      let result = await axios.get( `https://kwiklik.herokuapp.com/job/obtain/${this.token}/`)
+    async handleGetStatus() {
+      try {
+        let result = await axios.get(
+          `https://kwiklik.herokuapp.com/job/obtain/${this.token}/`
+        );
 
-      this.job = result.data.job
-      // console.log(result)
-      }catch(e){
-        console.log(e)
+        this.job = result.data.job;
+        // console.log(result)
+      } catch (e) {
+        console.log(e);
       }
     },
     async handleGet() {
@@ -109,21 +109,17 @@ export default {
         );
         // console.log(result.data.profile);
         this.image = result.data.profile.photo;
-       
       } catch (e) {
         console.log(e);
       }
     },
-   
   },
-  mounted(){
+  mounted() {
     this.token = localStorage.getItem("userInfo");
 
     this.handleGetStatus();
-    this.handleGet()
-   
+    this.handleGet();
   },
-
 };
 </script>
 
@@ -132,9 +128,9 @@ export default {
   background: #ffff;
   width: 100%;
   position: fixed;
-  z-index: 9999;
+  /* z-index: 9999; */
   padding-top: 7px;
-  opacity: 1;
+  /* opacity: 1; */
   padding-bottom: 15px;
 }
 nav {
@@ -144,11 +140,11 @@ nav {
   align-items: center;
   justify-items: center;
 }
-.login-profil-img,  .login-profil-img img {
+.login-profil-img,
+.login-profil-img img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  
 }
 .popup {
   position: fixed;
@@ -177,39 +173,36 @@ button {
 button:hover {
   color: #8ba0ae;
 }
-p{
+p {
   padding: auto 0px;
   margin: 10px 0;
 }
 p a {
   color: lightblue;
 }
-.headers{
+.headers {
   display: flex;
   align-items: center;
   margin: 3px 5px;
 }
-.request-header{
-  margin-bottom :  10px;
+.request-header {
+  margin-bottom: 10px;
   margin-left: 5px;
   text-align: left;
   line-height: 3px;
-  
-
 }
 small {
   color: #8ba0ae;
   font-size: 0.8rem;
- 
+
   line-height: 0rem;
 }
-.request-header p{
+.request-header p {
   font-weight: bold;
-   margin-bottom: 10px;
+  margin-bottom: 10px;
 }
-.fa-chevron-down{
-  
-  font-size: .8rem;
+.fa-chevron-down {
+  font-size: 0.8rem;
   margin-right: 10px;
 }
 .login-profil-img i {

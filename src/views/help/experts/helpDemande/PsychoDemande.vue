@@ -1,37 +1,84 @@
 <template>
- 
-  <div class="popup" >
-    <h1>{{ $t('demandes.Psychological') }}</h1>
-    <!-- <label>Name</label> -->
-    <textarea
-      v-model="demand"
-      placeholder="please enter your request"
-    ></textarea>
-    <!-- <input type="text" v-model="name" /> -->
-<div class="loader" v-if="loading">
-         <Loader/>
-       </div>
-    <div class="btn-container" v-else>
-     
-      <button class="btn-2" @click.prevent="demandHelp">{{ $t('demandes.send') }}</button>
+  <div class="">
+    <button
+      type="button"
+      class="btn-lg text-center"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal2"
+    >
+      <div class="clinical-specialist">
+        <img src="../../../../assets/images/brain.png" alt="" />
+        {{ $t("help.p2") }}
+      </div>
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal2"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              <p class="">{{ $t("demandes.Psychological") }}</p>
+            </h5>
+            <button
+              @click.prevent="closemodal"
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <textarea
+              v-model="demand"
+              placeholder="please enter your request"
+            ></textarea>
+            <div class="loader" v-if="loading">
+              <Loader />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              @click="closemodale"
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click.prevent="demandHelp"
+            >
+              {{ $t("demandes.send") }}
+            </button>
+            <Date :Cdate="getDate" :Ctime="getTime" />
+          </div>
+        </div>
+      </div>
     </div>
-    <Date :Cdate="getDate" :Ctime="getTime" />
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import Date from "@/components/toolpit/Date.vue";
-import Loader from '@/components/toolpit/Loader.vue'
-import Swal from 'sweetalert2'
+import Loader from "@/components/toolpit/Loader.vue";
+import Swal from "sweetalert2";
 export default {
   components: {
     Date,
-    Loader
+    Loader,
   },
   data() {
     return {
- 
       demand: "",
       token: "",
       currentDate: "",
@@ -41,13 +88,13 @@ export default {
   methods: {
     getDate(date) {
       this.currentDate = date;
-    //   console.log("yowa", this.currentDate);
+      //   console.log("yowa", this.currentDate);
     },
     getTime(time) {
       this.currentTime = time;
     },
     doSomething() {
-       Swal.fire({
+      Swal.fire({
         position: "center-end",
         icon: "success",
         title: "Psy Request send Successfully",
@@ -68,9 +115,10 @@ export default {
         );
         this.demand = "";
         // console.log(result);
-          this.doSomething()
-        this.$router.push({name:'Help'})
-        return result
+        this.doSomething();
+
+        this.loading = false;
+        return result;
       } catch (e) {
         console.log(e);
       }
@@ -85,15 +133,6 @@ export default {
 </script>
 
 <style scoped>
-.popup {
-  max-width: 420px;
-  margin: 0px auto;
-  background: white;
- 
-  padding: 28px 10px;
-  border-radius: 10px;
-
-}
 label {
   color: #676e76;
   display: inline-block;
@@ -105,30 +144,12 @@ label {
   font-style: normal;
 }
 textarea {
- padding: 10px ;
-  width: 95%;
-  margin-bottom: 10px;
-  background: #f0f0f0;
-  box-sizing: border-box;
-  border: 1px solid #f0f0f0;
+  width: 100%;
   border-radius: 5px;
   outline: none;
-  height: 250px;
-  color: #555;
-}
-.btn-container {
-text-align: center;
+  height: 200px;
 }
 
-.btn-2 {
-  /* background: lightgreen; */
- padding: 3px 5px;
-  border: none;
-  font-size: 1.2rem;
-  outline: none;
-  border-radius: 5px;
-  color: lightblue;
-}
 input:focus {
   outline: none;
   border: 1px solid #1cb902;
@@ -136,11 +157,36 @@ input:focus {
 }
 
 h1 {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
   margin-bottom: 20px;
 }
-.loader{
-    text-align: center;
-    margin: 0px auto;
+.loader {
+  text-align: center;
+  margin: 0px auto;
+}
+
+.clinical-specialist {
+  text-align: left;
+  display: flex;
+  /* border: 1px solid grey; */
+  align-items: center;
+  border-radius: 5px;
+  /* margin-top: 48px; */
+}
+.btn-lg {
+  /* border: 1px solid grey; */
+  outline: none !important;
+}
+.clinical-specialist p {
+  /* background-color: lightgreen; */
+  text-align: left;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.clinical-specialist img {
+  margin-right: 20px;
+  width: 60px;
+  height: 60px;
 }
 </style>

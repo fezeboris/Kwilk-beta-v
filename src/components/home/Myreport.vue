@@ -58,76 +58,101 @@
         v-for="(report, index) in reportList"
         :key="index"
       >
-        <router-link :to="`/home-slider/detail/` + report.report_id">
-          <div class="result">
-            <div class="result-text">
-              <div class="message_header">
-                <div>
-                  <h1>{{ $t("header.anonymous") }}</h1>
-                  <!-- <h1>Anonymous</h1> -->
-                  <!-- {{report.id}} -->
-                  <small>
-                    <!-- Case of: -->
-                    <p style="color: #02b96c; font-size: 0.7rem">
-                      {{ report.case_type }}
-                    </p></small
-                  >
-                  <!-- <div class="date">
+        <div class="result">
+          <div class="result-text">
+            <div class="message_header">
+              <div>
+                <h1>{{ $t("header.anonymous") }}</h1>
+                <!-- <h1>Anonymous</h1> -->
+                <!-- {{report.id}} -->
+                <small>
+                  <!-- Case of: -->
+                  <p style="color: #02b96c; font-size: 0.7rem">
+                    {{ report.case_type }}
+                  </p></small
+                >
+                <!-- <div class="date">
                     <small>{{ report.date_abuse }}</small>
                   </div> -->
-                </div>
+              </div>
 
-                <div class="comment">
-                  <!-- <div v-if="report.recording == null">
+              <div class="comment">
+                <!-- <div v-if="report.recording == null">
                   <i>No Audio</i>
                 </div> -->
-                  <div class="audio">
-                    <i
-                      class="fas fa-play play"
-                      style="color=#1CB902"
-                      @click="showAudio = !showAudio"
-                    ></i>
-                    <audio
-                      v-if="showAudio"
-                      controls="controls"
-                      :src="report.recording"
-                    ></audio>
-                  </div>
-                </div>
-                <div>
-                  <div class="comments">
-                    <div class="no_comment">
-                      <i class="fas fa-comment like"
-                        ><sup>{{ report.number_comments }}</sup></i
-                      >
-                    </div>
-                    <div class="no_view">
-                      <i class="far fa-eye"
-                        ><sup>{{ report.number_views }}</sup></i
-                      >
-                    </div>
-                    <div></div>
-                  </div>
+                <div class="audio">
+                  <i
+                    class="fas fa-play play"
+                    style="color=#1CB902"
+                    @click="showAudio = !showAudio"
+                  ></i>
+                  <audio
+                    v-if="showAudio"
+                    controls="controls"
+                    :src="report.recording"
+                  ></audio>
                 </div>
               </div>
-              <div class="report">
-                <p>{{ report.report }}</p>
-                <div class="report-footer">
-                  <div class="date">
-                    <small>{{ report.date_abuse }}</small>
+              <div>
+                <div class="comments">
+                  <div class="no_comment">
+                    <i class="fas fa-comment like"
+                      ><sup>{{ report.number_comments }}</sup></i
+                    >
                   </div>
+                  <div class="no_view">
+                    <i class="far fa-eye"
+                      ><sup>{{ report.number_views }}</sup></i
+                    >
+                  </div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+            <div class="report">
+              <p>{{ report.report }}</p>
+              <div class="report-footer">
+                <div class="date">
+                  <small>{{ report.date_abuse }}</small>
+                </div>
 
-                  <div class="delete">
-                    <button @click="deleteMyReport(report.report_id)">delete</button>
-                  </div>
+                <div class="delete">
+                  <button @click="deleteMyReport(report.report_id)">
+                    delete
+                  </button>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <router-link :to="`/home-slider/detail/` + report.report_id">
           <div class="report-image" v-if="report.image !== ''">
             <img :src="report.image" alt="" />
           </div>
         </router-link>
+        <div class="delete-image">
+          <small class="mx-3 fw-bold">hide image</small>
+          <div class="education-btn">
+            <button
+              @click="
+                imageVisibleConfirmation(report.report_id),
+                  (deleteImage = false)
+              "
+              :class="{ active: report.image_deleted == 'False' }"
+            >
+              <a href="#">No</a>
+            </button>
+            <button
+              :class="{ active: report.image_deleted == 'True' }"
+              @click="
+                deleteImageConfirmation(report.report_id), (deleteImage = true)
+              "
+            >
+              <a href="#">Yes</a>
+            </button>
+          </div>
+        </div>
+
         <hr style="margin-top: 10px" />
       </div>
     </div>
@@ -168,7 +193,8 @@ export default {
       showAudio: false,
       loading: false,
       userId: "",
-      reportId: '',
+      reportId: "",
+      deleteImage: false,
     };
   },
   methods: {
@@ -187,6 +213,36 @@ export default {
       }
       this.loading = false;
     },
+    async imageDelete() {
+      try {
+        let result = await axios.put(
+          `https://kwiklik.herokuapp.com/reports/messages/update/${this.token}/${this.reportId}/`,
+          {
+            image_deleted: "True",
+          }
+        );
+        this.getReports();
+        // console.log("hey", result);
+        return result;
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    async imageVisible() {
+      try {
+        let result = await axios.put(
+          `https://kwiklik.herokuapp.com/reports/messages/update/${this.token}/${this.reportId}/`,
+          {
+            image_deleted: "False",
+          }
+        );
+        this.getReports();
+        // console.log("hey", result);
+        return result;
+      } catch (e) {
+        console.log(e);
+      }
+    },
     async reportDelete() {
       try {
         let result = await axios.put(
@@ -195,15 +251,17 @@ export default {
             deleted: "True",
           }
         );
-       this.$router.push({ name: "Myreport" });
+        // location.reload();
+        // this.$router.push({ name: "HomeSlider" });
+        this.getReports();
         return result;
       } catch (e) {
         console.log(e);
       }
     },
-    deleteMyReport(id){
-        this.reportId = id
-         Swal.fire({
+    deleteMyReport(id) {
+      this.reportId = id;
+      Swal.fire({
         title: "Are you sure?",
         text: "You won't be able to revert this!",
         icon: "warning",
@@ -213,12 +271,47 @@ export default {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          this.reportDelete()
+          this.reportDelete();
           Swal.fire("Deleted!", "Your file has been deleted.", "success");
-          
         }
       });
-    }
+    },
+    deleteImageConfirmation(id) {
+      this.reportId = id;
+      // console.log(id);
+      Swal.fire({
+        title: "Are you sure?",
+        text: "The image will no more be visible for all",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, hide image!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.imageDelete();
+          Swal.fire("Your image has been hidden");
+        }
+      });
+    },
+    imageVisibleConfirmation(id) {
+      this.reportId = id;
+      // console.log(id);
+      Swal.fire({
+        title: "Are you sure?",
+        text: "The image will now be visible for all",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.imageVisible();
+          Swal.fire("Your image is now visible for all");
+        }
+      });
+    },
   },
   mounted() {
     this.token = localStorage.getItem("userInfo");
@@ -240,7 +333,7 @@ export default {
   max-width: 420px;
   margin: 0px auto;
   background: white;
-  text-align: left;
+  /* text-align: left; */
   padding: 30px 0px;
   border-radius: 10px;
 }
@@ -323,11 +416,11 @@ small {
   width: 340px;
 } */
 .report-image img {
-display: flex;
+  display: flex;
   /* width: 100%;  */
   margin: 0 auto;
 }
-.report-image{
+.report-image {
   border-bottom: 0.2px solid #f0f0f0f0;
   width: 100%;
   /* height: 170px; */
@@ -452,5 +545,44 @@ i sup {
   border-radius: 5px;
   /* float: right; */
   outline: none;
+}
+
+.education-btn {
+  background: rgba(5, 198, 82, 0.54);
+  padding: 5px 5px;
+  margin: 10px auto;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90px;
+  height: 30px;
+
+  right: 0;
+}
+
+.education-btn button a,
+button {
+  text-decoration: none;
+  color: black;
+  font-size: 0.7rem;
+}
+.active {
+  background-color: #ffffff;
+  border-radius: 15px;
+  color: black;
+  padding: 5px 5px;
+  height: 28px;
+  width: 50px;
+}
+.delete-image {
+  background: #f0f0f0;
+  width: 120px;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 5px;
+}
+.delete-image small {
+  text-align: center !important;
 }
 </style>
