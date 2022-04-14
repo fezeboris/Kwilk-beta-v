@@ -76,7 +76,7 @@
         @click.prevent="getId(subReport.id), messageDetails"
       >
         <div class="edit">
-          <p>{{ subReport.reporter }}</p>
+          <!-- <p>{{ subReport.reporter }}</p> -->
           <router-link :to="`/update-comment/` + subReport.id">
             <i
               v-if="this.username == subReport.reporter"
@@ -394,7 +394,7 @@ a:hover {
 .reply {
   margin-top: 20px;
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 .fa-comment {
   margin-left: 30px;
@@ -557,8 +557,9 @@ textarea {
   color: lightblue;
 }
 .edit {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex;
+  justify-content: space-between; */
+  text-align: right;
 }
 .edit i {
   font-size: 0.8rem;
