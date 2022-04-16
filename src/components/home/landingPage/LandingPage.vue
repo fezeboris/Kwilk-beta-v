@@ -114,6 +114,13 @@
           <img src="../../../assets/images/mlogo.png" alt="" />
         </div>
       </div>
+
+      <div class="container-lg text-center thanks">
+        <p>
+          Thanks to funding we just received from Grand Challenge Canada, we are
+          scaling out the story telling component of this platform
+        </p>
+      </div>
     </div>
   </section>
   <section class="section my-4">
@@ -246,6 +253,22 @@
         </div>
       </div>
     </div>
+    <div class="container-lg">
+      <div class="row justify-content-center">
+        <div class="col-9 col-lg-3 text-center">
+          <div class="ebase1 my-3">
+            <div class="img">
+              <img src="../../../assets/images/e5.png" alt="" />
+            </div>
+            <div class="ebase-content">
+              <p>We are using technology to tackle real world problems</p>
+            </div>
+          </div>
+        </div>
+        <div class="d-none d-sm-block col-lg-3 text-center"></div>
+        <div class="d-none d-sm-block col-9 col-lg-3 text-center"></div>
+      </div>
+    </div>
   </section>
   <section class="section section1 mt-5">
     <div class="container-lg our-aim">
@@ -282,11 +305,66 @@
   <section class="section2 mt-0 pt-5">
     <div class="container text-center">
       <p class="h5 text-success">Experts</p>
-      <h1 class="h1 mb-5">
+      <h1 class="h1">
         A Team of Professionals ready <br />
         to Help
       </h1>
     </div>
+
+    <div class="container-lg">
+      <div class="row justify-content-center">
+        <div class="col-9 col-lg-3 text-center">
+          <div class="ebase2 my-3">
+            <div class="img">
+              <img src="../../../assets/images/p1.png" alt="" />
+            </div>
+            <div class="ebase-content2">
+              <p class="fs-5">Dr Patrick Okwen</p>
+              <div class="ebase2-line mb-3">
+                <div class="hr4"></div>
+                <div class="hr5"></div>
+              </div>
+
+              <p>Medical Consultant</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-9 col-lg-3 text-center">
+          <div class="ebase2 my-3">
+            <div class="img">
+              <img src="../../../assets/images/pp2.png" alt="" />
+            </div>
+            <div class="ebase-content2">
+              <p class="fs-5">Mbangsi Maryanne</p>
+              <div class="ebase2-line mb-3">
+                <div class="hr4"></div>
+                <div class="hr5"></div>
+              </div>
+
+              <p>Legal Consultant</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-9 col-lg-3 text-center">
+          <div class="ebase2 my-3">
+            <div class="img">
+              <img src="../../../assets/images/pp3.png" alt="" />
+            </div>
+
+            <div class="ebase-content2">
+              <p class="fs-5">Solomon Enokoh</p>
+              <div class="ebase2-line mb-3">
+                <div class="hr4"></div>
+                <div class="hr5"></div>
+              </div>
+
+              <p>Legal Consultant</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container-lg">
       <div class="row justify-content-center">
         <div class="col-10 col-lg-4 text-center">
@@ -497,6 +575,9 @@ a:hover {
   font-size: 12px;
   padding-top: 50px;
 }
+.thanks p {
+  color: #5b5731;
+}
 .left,
 .right {
   position: absolute;
@@ -592,15 +673,29 @@ a:hover {
   height: 250px;
   margin: 0px auto;
   border-radius: 0px 0px 15px 15px;
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* align-items: flex-end; */
 }
+.ebase2 {
+  width: 250px;
+  height: 350px;
+  margin: 0px auto;
+  border-radius: 0px 0px 15px 15px;
+}
+
 .ebase-content {
   height: 60px;
   color: black;
   border-radius: 0px 0px 15px 15px;
   background: #6a6214f7;
+  bottom: 0;
+}
+.ebase-content2 {
+  text-align: left;
+  height: 85px;
+  line-height: 10px;
+  color: #000000;
+  border-radius: 0px 0px 15px 15px;
+  padding: 10px 15px;
+  background: #ffffff;
   bottom: 0;
 }
 .ebase-content p {
@@ -661,6 +756,24 @@ a:hover {
   margin-right: 5px;
   background-color: #02b96c8f;
   border: 0 none;
+}
+.hr4 {
+  width: 60%;
+  height: 6px;
+
+  background-color: #7b7005b5;
+  border: 0 none;
+}
+.hr5 {
+  width: 40%;
+  height: 1px;
+
+  background-color: #7b7005b5;
+  border: 0 none;
+}
+.ebase2-line {
+  display: flex;
+  align-items: center;
 }
 .adress1 {
   background: #02b96c17;
