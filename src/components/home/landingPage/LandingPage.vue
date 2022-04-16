@@ -310,7 +310,6 @@
         to Help
       </h1>
     </div>
-
     <div class="container-lg">
       <div class="row justify-content-center">
         <div class="col-9 col-lg-3 text-center">
@@ -324,7 +323,6 @@
                 <div class="hr4"></div>
                 <div class="hr5"></div>
               </div>
-
               <p>Medical Consultant</p>
             </div>
           </div>
