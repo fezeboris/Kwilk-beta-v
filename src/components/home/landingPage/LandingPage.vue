@@ -101,16 +101,20 @@
         </div>
       </div>
       <div
-        class="container-lg d-none d-lg-block d-sm-block d-sm-none d-md-block"
+        class="
+          container-lg
+          mt-5
+          d-none d-lg-block d-sm-block d-sm-none d-md-block
+        "
       >
         <div class="container">
-          <div class="container enterprises mt-5">
+          <div class="container enterprises mt-5 mb-2">
             <img src="../../../assets/images/mlogo.png" alt="" />
           </div>
         </div>
       </div>
-      <div class="row align-content-center mt-3 d-block d-sm-none">
-        <div class="col-12">
+      <div class="row align-content-center mt-5 d-block d-sm-none">
+        <div class="col-12 mt-3">
           <img src="../../../assets/images/mlogo.png" alt="" />
         </div>
       </div>
@@ -319,7 +323,7 @@
             </div>
             <div class="ebase-content2">
               <p class="fs-5">Dr Patrick Okwen</p>
-              <div class="ebase2-line mb-3">
+              <div class="ebase2-line my-3">
                 <div class="hr4"></div>
                 <div class="hr5"></div>
               </div>
@@ -688,13 +692,16 @@ a:hover {
 }
 .ebase-content2 {
   text-align: left;
-  height: 85px;
-  line-height: 10px;
+  /* height: 85px; */
+  line-height: 8px;
   color: #000000;
   border-radius: 0px 0px 15px 15px;
   padding: 10px 15px;
   background: #ffffff;
   bottom: 0;
+}
+.ebase-content2 p {
+  padding-bottom: 15px;
 }
 .ebase-content p {
   color: white;
@@ -801,6 +808,9 @@ a:hover {
   width: 100%;
   height: 100%;
 }
+/* .ajustLogo {
+  margin-top: 5rem;
+} */
 .footer {
   background: #b4ac6c;
 }
@@ -848,13 +858,17 @@ a:hover {
   font-size: 80px;
 }
 .enterprises img {
-  margin: 0px auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5rem;
+  margin-bottom: 30px;
+  padding-top: 18px;
   height: 100%;
   width: 100%;
 }
 .enterprises {
-  margin: 0px auto;
   height: 80px;
+
   width: 700px;
 }
 .builtby {
