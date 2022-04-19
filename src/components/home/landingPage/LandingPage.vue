@@ -338,7 +338,7 @@
             </div>
             <div class="ebase-content2">
               <p class="fs-5">Mbangsi Maryanne</p>
-              <div class="ebase2-line mb-3">
+              <div class="ebase2-line my-3">
                 <div class="hr4"></div>
                 <div class="hr5"></div>
               </div>
@@ -355,7 +355,7 @@
 
             <div class="ebase-content2">
               <p class="fs-5">Solomon Enokoh</p>
-              <div class="ebase2-line mb-3">
+              <div class="ebase2-line my-3">
                 <div class="hr4"></div>
                 <div class="hr5"></div>
               </div>
